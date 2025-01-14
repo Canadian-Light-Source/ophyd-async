@@ -79,6 +79,14 @@ async def assert_reading(
 
     """
     actual_reading = await readable.read()
+    # assert (
+    #     _approx_readable_value(expected_reading) == actual_reading
+    # ), _generate_assert_error_msg(
+    #     name=readable.name,
+    #     expected_result=expected_reading,
+    #     actual_result=actual_reading,
+    # )
+
     assert (
         _approx_readable_value(expected_reading) == actual_reading
     ), _generate_assert_error_msg(
