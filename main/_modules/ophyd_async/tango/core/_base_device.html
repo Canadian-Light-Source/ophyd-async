@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ophyd_async.tango.core._base_device &#8212; ophyd-async 0.1.dev691+g7683745 documentation</title>
+    <title>ophyd_async.tango.core._base_device &#8212; ophyd-async 0.1.dev778+gb28a3ef documentation</title>
   
   
   
@@ -30,11 +30,10 @@
 <link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/autodoc_pydantic.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=fd3f3429" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css?v=3fefa004" />
   
   <!-- So that users can add custom icons -->
   <script src="../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -42,8 +41,8 @@
   <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../../_static/documentation_options.js?v=bc3ee918"></script>
-    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/documentation_options.js?v=340a56d7"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../../_static/copybutton.js?v=30646c52"></script>
@@ -135,8 +134,8 @@ window.addEventListener("load", () => mermaid.run());
       
     
     
-    <img src="../../../../_static/ophyd-async-logo.svg" class="logo__image only-light" alt="ophyd-async 0.1.dev691+g7683745 documentation - Home"/>
-    <img src="../../../../_static/ophyd-async-logo.svg" class="logo__image only-dark pst-js-only" alt="ophyd-async 0.1.dev691+g7683745 documentation - Home"/>
+    <img src="../../../../_static/ophyd-async-logo.svg" class="logo__image only-light" alt="ophyd-async 0.1.dev778+gb28a3ef documentation - Home"/>
+    <img src="../../../../_static/ophyd-async-logo.svg" class="logo__image only-dark pst-js-only" alt="ophyd-async 0.1.dev778+gb28a3ef documentation - Home"/>
   
   
 </a></div>
@@ -469,30 +468,27 @@ window.addEventListener("load", () => mermaid.run());
 <span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Generic</span><span class="p">,</span> <span class="n">TypeVar</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">ophyd_async.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">Device</span><span class="p">,</span> <span class="n">DeviceConnector</span><span class="p">,</span> <span class="n">DeviceFiller</span><span class="p">,</span> <span class="n">LazyMock</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">tango</span><span class="w"> </span><span class="kn">import</span> <span class="n">DeviceProxy</span> <span class="k">as</span> <span class="n">DeviceProxy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tango</span><span class="w"> </span><span class="kn">import</span> <span class="n">DeviceProxy</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">tango.asyncio</span><span class="w"> </span><span class="kn">import</span> <span class="n">DeviceProxy</span> <span class="k">as</span> <span class="n">AsyncDeviceProxy</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">ophyd_async.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">Device</span><span class="p">,</span> <span class="n">DeviceConnector</span><span class="p">,</span> <span class="n">DeviceFiller</span><span class="p">,</span> <span class="n">LazyMock</span>
+
 <span class="kn">from</span><span class="w"> </span><span class="nn">._signal</span><span class="w"> </span><span class="kn">import</span> <span class="n">TangoSignalBackend</span><span class="p">,</span> <span class="n">infer_python_type</span><span class="p">,</span> <span class="n">infer_signal_type</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">._utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_full_attr_trl</span>
 
 <span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="TangoDevice">
-<a class="viewcode-back" href="../../../../_api/ophyd_async.tango.core.html#ophyd_async.tango.core.TangoDevice">[docs]</a>
+<a class="viewcode-back" href="../../../../_api/ophyd_async/ophyd_async.tango.core.html#ophyd_async.tango.core.TangoDevice">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">TangoDevice</span><span class="p">(</span><span class="n">Device</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    General class for TangoDevices. Extends Device to provide attributes for Tango</span>
-<span class="sd">    devices.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;General class for TangoDevices.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    trl: str</span>
-<span class="sd">        Tango resource locator, typically of the device server.</span>
-<span class="sd">    device_proxy: Optional[Union[AsyncDeviceProxy, SyncDeviceProxy]]</span>
-<span class="sd">        Asynchronous or synchronous DeviceProxy object for the device. If not provided,</span>
-<span class="sd">        an asynchronous DeviceProxy object will be created using the trl and awaited</span>
-<span class="sd">        when the device is connected.</span>
+<span class="sd">    Extends Device to provide attributes for Tango devices.</span>
+
+<span class="sd">    :param trl: Tango resource locator, typically of the device server.</span>
+<span class="sd">        An asynchronous DeviceProxy object will be created using the</span>
+<span class="sd">        trl and awaited when the device is connected.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">trl</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
@@ -500,20 +496,22 @@ window.addEventListener("load", () => mermaid.run());
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">trl</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">device_proxy</span><span class="p">:</span> <span class="n">DeviceProxy</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">trl</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">support_events</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">auto_fill_signals</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">connector</span> <span class="o">=</span> <span class="n">TangoDeviceConnector</span><span class="p">(</span>
-            <span class="n">trl</span><span class="o">=</span><span class="n">trl</span><span class="p">,</span> <span class="n">device_proxy</span><span class="o">=</span><span class="n">device_proxy</span><span class="p">,</span> <span class="n">support_events</span><span class="o">=</span><span class="n">support_events</span>
+            <span class="n">trl</span><span class="o">=</span><span class="n">trl</span><span class="p">,</span>
+            <span class="n">support_events</span><span class="o">=</span><span class="n">support_events</span><span class="p">,</span>
+            <span class="n">auto_fill_signals</span><span class="o">=</span><span class="n">auto_fill_signals</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">connector</span><span class="o">=</span><span class="n">connector</span><span class="p">)</span></div>
 
 
 
 <div class="viewcode-block" id="TangoPolling">
-<a class="viewcode-back" href="../../../../_api/ophyd_async.tango.core.html#ophyd_async.tango.core.TangoPolling">[docs]</a>
+<a class="viewcode-back" href="../../../../_api/ophyd_async/ophyd_async.tango.core.html#ophyd_async.tango.core.TangoPolling">[docs]</a>
 <span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">TangoPolling</span><span class="p">(</span><span class="n">Generic</span><span class="p">[</span><span class="n">T</span><span class="p">]):</span>
     <span class="n">ophyd_polling_period</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span>
@@ -542,24 +540,28 @@ window.addEventListener("load", () => mermaid.run());
     <span class="c1"># These leftover annotations will now be handled by the iterator</span>
 
 
+<div class="viewcode-block" id="TangoDeviceConnector">
+<a class="viewcode-back" href="../../../../_api/ophyd_async/ophyd_async.tango.core.html#ophyd_async.tango.core.TangoDeviceConnector">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">TangoDeviceConnector</span><span class="p">(</span><span class="n">DeviceConnector</span><span class="p">):</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">trl</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">device_proxy</span><span class="p">:</span> <span class="n">DeviceProxy</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">support_events</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+        <span class="n">auto_fill_signals</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">trl</span> <span class="o">=</span> <span class="n">trl</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">proxy</span> <span class="o">=</span> <span class="n">device_proxy</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_support_events</span> <span class="o">=</span> <span class="n">support_events</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_auto_fill_signals</span> <span class="o">=</span> <span class="n">auto_fill_signals</span>
 
+<div class="viewcode-block" id="TangoDeviceConnector.create_children_from_annotations">
+<a class="viewcode-back" href="../../../../_api/ophyd_async/ophyd_async.tango.core.html#ophyd_async.tango.core.TangoDeviceConnector.create_children_from_annotations">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">create_children_from_annotations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="p">:</span> <span class="n">Device</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;filler&quot;</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">filler</span> <span class="o">=</span> <span class="n">DeviceFiller</span><span class="p">(</span>
                 <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span>
                 <span class="n">signal_backend_factory</span><span class="o">=</span><span class="n">TangoSignalBackend</span><span class="p">,</span>
                 <span class="n">device_connector_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">TangoDeviceConnector</span><span class="p">(</span>
-                    <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_support_events</span>
+                    <span class="kc">None</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_support_events</span>
                 <span class="p">),</span>
             <span class="p">)</span>
             <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filler</span><span class="o">.</span><span class="n">create_devices_from_annotations</span><span class="p">(</span><span class="n">filled</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
@@ -567,41 +569,59 @@ window.addEventListener("load", () => mermaid.run());
                 <span class="n">filled</span><span class="o">=</span><span class="kc">False</span>
             <span class="p">):</span>
                 <span class="n">fill_backend_with_polling</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_support_events</span><span class="p">,</span> <span class="n">backend</span><span class="p">,</span> <span class="n">annotations</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">filler</span><span class="o">.</span><span class="n">check_created</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">filler</span><span class="o">.</span><span class="n">check_created</span><span class="p">()</span></div>
 
+
+<div class="viewcode-block" id="TangoDeviceConnector.connect_mock">
+<a class="viewcode-back" href="../../../../_api/ophyd_async/ophyd_async.tango.core.html#ophyd_async.tango.core.TangoDeviceConnector.connect_mock">[docs]</a>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">connect_mock</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="p">:</span> <span class="n">Device</span><span class="p">,</span> <span class="n">mock</span><span class="p">:</span> <span class="n">LazyMock</span><span class="p">):</span>
         <span class="c1"># Make 2 entries for each DeviceVector</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">filler</span><span class="o">.</span><span class="n">create_device_vector_entries_to_mock</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
         <span class="c1"># Set the name of the device to name all children</span>
         <span class="n">device</span><span class="o">.</span><span class="n">set_name</span><span class="p">(</span><span class="n">device</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-        <span class="k">return</span> <span class="k">await</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">connect_mock</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">mock</span><span class="p">)</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">connect_mock</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">mock</span><span class="p">)</span></div>
 
+
+<div class="viewcode-block" id="TangoDeviceConnector.connect_real">
+<a class="viewcode-back" href="../../../../_api/ophyd_async/ophyd_async.tango.core.html#ophyd_async.tango.core.TangoDeviceConnector.connect_real">[docs]</a>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">connect_real</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="p">:</span> <span class="n">Device</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">force_reconnect</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">trl</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">proxy</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">proxy</span> <span class="o">=</span> <span class="k">await</span> <span class="n">AsyncDeviceProxy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">trl</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">proxy</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">trl</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">trl</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">proxy</span><span class="o">.</span><span class="n">name</span><span class="p">()</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Neither proxy nor trl supplied&quot;</span><span class="p">)</span>
-
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">trl</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not created Device Proxy for TRL </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">trl</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">proxy</span> <span class="o">=</span> <span class="k">await</span> <span class="n">AsyncDeviceProxy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">trl</span><span class="p">)</span>
         <span class="n">children</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
             <span class="nb">set</span><span class="p">()</span>
             <span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">proxy</span><span class="o">.</span><span class="n">get_attribute_list</span><span class="p">())</span>
             <span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">proxy</span><span class="o">.</span><span class="n">get_command_list</span><span class="p">())</span>
         <span class="p">)</span>
+
+        <span class="n">children</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">child</span> <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">children</span> <span class="k">if</span> <span class="n">child</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">filler</span><span class="o">.</span><span class="n">ignored_signals</span>
+        <span class="p">]</span>
+
+        <span class="n">not_filled</span> <span class="o">=</span> <span class="p">{</span><span class="n">unfilled</span> <span class="k">for</span> <span class="n">unfilled</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">device</span><span class="o">.</span><span class="n">children</span><span class="p">()}</span>
+
+        <span class="c1"># If auto_fill_signals is True, fill all children inferred from the device</span>
+        <span class="c1"># else fill only the children that are annotated</span>
         <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">children</span><span class="p">:</span>
-            <span class="c1"># TODO: strip attribute name</span>
-            <span class="n">full_trl</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">trl</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
-            <span class="n">signal_type</span> <span class="o">=</span> <span class="k">await</span> <span class="n">infer_signal_type</span><span class="p">(</span><span class="n">full_trl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">proxy</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">signal_type</span><span class="p">:</span>
-                <span class="n">backend</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">filler</span><span class="o">.</span><span class="n">fill_child_signal</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">signal_type</span><span class="p">)</span>
-                <span class="n">backend</span><span class="o">.</span><span class="n">datatype</span> <span class="o">=</span> <span class="k">await</span> <span class="n">infer_python_type</span><span class="p">(</span><span class="n">full_trl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">proxy</span><span class="p">)</span>
-                <span class="n">backend</span><span class="o">.</span><span class="n">set_trl</span><span class="p">(</span><span class="n">full_trl</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_auto_fill_signals</span> <span class="ow">or</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">not_filled</span><span class="p">:</span>
+                <span class="c1"># TODO: strip attribute name</span>
+                <span class="n">full_trl</span> <span class="o">=</span> <span class="n">get_full_attr_trl</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">trl</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+                <span class="n">signal_type</span> <span class="o">=</span> <span class="k">await</span> <span class="n">infer_signal_type</span><span class="p">(</span><span class="n">full_trl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">proxy</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">signal_type</span><span class="p">:</span>
+                    <span class="n">backend</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">filler</span><span class="o">.</span><span class="n">fill_child_signal</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">signal_type</span><span class="p">)</span>
+                    <span class="c1"># don&#39;t overlaod datatype if provided by annotation</span>
+                    <span class="k">if</span> <span class="n">backend</span><span class="o">.</span><span class="n">datatype</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">backend</span><span class="o">.</span><span class="n">datatype</span> <span class="o">=</span> <span class="k">await</span> <span class="n">infer_python_type</span><span class="p">(</span><span class="n">full_trl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">proxy</span><span class="p">)</span>
+                    <span class="n">backend</span><span class="o">.</span><span class="n">set_trl</span><span class="p">(</span><span class="n">full_trl</span><span class="p">)</span>
+
         <span class="c1"># Check that all the requested children have been filled</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">filler</span><span class="o">.</span><span class="n">check_filled</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">trl</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">children</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
         <span class="c1"># Set the name of the device to name all children</span>
         <span class="n">device</span><span class="o">.</span><span class="n">set_name</span><span class="p">(</span><span class="n">device</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-        <span class="k">return</span> <span class="k">await</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">connect_real</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="n">force_reconnect</span><span class="p">)</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">connect_real</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="n">force_reconnect</span><span class="p">)</span></div>
+</div>
+
 </pre></div>
 
                 </article>

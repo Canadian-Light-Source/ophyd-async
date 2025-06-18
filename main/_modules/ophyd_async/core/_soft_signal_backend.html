@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ophyd_async.core._soft_signal_backend &#8212; ophyd-async 0.1.dev691+g7683745 documentation</title>
+    <title>ophyd_async.core._soft_signal_backend &#8212; ophyd-async 0.1.dev778+gb28a3ef documentation</title>
   
   
   
@@ -30,11 +30,10 @@
 <link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/autodoc_pydantic.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=3fefa004" />
   
   <!-- So that users can add custom icons -->
   <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -42,8 +41,8 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../_static/documentation_options.js?v=bc3ee918"></script>
-    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/documentation_options.js?v=340a56d7"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=30646c52"></script>
@@ -135,8 +134,8 @@ window.addEventListener("load", () => mermaid.run());
       
     
     
-    <img src="../../../_static/ophyd-async-logo.svg" class="logo__image only-light" alt="ophyd-async 0.1.dev691+g7683745 documentation - Home"/>
-    <img src="../../../_static/ophyd-async-logo.svg" class="logo__image only-dark pst-js-only" alt="ophyd-async 0.1.dev691+g7683745 documentation - Home"/>
+    <img src="../../../_static/ophyd-async-logo.svg" class="logo__image only-light" alt="ophyd-async 0.1.dev778+gb28a3ef documentation - Home"/>
+    <img src="../../../_static/ophyd-async-logo.svg" class="logo__image only-dark pst-js-only" alt="ophyd-async 0.1.dev778+gb28a3ef documentation - Home"/>
   
   
 </a></div>
@@ -467,6 +466,7 @@ window.addEventListener("load", () => mermaid.run());
 <span></span><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">typing</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">abstractmethod</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sequence</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
@@ -485,9 +485,9 @@ window.addEventListener("load", () => mermaid.run());
     <span class="n">SignalBackend</span><span class="p">,</span>
     <span class="n">SignalDatatype</span><span class="p">,</span>
     <span class="n">SignalDatatypeT</span><span class="p">,</span>
-    <span class="n">SignalMetadata</span><span class="p">,</span>
     <span class="n">TableT</span><span class="p">,</span>
     <span class="n">make_datakey</span><span class="p">,</span>
+    <span class="n">make_metadata</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">._table</span><span class="w"> </span><span class="kn">import</span> <span class="n">Table</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">._utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callback</span><span class="p">,</span> <span class="n">get_dtype</span><span class="p">,</span> <span class="n">get_enum_cls</span>
@@ -560,9 +560,9 @@ window.addEventListener("load", () => mermaid.run());
 <span class="nd">@lru_cache</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">make_converter</span><span class="p">(</span><span class="n">datatype</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">SignalDatatype</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">SoftConverter</span><span class="p">:</span>
     <span class="n">enum_cls</span> <span class="o">=</span> <span class="n">get_enum_cls</span><span class="p">(</span><span class="n">datatype</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">datatype</span> <span class="o">==</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="n">datatype</span> <span class="ow">in</span> <span class="p">(</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">typing</span><span class="o">.</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
         <span class="k">return</span> <span class="n">SequenceStrSoftConverter</span><span class="p">()</span>
-    <span class="k">elif</span> <span class="n">get_origin</span><span class="p">(</span><span class="n">datatype</span><span class="p">)</span> <span class="o">==</span> <span class="n">Sequence</span> <span class="ow">and</span> <span class="n">enum_cls</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">get_origin</span><span class="p">(</span><span class="n">datatype</span><span class="p">)</span> <span class="ow">in</span> <span class="p">(</span><span class="n">Sequence</span><span class="p">,</span> <span class="n">typing</span><span class="o">.</span><span class="n">Sequence</span><span class="p">)</span> <span class="ow">and</span> <span class="n">enum_cls</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">SequenceEnumSoftConverter</span><span class="p">(</span><span class="n">enum_cls</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">datatype</span> <span class="ow">is</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">NDArraySoftConverter</span><span class="p">()</span>
@@ -580,9 +580,18 @@ window.addEventListener("load", () => mermaid.run());
 
 
 <div class="viewcode-block" id="SoftSignalBackend">
-<a class="viewcode-back" href="../../../_api/ophyd_async.core.html#ophyd_async.core.SoftSignalBackend">[docs]</a>
+<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.SoftSignalBackend">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">SoftSignalBackend</span><span class="p">(</span><span class="n">SignalBackend</span><span class="p">[</span><span class="n">SignalDatatypeT</span><span class="p">]):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;An backend to a soft Signal, for test signals see ``MockSignalBackend``.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;An backend to a soft Signal, for test signals see [](#MockSignalBackend).</span>
+
+<span class="sd">    :param datatype: The datatype of the signal, defaults to float if not given.</span>
+<span class="sd">    :param initial_value:</span>
+<span class="sd">        The initial value of the signal, defaults to the &quot;empty&quot;, &quot;zero&quot; or</span>
+<span class="sd">        &quot;default&quot; value of the datatype if not given.</span>
+<span class="sd">    :param units: The units for numeric datatypes.</span>
+<span class="sd">    :param precision:</span>
+<span class="sd">        The number of digits after the decimal place to display for a float datatype.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -594,13 +603,7 @@ window.addEventListener("load", () => mermaid.run());
         <span class="c1"># Create the right converter for the datatype</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">converter</span> <span class="o">=</span> <span class="n">make_converter</span><span class="p">(</span><span class="n">datatype</span> <span class="ow">or</span> <span class="nb">float</span><span class="p">)</span>
         <span class="c1"># Add the extra static metadata to the dictionary</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">:</span> <span class="n">SignalMetadata</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">if</span> <span class="n">units</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;units&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">units</span>
-        <span class="k">if</span> <span class="n">precision</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;precision&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">precision</span>
-        <span class="k">if</span> <span class="n">enum_cls</span> <span class="o">:=</span> <span class="n">get_enum_cls</span><span class="p">(</span><span class="n">datatype</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;choices&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">enum_cls</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">make_metadata</span><span class="p">(</span><span class="n">datatype</span><span class="p">,</span> <span class="n">units</span><span class="p">,</span> <span class="n">precision</span><span class="p">)</span>
         <span class="c1"># Create and set the initial value</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">initial_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">converter</span><span class="o">.</span><span class="n">write_value</span><span class="p">(</span><span class="n">initial_value</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">reading</span><span class="p">:</span> <span class="n">Reading</span><span class="p">[</span><span class="n">SignalDatatypeT</span><span class="p">]</span>
@@ -608,45 +611,74 @@ window.addEventListener("load", () => mermaid.run());
         <span class="bp">self</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">initial_value</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">datatype</span><span class="p">)</span>
 
+<div class="viewcode-block" id="SoftSignalBackend.set_value">
+<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.SoftSignalBackend.set_value">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">SignalDatatypeT</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the current value, alarm and timestamp.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">reading</span> <span class="o">=</span> <span class="n">Reading</span><span class="p">(</span>
             <span class="n">value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">converter</span><span class="o">.</span><span class="n">write_value</span><span class="p">(</span><span class="n">value</span><span class="p">),</span>
             <span class="n">timestamp</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">monotonic</span><span class="p">(),</span>
             <span class="n">alarm_severity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reading</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reading</span><span class="p">)</span></div>
 
+
+<div class="viewcode-block" id="SoftSignalBackend.source">
+<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.SoftSignalBackend.source">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">source</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">read</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;soft://</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;soft://</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span></div>
 
+
+<div class="viewcode-block" id="SoftSignalBackend.connect">
+<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.SoftSignalBackend.connect">[docs]</a>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
-        <span class="k">pass</span>
+        <span class="k">pass</span></div>
 
+
+<div class="viewcode-block" id="SoftSignalBackend.put">
+<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.SoftSignalBackend.put">[docs]</a>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">SignalDatatypeT</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">wait</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">write_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_value</span> <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">value</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">write_value</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">write_value</span><span class="p">)</span></div>
 
+
+<div class="viewcode-block" id="SoftSignalBackend.get_datakey">
+<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.SoftSignalBackend.get_datakey">[docs]</a>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_datakey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataKey</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">make_datakey</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">datatype</span> <span class="ow">or</span> <span class="nb">float</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">reading</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">],</span> <span class="n">source</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span>
-        <span class="p">)</span>
+        <span class="p">)</span></div>
 
+
+<div class="viewcode-block" id="SoftSignalBackend.get_reading">
+<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.SoftSignalBackend.get_reading">[docs]</a>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_reading</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Reading</span><span class="p">[</span><span class="n">SignalDatatypeT</span><span class="p">]:</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">reading</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">reading</span></div>
 
+
+<div class="viewcode-block" id="SoftSignalBackend.get_value">
+<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.SoftSignalBackend.get_value">[docs]</a>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_value</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SignalDatatypeT</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">reading</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">reading</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span></div>
 
+
+<div class="viewcode-block" id="SoftSignalBackend.get_setpoint">
+<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.SoftSignalBackend.get_setpoint">[docs]</a>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_setpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SignalDatatypeT</span><span class="p">:</span>
         <span class="c1"># For a soft signal, the setpoint and readback values are the same.</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">reading</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">reading</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span></div>
 
+
+<div class="viewcode-block" id="SoftSignalBackend.set_callback">
+<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.SoftSignalBackend.set_callback">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">:</span> <span class="n">Callback</span><span class="p">[</span><span class="n">Reading</span><span class="p">[</span><span class="n">SignalDatatypeT</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">callback</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Cannot set a callback when one is already set&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">callback</span><span class="p">:</span>
-            <span class="k">assert</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">,</span> <span class="s2">&quot;Cannot set a callback when one is already set&quot;</span>
             <span class="n">callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reading</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">callback</span> <span class="o">=</span> <span class="n">callback</span></div>
+</div>
 
 </pre></div>
 

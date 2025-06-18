@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ophyd_async.core._device &#8212; ophyd-async 0.1.dev691+g7683745 documentation</title>
+    <title>ophyd_async.core._device &#8212; ophyd-async 0.1.dev778+gb28a3ef documentation</title>
   
   
   
@@ -30,11 +30,10 @@
 <link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/autodoc_pydantic.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=3fefa004" />
   
   <!-- So that users can add custom icons -->
   <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -42,8 +41,8 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../_static/documentation_options.js?v=bc3ee918"></script>
-    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/documentation_options.js?v=340a56d7"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=30646c52"></script>
@@ -135,8 +134,8 @@ window.addEventListener("load", () => mermaid.run());
       
     
     
-    <img src="../../../_static/ophyd-async-logo.svg" class="logo__image only-light" alt="ophyd-async 0.1.dev691+g7683745 documentation - Home"/>
-    <img src="../../../_static/ophyd-async-logo.svg" class="logo__image only-dark pst-js-only" alt="ophyd-async 0.1.dev691+g7683745 documentation - Home"/>
+    <img src="../../../_static/ophyd-async-logo.svg" class="logo__image only-light" alt="ophyd-async 0.1.dev778+gb28a3ef documentation - Home"/>
+    <img src="../../../_static/ophyd-async-logo.svg" class="logo__image only-dark pst-js-only" alt="ophyd-async 0.1.dev778+gb28a3ef documentation - Home"/>
   
   
 </a></div>
@@ -480,14 +479,14 @@ window.addEventListener("load", () => mermaid.run());
 
 
 <div class="viewcode-block" id="DeviceConnector">
-<a class="viewcode-back" href="../../../_api/ophyd_async.core.html#ophyd_async.core.DeviceConnector">[docs]</a>
+<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.DeviceConnector">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">DeviceConnector</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Defines how a `Device` should be connected and type hints processed.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="DeviceConnector.create_children_from_annotations">
-<a class="viewcode-back" href="../../../_api/ophyd_async.core.html#ophyd_async.core.DeviceConnector.create_children_from_annotations">[docs]</a>
+<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.DeviceConnector.create_children_from_annotations">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">create_children_from_annotations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="p">:</span> <span class="n">Device</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Used when children can be created from introspecting the hardware.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Use when children can be created from introspecting the hardware.</span>
 
 <span class="sd">        Some control systems allow introspection of a device to determine what</span>
 <span class="sd">        children it has. To allow this to work nicely with typing we add these</span>
@@ -496,16 +495,23 @@ window.addEventListener("load", () => mermaid.run());
 <span class="sd">            my_signal: SignalRW[int]</span>
 <span class="sd">            my_device: MyDevice</span>
 
-<span class="sd">        This method will be run during ``Device.__init__``, and is responsible</span>
+<span class="sd">        This method will be run during `Device.__init__`, and is responsible</span>
 <span class="sd">        for turning all of those type hints into real Signal and Device instances.</span>
 
 <span class="sd">        Subsequent runs of this function should do nothing, to allow it to be</span>
 <span class="sd">        called early in Devices that need to pass references to their children</span>
-<span class="sd">        during ``__init__``.</span>
+<span class="sd">        during `__init__`.</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
 
+<div class="viewcode-block" id="DeviceConnector.connect_mock">
+<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.DeviceConnector.connect_mock">[docs]</a>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">connect_mock</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="p">:</span> <span class="n">Device</span><span class="p">,</span> <span class="n">mock</span><span class="p">:</span> <span class="n">LazyMock</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Use during [](#Device.connect) with `mock=True`.</span>
+
+<span class="sd">        This is called when there is no cached connect done in `mock=True`</span>
+<span class="sd">        mode. It connects the Device and all its children in mock mode.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Connect serially, no errors to gather up as in mock mode</span>
         <span class="n">exceptions</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="ne">Exception</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">child_device</span> <span class="ow">in</span> <span class="n">device</span><span class="o">.</span><span class="n">children</span><span class="p">():</span>
@@ -514,16 +520,16 @@ window.addEventListener("load", () => mermaid.run());
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                 <span class="n">exceptions</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">e</span>
         <span class="k">if</span> <span class="n">exceptions</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">NotConnected</span><span class="o">.</span><span class="n">with_other_exceptions_logged</span><span class="p">(</span><span class="n">exceptions</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">NotConnected</span><span class="o">.</span><span class="n">with_other_exceptions_logged</span><span class="p">(</span><span class="n">exceptions</span><span class="p">)</span></div>
+
 
 <div class="viewcode-block" id="DeviceConnector.connect_real">
-<a class="viewcode-back" href="../../../_api/ophyd_async.core.html#ophyd_async.core.DeviceConnector.connect_real">[docs]</a>
+<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.DeviceConnector.connect_real">[docs]</a>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">connect_real</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="p">:</span> <span class="n">Device</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">force_reconnect</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Used during ``Device.connect``.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Use during [](#Device.connect) with `mock=False`.</span>
 
-<span class="sd">        This is called when a previous connect has not been done, or has been</span>
-<span class="sd">        done in a different mock more. It should connect the Device and all its</span>
-<span class="sd">        children.</span>
+<span class="sd">        This is called when there is no cached connect done in `mock=False`</span>
+<span class="sd">        mode. It connects the Device and all its children in real mode in parallel.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Connect in parallel, gathering up NotConnected errors</span>
         <span class="n">coros</span> <span class="o">=</span> <span class="p">{</span>
@@ -536,13 +542,17 @@ window.addEventListener("load", () => mermaid.run());
 
 
 <div class="viewcode-block" id="Device">
-<a class="viewcode-back" href="../../../_api/ophyd_async.core.html#ophyd_async.core.Device">[docs]</a>
+<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.Device">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Device</span><span class="p">(</span><span class="n">HasName</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Common base class for all Ophyd Async Devices.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Common base class for all Ophyd Async Devices.</span>
 
-    <span class="n">_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-    <span class="c1">#: The parent Device if it exists</span>
+<span class="sd">    :param name: Optional name of the Device</span>
+<span class="sd">    :param connector: Optional DeviceConnector instance to use at connect()</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">parent</span><span class="p">:</span> <span class="n">Device</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The parent Device if it exists&quot;&quot;&quot;</span>
+    <span class="n">_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
     <span class="c1"># None if connect hasn&#39;t started, a Task if it has</span>
     <span class="n">_connect_task</span><span class="p">:</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Task</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="c1"># The mock if we have connected in mock mode</span>
@@ -560,34 +570,39 @@ window.addEventListener("load", () => mermaid.run());
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the name of the Device&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the name of the Device.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
 
     <span class="nd">@cached_property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_child_devices</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Device</span><span class="p">]:</span>
         <span class="k">return</span> <span class="p">{}</span>
 
+<div class="viewcode-block" id="Device.children">
+<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.Device.children">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">children</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Device</span><span class="p">]]:</span>
-        <span class="k">yield from</span> <span class="bp">self</span><span class="o">.</span><span class="n">_child_devices</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;For each attribute that is a Device, yield the name and Device.</span>
+
+<span class="sd">        :yields: `(attr_name, attr)` for each child attribute that is a Device.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">yield from</span> <span class="bp">self</span><span class="o">.</span><span class="n">_child_devices</span><span class="o">.</span><span class="n">items</span><span class="p">()</span></div>
+
 
     <span class="nd">@cached_property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LoggerAdapter</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a logger configured with the device name.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">LoggerAdapter</span><span class="p">(</span>
             <span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;ophyd_async.devices&quot;</span><span class="p">),</span> <span class="p">{</span><span class="s2">&quot;ophyd_async_device_name&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">}</span>
         <span class="p">)</span>
 
 <div class="viewcode-block" id="Device.set_name">
-<a class="viewcode-back" href="../../../_api/ophyd_async.core.html#ophyd_async.core.Device.set_name">[docs]</a>
+<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.Device.set_name">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">child_name_separator</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set ``self.name=name`` and each ``self.child.name=name+&quot;-child&quot;``.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set `self.name=name` and each `self.child.name=name+&quot;-child&quot;`.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        name:</span>
-<span class="sd">            New name to set</span>
-<span class="sd">        child_name_separator:</span>
-<span class="sd">            Use this as a separator instead of &quot;-&quot;. Use &quot;_&quot; instead to make the same</span>
-<span class="sd">            names as the equivalent ophyd sync device.</span>
+<span class="sd">        :param name: New name to set.</span>
+<span class="sd">        :param child_name_separator:</span>
+<span class="sd">            Use this as a separator instead of &quot;-&quot;. Use &quot;_&quot; instead to make the</span>
+<span class="sd">            same names as the equivalent ophyd sync device.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="k">if</span> <span class="n">child_name_separator</span><span class="p">:</span>
@@ -622,28 +637,33 @@ window.addEventListener("load", () => mermaid.run());
         <span class="k">return</span> <span class="nb">object</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Device.connect">
-<a class="viewcode-back" href="../../../_api/ophyd_async.core.html#ophyd_async.core.Device.connect">[docs]</a>
+<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.Device.connect">[docs]</a>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">connect</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">mock</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="n">LazyMock</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">DEFAULT_TIMEOUT</span><span class="p">,</span>
         <span class="n">force_reconnect</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Connect self and all child Devices.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Connect the device and all child devices.</span>
 
-<span class="sd">        Contains a timeout that gets propagated to child.connect methods.</span>
+<span class="sd">        Successful connects will be cached so subsequent calls will return</span>
+<span class="sd">        immediately. Contains a timeout that gets propagated to child.connect</span>
+<span class="sd">        methods.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        mock:</span>
-<span class="sd">            If True then use ``MockSignalBackend`` for all Signals</span>
-<span class="sd">        timeout:</span>
-<span class="sd">            Time to wait before failing with a TimeoutError.</span>
+<span class="sd">        :param mock:</span>
+<span class="sd">            If True then use [](#MockSignalBackend) for all Signals. If passed a</span>
+<span class="sd">            [](#LazyMock) then pass this down for use within the Signals,</span>
+<span class="sd">            otherwise create one.</span>
+<span class="sd">        :param timeout: Time to wait before failing with a TimeoutError.</span>
+<span class="sd">        :param force_reconnect:</span>
+<span class="sd">            If True, force a reconnect even if the last connect succeeded.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_connector&quot;</span><span class="p">),</span> <span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s2">: doesn&#39;t have attribute `_connector`,&quot;</span>
-            <span class="s2">&quot; did you call `super().__init__` in your `__init__` method?&quot;</span>
-        <span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_connector&quot;</span><span class="p">):</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s2">: doesn&#39;t have attribute `_connector`,&quot;</span>
+                <span class="s2">&quot; did you call `super().__init__` in your `__init__` method?&quot;</span>
+            <span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">mock</span><span class="p">:</span>
             <span class="c1"># Always connect in mock mode serially</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mock</span><span class="p">,</span> <span class="n">LazyMock</span><span class="p">):</span>
@@ -664,7 +684,9 @@ window.addEventListener("load", () => mermaid.run());
                 <span class="bp">self</span><span class="o">.</span><span class="n">_mock</span> <span class="o">=</span> <span class="kc">None</span>
                 <span class="n">coro</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connector</span><span class="o">.</span><span class="n">connect_real</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="n">force_reconnect</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_connect_task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">coro</span><span class="p">)</span>
-            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connect_task</span><span class="p">,</span> <span class="s2">&quot;Connect task not created, this shouldn&#39;t happen&quot;</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connect_task</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Connect task not created, this shouldn&#39;t happen&quot;</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
             <span class="c1"># Wait for it to complete</span>
             <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connect_task</span></div>
 </div>
@@ -685,14 +707,11 @@ window.addEventListener("load", () => mermaid.run());
 
 
 <div class="viewcode-block" id="DeviceVector">
-<a class="viewcode-back" href="../../../_api/ophyd_async.core.html#ophyd_async.core.DeviceVector">[docs]</a>
+<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.DeviceVector">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">DeviceVector</span><span class="p">(</span><span class="n">MutableMapping</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">DeviceT</span><span class="p">],</span> <span class="n">Device</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Defines device components with indices.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Defines a dictionary of Device children with arbitrary integer keys.</span>
 
-<span class="sd">    In the below example, foos becomes a dictionary on the parent device</span>
-<span class="sd">    at runtime, so parent.foos[2] returns a FooDevice. For example usage see</span>
-<span class="sd">    :class:`~ophyd_async.epics.sim.DynamicSensorGroup`</span>
+<span class="sd">    :see-also: [](#implementing-devices) for examples of how to use this class.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -718,8 +737,12 @@ window.addEventListener("load", () => mermaid.run());
     <span class="k">def</span><span class="w"> </span><span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">DeviceT</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="c1"># Check the types on entry to dict to make sure we can&#39;t accidentally</span>
         <span class="c1"># make a non-integer named child</span>
-        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">int</span><span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;Expected int, got </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">Device</span><span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;Expected Device, got </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Expected int, got </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">Device</span><span class="p">):</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Expected Device, got </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_children</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
         <span class="n">value</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span>
 
@@ -732,9 +755,12 @@ window.addEventListener("load", () => mermaid.run());
     <span class="k">def</span><span class="w"> </span><span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_children</span><span class="p">)</span>
 
+<div class="viewcode-block" id="DeviceVector.children">
+<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.DeviceVector.children">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">children</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Device</span><span class="p">]]:</span>
         <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_children</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="k">yield</span> <span class="nb">str</span><span class="p">(</span><span class="n">key</span><span class="p">),</span> <span class="n">child</span>
+            <span class="k">yield</span> <span class="nb">str</span><span class="p">(</span><span class="n">key</span><span class="p">),</span> <span class="n">child</span></div>
+
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># to allow DeviceVector to be used as dict keys and in sets</span>
         <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span></div>
@@ -753,18 +779,25 @@ window.addEventListener("load", () => mermaid.run());
         <span class="bp">self</span><span class="o">.</span><span class="n">_locals_on_exit</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_caller_locals</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Walk up until we find a stack frame that doesn&#39;t have us as self&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Walk up until we find a stack frame that doesn&#39;t have us as self.&quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span>
         <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
             <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">tb</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()</span>
-            <span class="k">assert</span> <span class="n">tb</span><span class="p">,</span> <span class="s2">&quot;Can&#39;t get traceback, this shouldn&#39;t happen&quot;</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">tb</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Can&#39;t get traceback, this shouldn&#39;t happen&quot;</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>  <span class="c1"># noqa: B904</span>
             <span class="n">caller_frame</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">tb_frame</span>
             <span class="k">while</span> <span class="n">caller_frame</span><span class="o">.</span><span class="n">f_locals</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;self&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">self</span><span class="p">:</span>
                 <span class="n">caller_frame</span> <span class="o">=</span> <span class="n">caller_frame</span><span class="o">.</span><span class="n">f_back</span>
-                <span class="k">assert</span> <span class="p">(</span>
-                    <span class="n">caller_frame</span>
-                <span class="p">),</span> <span class="s2">&quot;No previous frame to the one with self in it, this shouldn&#39;t happen&quot;</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">caller_frame</span><span class="p">:</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="s2">&quot;No previous frame to the one with self in it, &quot;</span>
+                        <span class="s2">&quot;this shouldn&#39;t happen&quot;</span>
+                    <span class="p">)</span>
+                    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>  <span class="c1"># noqa: B904</span>
+                        <span class="n">msg</span>
+                    <span class="p">)</span>
             <span class="k">return</span> <span class="n">caller_frame</span><span class="o">.</span><span class="n">f_locals</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DeviceProcessor</span><span class="p">:</span>
@@ -808,40 +841,36 @@ window.addEventListener("load", () => mermaid.run());
 
 
 <div class="viewcode-block" id="init_devices">
-<a class="viewcode-back" href="../../../_api/ophyd_async.core.html#ophyd_async.core.init_devices">[docs]</a>
+<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.init_devices">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">init_devices</span><span class="p">(</span>
-    <span class="n">set_name</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">set_name</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">child_name_separator</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span>
-    <span class="n">connect</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">mock</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">connect</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">mock</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">10.0</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DeviceProcessor</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Auto initialise top level Device instances to be used as a context manager</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Auto initialize top level Device instances: to be used as a context manager.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    set_name:</span>
-<span class="sd">        If True, call ``device.set_name(variable_name)`` on all Devices</span>
-<span class="sd">        created within the context manager that have an empty ``name``</span>
-<span class="sd">    child_name_separator:</span>
-<span class="sd">        Use this as a separator if we call ``set_name``.</span>
-<span class="sd">    connect:</span>
-<span class="sd">        If True, call ``device.connect(mock, timeout)`` in parallel on all</span>
-<span class="sd">        Devices created within the context manager</span>
-<span class="sd">    mock:</span>
-<span class="sd">        If True, connect Signals in mock mode</span>
-<span class="sd">    timeout:</span>
-<span class="sd">        How long to wait for connect before logging an exception</span>
+<span class="sd">    :param set_name:</span>
+<span class="sd">        If True, call `device.set_name(variable_name)` on all Devices created</span>
+<span class="sd">        within the context manager that have an empty `name`.</span>
+<span class="sd">    :param child_name_separator: Separator for child names if `set_name` is True.</span>
+<span class="sd">    :param connect:</span>
+<span class="sd">        If True, call `device.connect(mock, timeout)` in parallel on all Devices</span>
+<span class="sd">        created within the context manager.</span>
+<span class="sd">    :param mock: If True, connect Signals in mock mode.</span>
+<span class="sd">    :param timeout: How long to wait for connect before logging an exception.</span>
+<span class="sd">    :raises RuntimeError: If used inside a plan, use [](#ensure_connected) instead.</span>
+<span class="sd">    :raises NotConnected: If devices could not be connected.</span>
 
-<span class="sd">    Notes</span>
-<span class="sd">    -----</span>
-<span class="sd">    Example usage::</span>
-
-<span class="sd">        [async] with init_devices():</span>
-<span class="sd">            t1x = motor.Motor(&quot;BLxxI-MO-TABLE-01:X&quot;)</span>
-<span class="sd">            t1y = motor.Motor(&quot;pva://BLxxI-MO-TABLE-01:Y&quot;)</span>
-<span class="sd">            # Names and connects devices here</span>
-<span class="sd">        assert t1x.name == &quot;t1x&quot;</span>
+<span class="sd">    For example, to connect and name 2 motors in parallel:</span>
+<span class="sd">    ```python</span>
+<span class="sd">    [async] with init_devices():</span>
+<span class="sd">        t1x = motor.Motor(&quot;BLxxI-MO-TABLE-01:X&quot;)</span>
+<span class="sd">        t1y = motor.Motor(&quot;pva://BLxxI-MO-TABLE-01:Y&quot;)</span>
+<span class="sd">        # Names and connects devices here</span>
+<span class="sd">    assert t1x.name == &quot;t1x&quot;</span>
+<span class="sd">    ```</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">process_devices</span><span class="p">(</span><span class="n">devices</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Device</span><span class="p">]):</span>

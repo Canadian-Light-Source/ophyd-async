@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ophyd_async.core._readable &#8212; ophyd-async 0.1.dev691+g7683745 documentation</title>
+    <title>ophyd_async.core._readable &#8212; ophyd-async 0.1.dev778+gb28a3ef documentation</title>
   
   
   
@@ -30,11 +30,10 @@
 <link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/autodoc_pydantic.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=3fefa004" />
   
   <!-- So that users can add custom icons -->
   <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -42,8 +41,8 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../_static/documentation_options.js?v=bc3ee918"></script>
-    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/documentation_options.js?v=340a56d7"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=30646c52"></script>
@@ -135,8 +134,8 @@ window.addEventListener("load", () => mermaid.run());
       
     
     
-    <img src="../../../_static/ophyd-async-logo.svg" class="logo__image only-light" alt="ophyd-async 0.1.dev691+g7683745 documentation - Home"/>
-    <img src="../../../_static/ophyd-async-logo.svg" class="logo__image only-dark pst-js-only" alt="ophyd-async 0.1.dev691+g7683745 documentation - Home"/>
+    <img src="../../../_static/ophyd-async-logo.svg" class="logo__image only-light" alt="ophyd-async 0.1.dev778+gb28a3ef documentation - Home"/>
+    <img src="../../../_static/ophyd-async-logo.svg" class="logo__image only-dark pst-js-only" alt="ophyd-async 0.1.dev778+gb28a3ef documentation - Home"/>
   
   
 </a></div>
@@ -481,29 +480,38 @@ window.addEventListener("load", () => mermaid.run());
 
 
 <div class="viewcode-block" id="StandardReadableFormat">
-<a class="viewcode-back" href="../../../_api/ophyd_async.core.html#ophyd_async.core.StandardReadableFormat">[docs]</a>
+<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.StandardReadableFormat">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">StandardReadableFormat</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Declare how a `Device` should contribute to the `StandardReadable` verbs.&quot;&quot;&quot;</span>
 
-    <span class="c1">#: Detect which verbs the child supports and contribute to:</span>
-    <span class="c1">#:</span>
-    <span class="c1">#: - ``read()``, ``describe()`` if it is `bluesky.protocols.Readable`</span>
-    <span class="c1">#: - ``read_configuration()``, ``describe_configuration()`` if it is</span>
-    <span class="c1">#:   `bluesky.protocols.Configurable`</span>
-    <span class="c1">#: - ``stage()``, ``unstage()`` if it is `bluesky.protocols.Stageable`</span>
-    <span class="c1">#: - ``hints`` if it `bluesky.protocols.HasHints`</span>
     <span class="n">CHILD</span> <span class="o">=</span> <span class="s2">&quot;CHILD&quot;</span>
-    <span class="c1">#: Contribute the `Signal` value to ``read_configuration()`` and</span>
-    <span class="c1">#: ``describe_configuration()``</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Detect which verbs the child supports and contribute to:</span>
+
+<span class="sd">    - `read()`, `describe()` if it is [](#bluesky.protocols.Readable)</span>
+<span class="sd">    - `read_configuration()`, `describe_configuration()` if it is</span>
+<span class="sd">      [](#bluesky.protocols.Configurable)</span>
+<span class="sd">    - `stage()`, `unstage()` if it is [](#bluesky.protocols.Stageable)</span>
+<span class="sd">    - `hints` if it [](#bluesky.protocols.HasHints)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">CONFIG_SIGNAL</span> <span class="o">=</span> <span class="s2">&quot;CONFIG_SIGNAL&quot;</span>
-    <span class="c1">#: Contribute the monitored `Signal` value to ``read()`` and ``describe()``` and</span>
-    <span class="c1">#: put the signal name in ``hints``</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Contribute the `Signal` value to `read_configuration()` and</span>
+<span class="sd">    `describe_configuration()`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">HINTED_SIGNAL</span> <span class="o">=</span> <span class="s2">&quot;HINTED_SIGNAL&quot;</span>
-    <span class="c1">#: Contribute the uncached `Signal` value to ``read()`` and ``describe()```</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Contribute the monitored `Signal` value to `read()` and `describe()` and</span>
+<span class="sd">    put the signal name in `hints`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">UNCACHED_SIGNAL</span> <span class="o">=</span> <span class="s2">&quot;UNCACHED_SIGNAL&quot;</span>
-    <span class="c1">#: Contribute the uncached `Signal` value to ``read()`` and ``describe()``` and</span>
-    <span class="c1">#: put the signal name in ``hints``</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Contribute the uncached `Signal` value to `read()` and `describe()`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">HINTED_UNCACHED_SIGNAL</span> <span class="o">=</span> <span class="s2">&quot;HINTED_UNCACHED_SIGNAL&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Contribute the uncached `Signal` value to `read()` and `describe()` and</span>
+<span class="sd">    put the signal name in `hints`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="n">Device</span><span class="p">,</span> <span class="n">child</span><span class="p">:</span> <span class="n">Device</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">StandardReadable</span><span class="p">):</span>
@@ -541,15 +549,19 @@ window.addEventListener("load", () => mermaid.run());
 
 
 <div class="viewcode-block" id="StandardReadable">
-<a class="viewcode-back" href="../../../_api/ophyd_async.core.html#ophyd_async.core.StandardReadable">[docs]</a>
+<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.StandardReadable">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">StandardReadable</span><span class="p">(</span>
     <span class="n">Device</span><span class="p">,</span> <span class="n">AsyncReadable</span><span class="p">,</span> <span class="n">AsyncConfigurable</span><span class="p">,</span> <span class="n">AsyncStageable</span><span class="p">,</span> <span class="n">HasHints</span>
 <span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Device that owns its children and provides useful default behavior.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Device that provides selected child Device values in `read()`.</span>
 
-<span class="sd">    - When its name is set it renames child Devices</span>
-<span class="sd">    - Signals can be registered for read() and read_configuration()</span>
-<span class="sd">    - These signals will be subscribed for read() between stage() and unstage()</span>
+<span class="sd">    Provides the ability for children to be registered to:</span>
+<span class="sd">    - Participate in `stage()` and `unstage()`</span>
+<span class="sd">    - Provide their value in `read()` and `describe()</span>
+<span class="sd">    - Provide their value in `read_configuration()` and `describe_configuration()</span>
+<span class="sd">    - Select a value to appear in `hints`</span>
+
+<span class="sd">    The behavior is customized with a [](#StandardReadableFormat)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># These must be immutable types to avoid accidental sharing between</span>
@@ -561,85 +573,116 @@ window.addEventListener("load", () => mermaid.run());
     <span class="n">_stageables</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">AsyncStageable</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">()</span>
     <span class="n">_has_hints</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">HasHints</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">()</span>
 
+<div class="viewcode-block" id="StandardReadable.stage">
+<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.StandardReadable.stage">[docs]</a>
     <span class="nd">@AsyncStatus</span><span class="o">.</span><span class="n">wrap</span>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">stage</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">sig</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stageables</span><span class="p">:</span>
-            <span class="k">await</span> <span class="n">sig</span><span class="o">.</span><span class="n">stage</span><span class="p">()</span><span class="o">.</span><span class="n">task</span>
+            <span class="k">await</span> <span class="n">sig</span><span class="o">.</span><span class="n">stage</span><span class="p">()</span><span class="o">.</span><span class="n">task</span></div>
 
+
+<div class="viewcode-block" id="StandardReadable.unstage">
+<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.StandardReadable.unstage">[docs]</a>
     <span class="nd">@AsyncStatus</span><span class="o">.</span><span class="n">wrap</span>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">unstage</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">sig</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stageables</span><span class="p">:</span>
-            <span class="k">await</span> <span class="n">sig</span><span class="o">.</span><span class="n">unstage</span><span class="p">()</span><span class="o">.</span><span class="n">task</span>
+            <span class="k">await</span> <span class="n">sig</span><span class="o">.</span><span class="n">unstage</span><span class="p">()</span><span class="o">.</span><span class="n">task</span></div>
 
+
+<div class="viewcode-block" id="StandardReadable.describe_configuration">
+<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.StandardReadable.describe_configuration">[docs]</a>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">describe_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">DataKey</span><span class="p">]:</span>
         <span class="k">return</span> <span class="k">await</span> <span class="n">merge_gathered_dicts</span><span class="p">(</span>
             <span class="p">[</span><span class="n">func</span><span class="p">()</span> <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_describe_config_funcs</span><span class="p">]</span>
-        <span class="p">)</span>
+        <span class="p">)</span></div>
 
+
+<div class="viewcode-block" id="StandardReadable.read_configuration">
+<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.StandardReadable.read_configuration">[docs]</a>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">read_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Reading</span><span class="p">]:</span>
-        <span class="k">return</span> <span class="k">await</span> <span class="n">merge_gathered_dicts</span><span class="p">([</span><span class="n">func</span><span class="p">()</span> <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read_config_funcs</span><span class="p">])</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="n">merge_gathered_dicts</span><span class="p">([</span><span class="n">func</span><span class="p">()</span> <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read_config_funcs</span><span class="p">])</span></div>
 
+
+<div class="viewcode-block" id="StandardReadable.describe">
+<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.StandardReadable.describe">[docs]</a>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">describe</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">DataKey</span><span class="p">]:</span>
-        <span class="k">return</span> <span class="k">await</span> <span class="n">merge_gathered_dicts</span><span class="p">([</span><span class="n">func</span><span class="p">()</span> <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_describe_funcs</span><span class="p">])</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="n">merge_gathered_dicts</span><span class="p">([</span><span class="n">func</span><span class="p">()</span> <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_describe_funcs</span><span class="p">])</span></div>
 
+
+<div class="viewcode-block" id="StandardReadable.read">
+<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.StandardReadable.read">[docs]</a>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Reading</span><span class="p">]:</span>
-        <span class="k">return</span> <span class="k">await</span> <span class="n">merge_gathered_dicts</span><span class="p">([</span><span class="n">func</span><span class="p">()</span> <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read_funcs</span><span class="p">])</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="n">merge_gathered_dicts</span><span class="p">([</span><span class="n">func</span><span class="p">()</span> <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read_funcs</span><span class="p">])</span></div>
+
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">hints</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Hints</span><span class="p">:</span>
         <span class="n">hints</span><span class="p">:</span> <span class="n">Hints</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">new_hint</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_has_hints</span><span class="p">:</span>
             <span class="c1"># Merge the existing and new hints, based on the type of the value.</span>
-            <span class="c1"># This avoids default dict merge behaviour that overrides the values;</span>
+            <span class="c1"># This avoids default dict merge behavior that overrides the values;</span>
             <span class="c1"># we want to combine them when they are Sequences, and ensure they are</span>
             <span class="c1"># identical when string values.</span>
             <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">new_hint</span><span class="o">.</span><span class="n">hints</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="c1"># fail early for unkwon types</span>
                 <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
                     <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">hints</span><span class="p">:</span>
-                        <span class="k">assert</span> <span class="p">(</span>
-                            <span class="n">hints</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">==</span> <span class="n">value</span>  <span class="c1"># type: ignore[literal-required]</span>
-                        <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;Hints key </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2"> value may not be overridden&quot;</span>
+                        <span class="k">if</span> <span class="n">hints</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">!=</span> <span class="n">value</span><span class="p">:</span>
+                            <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Hints key </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2"> value may not be overridden&quot;</span>
+                            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
                     <span class="k">else</span><span class="p">:</span>
                         <span class="n">hints</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>  <span class="c1"># type: ignore[literal-required]</span>
                 <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">):</span>
                     <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">hints</span><span class="p">:</span>
                         <span class="k">for</span> <span class="n">new_val</span> <span class="ow">in</span> <span class="n">value</span><span class="p">:</span>
-                            <span class="k">assert</span> <span class="p">(</span>
-                                <span class="n">new_val</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">hints</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>  <span class="c1"># type: ignore[literal-required]</span>
-                            <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;Hint </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">new_val</span><span class="si">}</span><span class="s2"> overrides existing hint&quot;</span>
+                            <span class="k">if</span> <span class="n">new_val</span> <span class="ow">in</span> <span class="n">hints</span><span class="p">[</span><span class="n">key</span><span class="p">]:</span>
+                                <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Hint </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">new_val</span><span class="si">}</span><span class="s2"> overrides existing hint&quot;</span>
+                                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
                         <span class="n">hints</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>  <span class="c1"># type: ignore[literal-required]</span>
                             <span class="n">hints</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">+</span> <span class="n">value</span>  <span class="c1"># type: ignore[literal-required]</span>
                         <span class="p">)</span>
                     <span class="k">else</span><span class="p">:</span>
                         <span class="n">hints</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>  <span class="c1"># type: ignore[literal-required]</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
-                        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">new_hint</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Unknown type for value &#39;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&#39; &quot;</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">new_hint</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: Unknown type for value &#39;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
                         <span class="sa">f</span><span class="s2">&quot; for key &#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
                     <span class="p">)</span>
+                    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">hints</span>
 
 <div class="viewcode-block" id="StandardReadable.add_children_as_readables">
-<a class="viewcode-back" href="../../../_api/ophyd_async.core.html#ophyd_async.core.StandardReadable.add_children_as_readables">[docs]</a>
+<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.StandardReadable.add_children_as_readables">[docs]</a>
     <span class="nd">@contextmanager</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">add_children_as_readables</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="nb">format</span><span class="p">:</span> <span class="n">StandardReadableFormat</span> <span class="o">=</span> <span class="n">StandardReadableFormat</span><span class="o">.</span><span class="n">CHILD</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Context manager that calls `add_readables` on child Devices added within.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Context manager that calls [](#add_readables) on child Devices added within.</span>
 
-<span class="sd">        Scans ``self.children()`` on entry and exit to context manager, and calls</span>
-<span class="sd">        `add_readables` on any that are added with the provided</span>
+<span class="sd">        Scans `self.children()` on entry and exit to context manager, and calls</span>
+<span class="sd">        `add_readables()` on any that are added with the provided</span>
 <span class="sd">        `StandardReadableFormat`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-
         <span class="n">dict_copy</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">())</span>
 
         <span class="k">yield</span>
 
-        <span class="c1"># Set symmetric difference operator gives all newly added keys</span>
+        <span class="c1"># Set symmetric difference operator gives all newly added keys.</span>
         <span class="n">new_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">())</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">new_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="c1"># Check if key already exists in dict_copy and if the value has changed.</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">dict_copy</span> <span class="ow">and</span> <span class="n">value</span> <span class="o">!=</span> <span class="n">dict_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]:</span>
+                <span class="n">error_msg</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Duplicate readable device found: &#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&#39; in </span><span class="si">{</span><span class="n">value</span><span class="o">.</span><span class="n">parent</span><span class="si">}</span><span class="s2">. &quot;</span>
+                    <span class="s2">&quot;Derived class must not redefine a readable. &quot;</span>
+                    <span class="s2">&quot;See: https://github.com/bluesky/ophyd-async/issues/848. &quot;</span>
+                    <span class="s2">&quot;If this functionality is required, please raise an issue: &quot;</span>
+                    <span class="s2">&quot;https://github.com/bluesky/ophyd-async&quot;</span>
+                <span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
+
         <span class="n">new_keys</span> <span class="o">=</span> <span class="n">dict_copy</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="o">^</span> <span class="n">new_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
         <span class="n">new_values</span> <span class="o">=</span> <span class="p">[</span><span class="n">new_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">new_keys</span><span class="p">]</span>
 
@@ -655,7 +698,7 @@ window.addEventListener("load", () => mermaid.run());
 
 
 <div class="viewcode-block" id="StandardReadable.add_readables">
-<a class="viewcode-back" href="../../../_api/ophyd_async.core.html#ophyd_async.core.StandardReadable.add_readables">[docs]</a>
+<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.StandardReadable.add_readables">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">add_readables</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">devices</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Device</span><span class="p">],</span>
@@ -666,19 +709,21 @@ window.addEventListener("load", () => mermaid.run());
 <span class="sd">        Use output from the given devices to contribute to the verbs of the following</span>
 <span class="sd">        interfaces:</span>
 
-<span class="sd">        - `bluesky.protocols.Readable`</span>
-<span class="sd">        - `bluesky.protocols.Configurable`</span>
-<span class="sd">        - `bluesky.protocols.Stageable`</span>
-<span class="sd">        - `bluesky.protocols.HasHints`</span>
+<span class="sd">        - [](#bluesky.protocols.Readable)</span>
+<span class="sd">        - [](#bluesky.protocols.Configurable)</span>
+<span class="sd">        - [](#bluesky.protocols.Stageable)</span>
+<span class="sd">        - [](#bluesky.protocols.HasHints)</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        devices:</span>
-<span class="sd">            The devices to be added</span>
-<span class="sd">        format:</span>
-<span class="sd">            Determines which of the devices functions are added to which verb as per the</span>
-<span class="sd">            `StandardReadableFormat` documentation</span>
+<span class="sd">        :param devices: The devices to be added</span>
+<span class="sd">        :param format:</span>
+<span class="sd">            Determines which of the devices functions are added to which verb as</span>
+<span class="sd">            per the [](#StandardReadableFormat) documentation</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">assert_device_is_signalr</span><span class="p">(</span><span class="n">device</span><span class="p">:</span> <span class="n">Device</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SignalR</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">SignalR</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">device</span><span class="si">}</span><span class="s2"> is not a SignalR&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">device</span>
 
         <span class="k">for</span> <span class="n">device</span> <span class="ow">in</span> <span class="n">devices</span><span class="p">:</span>
             <span class="k">match</span> <span class="nb">format</span><span class="p">:</span>
@@ -694,24 +739,24 @@ window.addEventListener("load", () => mermaid.run());
                     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">HasHints</span><span class="p">):</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">_has_hints</span> <span class="o">+=</span> <span class="p">(</span><span class="n">device</span><span class="p">,)</span>
                 <span class="k">case</span> <span class="n">StandardReadableFormat</span><span class="o">.</span><span class="n">CONFIG_SIGNAL</span><span class="p">:</span>
-                    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">SignalR</span><span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">device</span><span class="si">}</span><span class="s2"> is not a SignalR&quot;</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_describe_config_funcs</span> <span class="o">+=</span> <span class="p">(</span><span class="n">device</span><span class="o">.</span><span class="n">describe</span><span class="p">,)</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_read_config_funcs</span> <span class="o">+=</span> <span class="p">(</span><span class="n">device</span><span class="o">.</span><span class="n">read</span><span class="p">,)</span>
+                    <span class="n">signalr_device</span> <span class="o">=</span> <span class="n">assert_device_is_signalr</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_describe_config_funcs</span> <span class="o">+=</span> <span class="p">(</span><span class="n">signalr_device</span><span class="o">.</span><span class="n">describe</span><span class="p">,)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_read_config_funcs</span> <span class="o">+=</span> <span class="p">(</span><span class="n">signalr_device</span><span class="o">.</span><span class="n">read</span><span class="p">,)</span>
                 <span class="k">case</span> <span class="n">StandardReadableFormat</span><span class="o">.</span><span class="n">HINTED_SIGNAL</span><span class="p">:</span>
-                    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">SignalR</span><span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">device</span><span class="si">}</span><span class="s2"> is not a SignalR&quot;</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_describe_funcs</span> <span class="o">+=</span> <span class="p">(</span><span class="n">device</span><span class="o">.</span><span class="n">describe</span><span class="p">,)</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_read_funcs</span> <span class="o">+=</span> <span class="p">(</span><span class="n">device</span><span class="o">.</span><span class="n">read</span><span class="p">,)</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_stageables</span> <span class="o">+=</span> <span class="p">(</span><span class="n">device</span><span class="p">,)</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_has_hints</span> <span class="o">+=</span> <span class="p">(</span><span class="n">_HintsFromName</span><span class="p">(</span><span class="n">device</span><span class="p">),)</span>
+                    <span class="n">signalr_device</span> <span class="o">=</span> <span class="n">assert_device_is_signalr</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_describe_funcs</span> <span class="o">+=</span> <span class="p">(</span><span class="n">signalr_device</span><span class="o">.</span><span class="n">describe</span><span class="p">,)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_read_funcs</span> <span class="o">+=</span> <span class="p">(</span><span class="n">signalr_device</span><span class="o">.</span><span class="n">read</span><span class="p">,)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_stageables</span> <span class="o">+=</span> <span class="p">(</span><span class="n">signalr_device</span><span class="p">,)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_has_hints</span> <span class="o">+=</span> <span class="p">(</span><span class="n">_HintsFromName</span><span class="p">(</span><span class="n">signalr_device</span><span class="p">),)</span>
                 <span class="k">case</span> <span class="n">StandardReadableFormat</span><span class="o">.</span><span class="n">UNCACHED_SIGNAL</span><span class="p">:</span>
-                    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">SignalR</span><span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">device</span><span class="si">}</span><span class="s2"> is not a SignalR&quot;</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_describe_funcs</span> <span class="o">+=</span> <span class="p">(</span><span class="n">device</span><span class="o">.</span><span class="n">describe</span><span class="p">,)</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_read_funcs</span> <span class="o">+=</span> <span class="p">(</span><span class="n">_UncachedRead</span><span class="p">(</span><span class="n">device</span><span class="p">),)</span>
+                    <span class="n">signalr_device</span> <span class="o">=</span> <span class="n">assert_device_is_signalr</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_describe_funcs</span> <span class="o">+=</span> <span class="p">(</span><span class="n">signalr_device</span><span class="o">.</span><span class="n">describe</span><span class="p">,)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_read_funcs</span> <span class="o">+=</span> <span class="p">(</span><span class="n">_UncachedRead</span><span class="p">(</span><span class="n">signalr_device</span><span class="p">),)</span>
                 <span class="k">case</span> <span class="n">StandardReadableFormat</span><span class="o">.</span><span class="n">HINTED_UNCACHED_SIGNAL</span><span class="p">:</span>
-                    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">SignalR</span><span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">device</span><span class="si">}</span><span class="s2"> is not a SignalR&quot;</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_describe_funcs</span> <span class="o">+=</span> <span class="p">(</span><span class="n">device</span><span class="o">.</span><span class="n">describe</span><span class="p">,)</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_read_funcs</span> <span class="o">+=</span> <span class="p">(</span><span class="n">_UncachedRead</span><span class="p">(</span><span class="n">device</span><span class="p">),)</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_has_hints</span> <span class="o">+=</span> <span class="p">(</span><span class="n">_HintsFromName</span><span class="p">(</span><span class="n">device</span><span class="p">),)</span></div>
+                    <span class="n">signalr_device</span> <span class="o">=</span> <span class="n">assert_device_is_signalr</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_describe_funcs</span> <span class="o">+=</span> <span class="p">(</span><span class="n">signalr_device</span><span class="o">.</span><span class="n">describe</span><span class="p">,)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_read_funcs</span> <span class="o">+=</span> <span class="p">(</span><span class="n">_UncachedRead</span><span class="p">(</span><span class="n">signalr_device</span><span class="p">),)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_has_hints</span> <span class="o">+=</span> <span class="p">(</span><span class="n">_HintsFromName</span><span class="p">(</span><span class="n">signalr_device</span><span class="p">),)</span></div>
 </div>
 
 
