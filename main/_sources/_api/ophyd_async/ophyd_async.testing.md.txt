@@ -91,6 +91,10 @@
   - ```{autodoc2-docstring} ophyd_async.testing._assert.assert_emitted
     :summary:
     ```
+* - {py:obj}`partial_reading <ophyd_async.testing._assert.partial_reading>`
+  - ```{autodoc2-docstring} ophyd_async.testing._assert.partial_reading
+    :summary:
+    ```
 * - {py:obj}`get_mock <ophyd_async.testing._mock_signal_utils.get_mock>`
   - ```{autodoc2-docstring} ophyd_async.testing._mock_signal_utils.get_mock
     :summary:
@@ -150,7 +154,7 @@
 ```
 ````
 
-````{py:function} assert_reading(readable: ~ophyd_async.core.AsyncReadable, expected_reading: ~collections.abc.Mapping[str, ~collections.abc.Mapping[str, ~typing.Any]]) -> None
+````{py:function} assert_reading(readable: ~ophyd_async.core.AsyncReadable, expected_reading: ~collections.abc.Mapping[str, ~collections.abc.Mapping[str, ~typing.Any]], full_match: bool = True) -> None
 :canonical: ophyd_async.testing._assert.assert_reading
 :async:
 
@@ -158,7 +162,7 @@
 ```
 ````
 
-````{py:function} assert_configuration(configurable: ~ophyd_async.core.AsyncConfigurable, configuration: dict[str, dict[str, ~typing.Any]]) -> None
+````{py:function} assert_configuration(configurable: ~ophyd_async.core.AsyncConfigurable, expected_configuration: dict[str, dict[str, ~typing.Any]], full_match: bool = True) -> None
 :canonical: ophyd_async.testing._assert.assert_configuration
 :async:
 
@@ -178,6 +182,13 @@
 :canonical: ophyd_async.testing._assert.assert_emitted
 
 ```{autodoc2-docstring} ophyd_async.testing._assert.assert_emitted
+```
+````
+
+````{py:function} partial_reading(val: ~typing.Any) -> dict[str, ~typing.Any]
+:canonical: ophyd_async.testing._assert.partial_reading
+
+```{autodoc2-docstring} ophyd_async.testing._assert.partial_reading
 ```
 ````
 

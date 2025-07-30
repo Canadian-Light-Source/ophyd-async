@@ -291,8 +291,20 @@
   - ```{autodoc2-docstring} ophyd_async.core._signal.walk_config_signals
     :summary:
     ```
+* - {py:obj}`walk_devices <ophyd_async.core._signal.walk_devices>`
+  - ```{autodoc2-docstring} ophyd_async.core._signal.walk_devices
+    :summary:
+    ```
+* - {py:obj}`walk_signal_sources <ophyd_async.core._signal.walk_signal_sources>`
+  - ```{autodoc2-docstring} ophyd_async.core._signal.walk_signal_sources
+    :summary:
+    ```
 * - {py:obj}`config_ophyd_async_logging <ophyd_async.core._log.config_ophyd_async_logging>`
   - ```{autodoc2-docstring} ophyd_async.core._log.config_ophyd_async_logging
+    :summary:
+    ```
+* - {py:obj}`error_if_none <ophyd_async.core._utils.error_if_none>`
+  - ```{autodoc2-docstring} ophyd_async.core._utils.error_if_none
     :summary:
     ```
 * - {py:obj}`gather_dict <ophyd_async.core._utils.gather_dict>`
@@ -361,6 +373,10 @@
     ```
 * - {py:obj}`EnumTypes <ophyd_async.core._utils.EnumTypes>`
   - ```{autodoc2-docstring} ophyd_async.core._utils.EnumTypes
+    :summary:
+    ```
+* - {py:obj}`Primitive <ophyd_async.core._signal_backend.Primitive>`
+  - ```{autodoc2-docstring} ophyd_async.core._signal_backend.Primitive
     :summary:
     ```
 * - {py:obj}`CALCULATE_TIMEOUT <ophyd_async.core._utils.CALCULATE_TIMEOUT>`
@@ -840,7 +856,7 @@ Bases: {py:obj}`typing.Generic`\[{py:obj}`ophyd_async.core._utils.T`\]
 ```
 ````
 
-`````{py:class} Signal(backend: ~ophyd_async.core._signal_backend.SignalBackend[~ophyd_async.core._signal_backend.SignalDatatypeT], timeout: float | None = DEFAULT_TIMEOUT, name: str = '')
+`````{py:class} Signal(backend: ~ophyd_async.core._signal_backend.SignalBackend[~ophyd_async.core._signal_backend.SignalDatatypeT], timeout: float | None = DEFAULT_TIMEOUT, name: str = '', attempts: int = 1)
 :canonical: ophyd_async.core._signal.Signal
 
 Bases: {py:obj}`ophyd_async.core._device.Device`, {py:obj}`typing.Generic`\[{py:obj}`ophyd_async.core._signal_backend.SignalDatatypeT`\]
@@ -868,7 +884,7 @@ Bases: {py:obj}`ophyd_async.core._device.Device`, {py:obj}`typing.Generic`\[{py:
 
 `````
 
-`````{py:class} SignalR(backend: ~ophyd_async.core._signal_backend.SignalBackend[~ophyd_async.core._signal_backend.SignalDatatypeT], timeout: float | None = DEFAULT_TIMEOUT, name: str = '')
+`````{py:class} SignalR(backend: ~ophyd_async.core._signal_backend.SignalBackend[~ophyd_async.core._signal_backend.SignalDatatypeT], timeout: float | None = DEFAULT_TIMEOUT, name: str = '', attempts: int = 1)
 :canonical: ophyd_async.core._signal.SignalR
 
 Bases: {py:obj}`ophyd_async.core._signal.Signal`\[{py:obj}`ophyd_async.core._signal_backend.SignalDatatypeT`\], {py:obj}`ophyd_async.core._protocol.AsyncReadable`, {py:obj}`ophyd_async.core._protocol.AsyncStageable`, {py:obj}`bluesky.protocols.Subscribable`
@@ -947,7 +963,7 @@ Bases: {py:obj}`ophyd_async.core._signal.Signal`\[{py:obj}`ophyd_async.core._sig
 
 `````
 
-`````{py:class} SignalW(backend: ~ophyd_async.core._signal_backend.SignalBackend[~ophyd_async.core._signal_backend.SignalDatatypeT], timeout: float | None = DEFAULT_TIMEOUT, name: str = '')
+`````{py:class} SignalW(backend: ~ophyd_async.core._signal_backend.SignalBackend[~ophyd_async.core._signal_backend.SignalDatatypeT], timeout: float | None = DEFAULT_TIMEOUT, name: str = '', attempts: int = 1)
 :canonical: ophyd_async.core._signal.SignalW
 
 Bases: {py:obj}`ophyd_async.core._signal.Signal`\[{py:obj}`ophyd_async.core._signal_backend.SignalDatatypeT`\], {py:obj}`bluesky.protocols.Movable`
@@ -966,7 +982,7 @@ Bases: {py:obj}`ophyd_async.core._signal.Signal`\[{py:obj}`ophyd_async.core._sig
 
 `````
 
-`````{py:class} SignalRW(backend: ~ophyd_async.core._signal_backend.SignalBackend[~ophyd_async.core._signal_backend.SignalDatatypeT], timeout: float | None = DEFAULT_TIMEOUT, name: str = '')
+`````{py:class} SignalRW(backend: ~ophyd_async.core._signal_backend.SignalBackend[~ophyd_async.core._signal_backend.SignalDatatypeT], timeout: float | None = DEFAULT_TIMEOUT, name: str = '', attempts: int = 1)
 :canonical: ophyd_async.core._signal.SignalRW
 
 Bases: {py:obj}`ophyd_async.core._signal.SignalR`\[{py:obj}`ophyd_async.core._signal_backend.SignalDatatypeT`\], {py:obj}`ophyd_async.core._signal.SignalW`\[{py:obj}`ophyd_async.core._signal_backend.SignalDatatypeT`\], {py:obj}`bluesky.protocols.Locatable`
@@ -985,7 +1001,7 @@ Bases: {py:obj}`ophyd_async.core._signal.SignalR`\[{py:obj}`ophyd_async.core._si
 
 `````
 
-`````{py:class} SignalX(backend: ~ophyd_async.core._signal_backend.SignalBackend[~ophyd_async.core._signal_backend.SignalDatatypeT], timeout: float | None = DEFAULT_TIMEOUT, name: str = '')
+`````{py:class} SignalX(backend: ~ophyd_async.core._signal_backend.SignalBackend[~ophyd_async.core._signal_backend.SignalDatatypeT], timeout: float | None = DEFAULT_TIMEOUT, name: str = '', attempts: int = 1)
 :canonical: ophyd_async.core._signal.SignalX
 
 Bases: {py:obj}`ophyd_async.core._signal.Signal`
@@ -1290,6 +1306,16 @@ Bases: {py:obj}`typing.TypedDict`
 
 `````
 
+````{py:data} Primitive
+:canonical: ophyd_async.core._signal_backend.Primitive
+:value: >
+   None
+
+```{autodoc2-docstring} ophyd_async.core._signal_backend.Primitive
+```
+
+````
+
 `````{py:class} SoftSignalBackend(datatype: type[~ophyd_async.core._signal_backend.SignalDatatypeT] | None, initial_value: ~ophyd_async.core._signal_backend.SignalDatatypeT | None = None, units: str | None = None, precision: int | None = None)
 :canonical: ophyd_async.core._soft_signal_backend.SoftSignalBackend
 
@@ -1552,18 +1578,32 @@ Bases: {py:obj}`ophyd_async.core._signal_backend.SignalBackend`\[{py:obj}`ophyd_
 ```
 ````
 
-````{py:function} walk_rw_signals(device: ~ophyd_async.core._device.Device, path_prefix: str = '') -> dict[str, ~ophyd_async.core._signal.SignalRW[~typing.Any]]
+````{py:function} walk_rw_signals(device: ~ophyd_async.core._device.Device) -> dict[str, ~ophyd_async.core._signal.SignalRW[~typing.Any]]
 :canonical: ophyd_async.core._signal.walk_rw_signals
 
 ```{autodoc2-docstring} ophyd_async.core._signal.walk_rw_signals
 ```
 ````
 
-````{py:function} walk_config_signals(device: ~ophyd_async.core._device.Device, path_prefix: str = '') -> dict[str, ~ophyd_async.core._signal.SignalRW[~typing.Any]]
+````{py:function} walk_config_signals(device: ~ophyd_async.core._device.Device) -> dict[str, ~ophyd_async.core._signal.SignalRW[~typing.Any]]
 :canonical: ophyd_async.core._signal.walk_config_signals
 :async:
 
 ```{autodoc2-docstring} ophyd_async.core._signal.walk_config_signals
+```
+````
+
+````{py:function} walk_devices(device: ~ophyd_async.core._device.Device, path_prefix: str = '') -> dict[str, ~ophyd_async.core._device.Device]
+:canonical: ophyd_async.core._signal.walk_devices
+
+```{autodoc2-docstring} ophyd_async.core._signal.walk_devices
+```
+````
+
+````{py:function} walk_signal_sources(device: ~ophyd_async.core._device.Device) -> dict[str, str]
+:canonical: ophyd_async.core._signal.walk_signal_sources
+
+```{autodoc2-docstring} ophyd_async.core._signal.walk_signal_sources
 ```
 ````
 
@@ -2119,7 +2159,7 @@ Bases: {py:obj}`abc.ABC`
 
 ````{py:attribute} directory_path
 :canonical: ophyd_async.core._providers.PathInfo.directory_path
-:type: ~pathlib.Path
+:type: ~pathlib.PurePath
 :value: >
    None
 
@@ -2150,6 +2190,17 @@ Bases: {py:obj}`abc.ABC`
 
 ````
 
+````{py:attribute} directory_uri
+:canonical: ophyd_async.core._providers.PathInfo.directory_uri
+:type: str | None
+:value: >
+   None
+
+```{autodoc2-docstring} ophyd_async.core._providers.PathInfo.directory_uri
+```
+
+````
+
 `````
 
 ````{py:class} PathProvider
@@ -2162,7 +2213,7 @@ Bases: {py:obj}`typing.Protocol`
 
 ````
 
-````{py:class} StaticPathProvider(filename_provider: ~ophyd_async.core._providers.FilenameProvider, directory_path: ~pathlib.Path | str, create_dir_depth: int = 0)
+````{py:class} StaticPathProvider(filename_provider: ~ophyd_async.core._providers.FilenameProvider, directory_path: ~pathlib.PurePath, directory_uri: str | None = None, create_dir_depth: int = 0)
 :canonical: ophyd_async.core._providers.StaticPathProvider
 
 Bases: {py:obj}`ophyd_async.core._providers.PathProvider`
@@ -2172,7 +2223,7 @@ Bases: {py:obj}`ophyd_async.core._providers.PathProvider`
 
 ````
 
-````{py:class} AutoIncrementingPathProvider(filename_provider: ~ophyd_async.core._providers.FilenameProvider, base_directory_path: ~pathlib.Path, create_dir_depth: int = 0, max_digits: int = 5, starting_value: int = 0, num_calls_per_inc: int = 1, increment: int = 1, inc_delimeter: str = '_', base_name: str | None = None)
+````{py:class} AutoIncrementingPathProvider(filename_provider: ~ophyd_async.core._providers.FilenameProvider, base_directory_path: ~pathlib.PurePath, base_directory_uri: str | None = None, create_dir_depth: int = 0, max_digits: int = 5, starting_value: int = 0, num_calls_per_inc: int = 1, increment: int = 1, inc_delimeter: str = '_', base_name: str | None = None)
 :canonical: ophyd_async.core._providers.AutoIncrementingPathProvider
 
 Bases: {py:obj}`ophyd_async.core._providers.PathProvider`
@@ -2182,7 +2233,7 @@ Bases: {py:obj}`ophyd_async.core._providers.PathProvider`
 
 ````
 
-````{py:class} YMDPathProvider(filename_provider: ~ophyd_async.core._providers.FilenameProvider, base_directory_path: ~pathlib.Path, create_dir_depth: int = -3, device_name_as_base_dir: bool = False)
+````{py:class} YMDPathProvider(filename_provider: ~ophyd_async.core._providers.FilenameProvider, base_directory_path: ~pathlib.PurePath, base_directory_uri: str | None = None, create_dir_depth: int = -3, device_name_as_base_dir: bool = False)
 :canonical: ophyd_async.core._providers.YMDPathProvider
 
 Bases: {py:obj}`ophyd_async.core._providers.PathProvider`
@@ -2326,7 +2377,7 @@ Bases: {py:obj}`ophyd_async.core._utils.ConfinedModel`
 
 `````
 
-`````{py:class} HDFDocumentComposer(full_file_name: ~pathlib.Path, datasets: list[~ophyd_async.core._hdf_dataset.HDFDatasetDescription], hostname: str = 'localhost')
+`````{py:class} HDFDocumentComposer(file_uri: str, datasets: list[~ophyd_async.core._hdf_dataset.HDFDatasetDescription])
 :canonical: ophyd_async.core._hdf_dataset.HDFDocumentComposer
 
 ```{autodoc2-docstring} ophyd_async.core._hdf_dataset.HDFDocumentComposer
@@ -2721,6 +2772,13 @@ Bases: {py:obj}`typing.Generic`\[{py:obj}`ophyd_async.core._utils.T`\]
 
 ````
 
+````{py:function} error_if_none(value: ~ophyd_async.core._utils.T | None, msg: str) -> ~ophyd_async.core._utils.T
+:canonical: ophyd_async.core._utils.error_if_none
+
+```{autodoc2-docstring} ophyd_async.core._utils.error_if_none
+```
+````
+
 ````{py:function} gather_dict(coros: ~collections.abc.Mapping[~ophyd_async.core._utils.T, ~collections.abc.Awaitable[~ophyd_async.core._utils.V]]) -> dict[~ophyd_async.core._utils.T, ~ophyd_async.core._utils.V]
 :canonical: ophyd_async.core._utils.gather_dict
 :async:
@@ -2780,14 +2838,14 @@ Bases: {py:obj}`typing.Generic`\[{py:obj}`ophyd_async.core._utils.T`\]
 
 ````
 
-````{py:function} derived_signal_r(raw_to_derived: ~collections.abc.Callable[..., ~ophyd_async.core._signal_backend.SignalDatatypeT], derived_units: str | None = None, derived_precision: int | None = None, **raw_devices: ~ophyd_async.core._device.Device) -> ~ophyd_async.core._signal.SignalR[~ophyd_async.core._signal_backend.SignalDatatypeT]
+````{py:function} derived_signal_r(raw_to_derived: ~collections.abc.Callable[..., ~ophyd_async.core._signal_backend.SignalDatatypeT], derived_units: str | None = None, derived_precision: int | None = None, **raw_devices_and_constants: ~ophyd_async.core._device.Device | ~ophyd_async.core._signal_backend.Primitive) -> ~ophyd_async.core._signal.SignalR[~ophyd_async.core._signal_backend.SignalDatatypeT]
 :canonical: ophyd_async.core._derived_signal.derived_signal_r
 
 ```{autodoc2-docstring} ophyd_async.core._derived_signal.derived_signal_r
 ```
 ````
 
-````{py:function} derived_signal_rw(raw_to_derived: ~collections.abc.Callable[..., ~ophyd_async.core._signal_backend.SignalDatatypeT], set_derived: ~collections.abc.Callable[[~ophyd_async.core._signal_backend.SignalDatatypeT], ~collections.abc.Awaitable[None]], derived_units: str | None = None, derived_precision: int | None = None, **raw_devices: ~ophyd_async.core._device.Device) -> ~ophyd_async.core._signal.SignalRW[~ophyd_async.core._signal_backend.SignalDatatypeT]
+````{py:function} derived_signal_rw(raw_to_derived: ~collections.abc.Callable[..., ~ophyd_async.core._signal_backend.SignalDatatypeT], set_derived: ~collections.abc.Callable[[~ophyd_async.core._signal_backend.SignalDatatypeT], ~collections.abc.Awaitable[None]], derived_units: str | None = None, derived_precision: int | None = None, **raw_devices_and_constants: ~ophyd_async.core._device.Device | ~ophyd_async.core._signal_backend.Primitive) -> ~ophyd_async.core._signal.SignalRW[~ophyd_async.core._signal_backend.SignalDatatypeT]
 :canonical: ophyd_async.core._derived_signal.derived_signal_rw
 
 ```{autodoc2-docstring} ophyd_async.core._derived_signal.derived_signal_rw
@@ -2811,7 +2869,7 @@ Bases: {py:obj}`ophyd_async.core._utils.ConfinedModel`, {py:obj}`typing.Generic`
 
 ````
 
-`````{py:class} DerivedSignalFactory(transform_cls: type[~ophyd_async.core._derived_signal_backend.TransformT], set_derived: ~collections.abc.Callable[..., ~collections.abc.Awaitable[None]] | None = None, **raw_and_transform_devices)
+`````{py:class} DerivedSignalFactory(transform_cls: type[~ophyd_async.core._derived_signal_backend.TransformT], set_derived: ~collections.abc.Callable[..., ~collections.abc.Awaitable[None]] | None = None, **raw_and_transform_devices_and_constants)
 :canonical: ophyd_async.core._derived_signal.DerivedSignalFactory
 
 Bases: {py:obj}`typing.Generic`\[{py:obj}`ophyd_async.core._derived_signal_backend.TransformT`\]
