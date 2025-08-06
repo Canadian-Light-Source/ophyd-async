@@ -19,10 +19,6 @@
   - ```{autodoc2-docstring} ophyd_async.epics.adcore._core_io.ADBaseIO
     :summary:
     ```
-* - {py:obj}`ADCallbacks <ophyd_async.epics.adcore._core_io.ADCallbacks>`
-  - ```{autodoc2-docstring} ophyd_async.epics.adcore._core_io.ADCallbacks
-    :summary:
-    ```
 * - {py:obj}`ADCompression <ophyd_async.epics.adcore._core_io.ADCompression>`
   - ```{autodoc2-docstring} ophyd_async.epics.adcore._core_io.ADCompression
     :summary:
@@ -65,6 +61,10 @@
     ```
 * - {py:obj}`NDPluginStatsIO <ophyd_async.epics.adcore._core_io.NDPluginStatsIO>`
   - ```{autodoc2-docstring} ophyd_async.epics.adcore._core_io.NDPluginStatsIO
+    :summary:
+    ```
+* - {py:obj}`NDROIStatIO <ophyd_async.epics.adcore._core_io.NDROIStatIO>`
+  - ```{autodoc2-docstring} ophyd_async.epics.adcore._core_io.NDROIStatIO
     :summary:
     ```
 * - {py:obj}`ADBaseDatasetDescriber <ophyd_async.epics.adcore._core_io.ADBaseDatasetDescriber>`
@@ -139,8 +139,8 @@
 :class: autosummary longtable
 :align: left
 
-* - {py:obj}`stop_busy_record <ophyd_async.epics.adcore._utils.stop_busy_record>`
-  - ```{autodoc2-docstring} ophyd_async.epics.adcore._utils.stop_busy_record
+* - {py:obj}`ndattributes_to_xml <ophyd_async.epics.adcore._utils.ndattributes_to_xml>`
+  - ```{autodoc2-docstring} ophyd_async.epics.adcore._utils.ndattributes_to_xml
     :summary:
     ```
 ````
@@ -218,36 +218,6 @@ Bases: {py:obj}`ophyd_async.epics.adcore._core_io.NDArrayBaseIO`
    None
 
 ```{autodoc2-docstring} ophyd_async.epics.adcore._core_io.ADBaseIO.detector_state
-```
-
-````
-
-`````
-
-`````{py:class} ADCallbacks()
-:canonical: ophyd_async.epics.adcore._core_io.ADCallbacks
-
-Bases: {py:obj}`ophyd_async.core.StrictEnum`
-
-```{autodoc2-docstring} ophyd_async.epics.adcore._core_io.ADCallbacks
-```
-
-````{py:attribute} ENABLE
-:canonical: ophyd_async.epics.adcore._core_io.ADCallbacks.ENABLE
-:value: >
-   'Enable'
-
-```{autodoc2-docstring} ophyd_async.epics.adcore._core_io.ADCallbacks.ENABLE
-```
-
-````
-
-````{py:attribute} DISABLE
-:canonical: ophyd_async.epics.adcore._core_io.ADCallbacks.DISABLE
-:value: >
-   'Disable'
-
-```{autodoc2-docstring} ophyd_async.epics.adcore._core_io.ADCallbacks.DISABLE
 ```
 
 ````
@@ -957,7 +927,7 @@ Bases: {py:obj}`ophyd_async.epics.adcore._core_io.NDArrayBaseIO`
 
 ````{py:attribute} enable_callbacks
 :canonical: ophyd_async.epics.adcore._core_io.NDPluginBaseIO.enable_callbacks
-:type: ~typing.Annotated[~ophyd_async.core.SignalRW[~ophyd_async.epics.adcore._core_io.ADCallbacks], ophyd_async.epics.core.PvSuffix.rbv('EnableCallbacks')]
+:type: ~typing.Annotated[~ophyd_async.core.SignalRW[~ophyd_async.core.EnableDisable], ophyd_async.epics.core.PvSuffix.rbv('EnableCallbacks')]
 :value: >
    None
 
@@ -1175,6 +1145,16 @@ Bases: {py:obj}`ophyd_async.epics.adcore._core_io.NDPluginBaseIO`
 ````
 
 `````
+
+````{py:class} NDROIStatIO(prefix, num_channels=8, with_pvi=False, name='')
+:canonical: ophyd_async.epics.adcore._core_io.NDROIStatIO
+
+Bases: {py:obj}`ophyd_async.epics.adcore._core_io.NDPluginBaseIO`
+
+```{autodoc2-docstring} ophyd_async.epics.adcore._core_io.NDROIStatIO
+```
+
+````
 
 ````{py:data} DEFAULT_GOOD_STATES
 :canonical: ophyd_async.epics.adcore._core_logic.DEFAULT_GOOD_STATES
@@ -1823,14 +1803,6 @@ Bases: {py:obj}`ophyd_async.core.StrictEnum`
 
 `````
 
-````{py:function} stop_busy_record(signal: ~ophyd_async.core.SignalRW[~ophyd_async.core.SignalDatatypeT], value: ~ophyd_async.core.SignalDatatypeT, timeout: float = DEFAULT_TIMEOUT) -> None
-:canonical: ophyd_async.epics.adcore._utils.stop_busy_record
-:async:
-
-```{autodoc2-docstring} ophyd_async.epics.adcore._utils.stop_busy_record
-```
-````
-
 `````{py:class} NDAttributePvDbrType()
 :canonical: ophyd_async.epics.adcore._utils.NDAttributePvDbrType
 
@@ -2026,3 +1998,10 @@ Bases: {py:obj}`ophyd_async.epics.adcore._core_io.NDPluginBaseIO`
 ````
 
 `````
+
+````{py:function} ndattributes_to_xml(ndattributes: ~collections.abc.Sequence[~ophyd_async.epics.adcore._utils.NDAttributeParam | ~ophyd_async.epics.adcore._utils.NDAttributePv]) -> str
+:canonical: ophyd_async.epics.adcore._utils.ndattributes_to_xml
+
+```{autodoc2-docstring} ophyd_async.epics.adcore._utils.ndattributes_to_xml
+```
+````

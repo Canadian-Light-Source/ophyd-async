@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ophyd_async.sim._mirror_horizontal &#8212; ophyd-async 0.1.dev815+g8a3013d documentation</title>
+    <title>ophyd_async.core._enums &#8212; ophyd-async 0.1.dev815+g8a3013d documentation</title>
   
   
   
@@ -55,7 +55,7 @@
 import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
 window.addEventListener("load", () => mermaid.run());
 </script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/ophyd_async/sim/_mirror_horizontal';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/ophyd_async/core/_enums';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://blueskyproject.io/ophyd-async/switcher.json';
@@ -445,7 +445,7 @@ window.addEventListener("load", () => mermaid.run());
     
     <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">ophyd_async.sim._mirror_horizontal</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">ophyd_async.core._enums</span></li>
   </ul>
 </nav>
 </div>
@@ -462,62 +462,39 @@ window.addEventListener("load", () => mermaid.run());
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <h1>Source code for ophyd_async.sim._mirror_horizontal</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TypedDict</span>
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">bluesky.protocols</span><span class="w"> </span><span class="kn">import</span> <span class="n">Movable</span>
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">ophyd_async.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">AsyncStatus</span><span class="p">,</span> <span class="n">DerivedSignalFactory</span><span class="p">,</span> <span class="n">Device</span>
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">._mirror_vertical</span><span class="w"> </span><span class="kn">import</span> <span class="n">TwoJackDerived</span><span class="p">,</span> <span class="n">TwoJackTransform</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">._motor</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimMotor</span>
+  <h1>Source code for ophyd_async.core._enums</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">._utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">StrictEnum</span>
 
 
-<div class="viewcode-block" id="HorizontalMirrorDerived">
-<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.sim.html#ophyd_async.sim.HorizontalMirrorDerived">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">HorizontalMirrorDerived</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
-    <span class="n">x</span><span class="p">:</span> <span class="nb">float</span>
-    <span class="n">roll</span><span class="p">:</span> <span class="nb">float</span></div>
+<div class="viewcode-block" id="OnOff">
+<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.OnOff">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">OnOff</span><span class="p">(</span><span class="n">StrictEnum</span><span class="p">):</span>
+    <span class="n">ON</span> <span class="o">=</span> <span class="s2">&quot;On&quot;</span>
+    <span class="n">OFF</span> <span class="o">=</span> <span class="s2">&quot;Off&quot;</span></div>
 
 
 
-<div class="viewcode-block" id="HorizontalMirror">
-<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.sim.html#ophyd_async.sim.HorizontalMirror">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">HorizontalMirror</span><span class="p">(</span><span class="n">Device</span><span class="p">,</span> <span class="n">Movable</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
-        <span class="c1"># Raw signals</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">x1</span> <span class="o">=</span> <span class="n">SimMotor</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">x2</span> <span class="o">=</span> <span class="n">SimMotor</span><span class="p">()</span>
-        <span class="c1"># Parameter</span>
-        <span class="c1"># This could also be set as &#39;soft_signal_rw(float, initial_value=1)&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">x1_x2_distance</span> <span class="o">=</span> <span class="mf">1.0</span>
-        <span class="c1"># Derived signals</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_factory</span> <span class="o">=</span> <span class="n">DerivedSignalFactory</span><span class="p">(</span>
-            <span class="n">TwoJackTransform</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_set_mirror</span><span class="p">,</span>
-            <span class="n">jack1</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">x1</span><span class="p">,</span>
-            <span class="n">jack2</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">x2</span><span class="p">,</span>
-            <span class="n">distance</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">x1_x2_distance</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_factory</span><span class="o">.</span><span class="n">derived_signal_rw</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="s2">&quot;height&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">roll</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_factory</span><span class="o">.</span><span class="n">derived_signal_rw</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="s2">&quot;angle&quot;</span><span class="p">)</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+<div class="viewcode-block" id="EnableDisable">
+<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.EnableDisable">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">EnableDisable</span><span class="p">(</span><span class="n">StrictEnum</span><span class="p">):</span>
+    <span class="n">ENABLE</span> <span class="o">=</span> <span class="s2">&quot;Enable&quot;</span>
+    <span class="n">DISABLE</span> <span class="o">=</span> <span class="s2">&quot;Disable&quot;</span></div>
 
-    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_set_mirror</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">derived</span><span class="p">:</span> <span class="n">TwoJackDerived</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">transform</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_factory</span><span class="o">.</span><span class="n">transform</span><span class="p">()</span>
-        <span class="n">raw</span> <span class="o">=</span> <span class="n">transform</span><span class="o">.</span><span class="n">derived_to_raw</span><span class="p">(</span><span class="o">**</span><span class="n">derived</span><span class="p">)</span>
-        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">x1</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">raw</span><span class="p">[</span><span class="s2">&quot;jack1&quot;</span><span class="p">]),</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">x2</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">raw</span><span class="p">[</span><span class="s2">&quot;jack2&quot;</span><span class="p">]),</span>
-        <span class="p">)</span>
 
-<div class="viewcode-block" id="HorizontalMirror.set">
-<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.sim.html#ophyd_async.sim.HorizontalMirror.set">[docs]</a>
-    <span class="nd">@AsyncStatus</span><span class="o">.</span><span class="n">wrap</span>
-    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">HorizontalMirrorDerived</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_mirror</span><span class="p">(</span><span class="n">TwoJackDerived</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="n">value</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">],</span> <span class="n">angle</span><span class="o">=</span><span class="n">value</span><span class="p">[</span><span class="s2">&quot;roll&quot;</span><span class="p">]))</span></div>
-</div>
+
+<div class="viewcode-block" id="EnabledDisabled">
+<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.EnabledDisabled">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">EnabledDisabled</span><span class="p">(</span><span class="n">StrictEnum</span><span class="p">):</span>
+    <span class="n">ENABLED</span> <span class="o">=</span> <span class="s2">&quot;Enabled&quot;</span>
+    <span class="n">DISABLED</span> <span class="o">=</span> <span class="s2">&quot;Disabled&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="InOut">
+<a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.InOut">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">InOut</span><span class="p">(</span><span class="n">StrictEnum</span><span class="p">):</span>
+    <span class="n">IN</span> <span class="o">=</span> <span class="s2">&quot;In&quot;</span>
+    <span class="n">OUT</span> <span class="o">=</span> <span class="s2">&quot;Out&quot;</span></div>
 
 </pre></div>
 
