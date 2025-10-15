@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ophyd_async.epics.adkinetix._kinetix_io &#8212; ophyd-async 0.1.dev851+g60dd9dfb5 documentation</title>
+    <title>ophyd_async.tango.testing._test_config &#8212; ophyd-async 0.1.dev851+g60dd9dfb5 documentation</title>
   
   
   
@@ -55,7 +55,7 @@
 import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
 window.addEventListener("load", () => mermaid.run());
 </script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/ophyd_async/epics/adkinetix/_kinetix_io';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/ophyd_async/tango/testing/_test_config';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://blueskyproject.io/ophyd-async/switcher.json';
@@ -445,7 +445,7 @@ window.addEventListener("load", () => mermaid.run());
     
     <li class="breadcrumb-item"><a href="../../../index.html" class="nav-link">Module code</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">ophyd_async.epics.adkinetix._kinetix_io</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">ophyd_async.tango.testing._test_config</span></li>
   </ul>
 </nav>
 </div>
@@ -462,44 +462,20 @@ window.addEventListener("load", () => mermaid.run());
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <h1>Source code for ophyd_async.epics.adkinetix._kinetix_io</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Annotated</span> <span class="k">as</span> <span class="n">A</span>
+  <h1>Source code for ophyd_async.tango.testing._test_config</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Helpful config class for testing.&quot;&quot;&quot;</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">ophyd_async.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">SignalRW</span><span class="p">,</span> <span class="n">StrictEnum</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">ophyd_async.epics</span><span class="w"> </span><span class="kn">import</span> <span class="n">adcore</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">ophyd_async.epics.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">PvSuffix</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tango</span><span class="w"> </span><span class="kn">import</span> <span class="n">AttrDataFormat</span><span class="p">,</span> <span class="n">CmdArgType</span>
 
 
-<div class="viewcode-block" id="KinetixTriggerMode">
-<a class="viewcode-back" href="../../../../_api/ophyd_async/ophyd_async.epics.adkinetix.html#ophyd_async.epics.adkinetix.KinetixTriggerMode">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">KinetixTriggerMode</span><span class="p">(</span><span class="n">StrictEnum</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Trigger mode for ADKinetix detector.&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="TestConfig">
+<a class="viewcode-back" href="../../../../_api/ophyd_async/ophyd_async.tango.testing.html#ophyd_async.tango.testing.TestConfig">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">TestConfig</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Configuration for a test.&quot;&quot;&quot;</span>
 
-    <span class="n">INTERNAL</span> <span class="o">=</span> <span class="s2">&quot;Internal&quot;</span>
-    <span class="n">EDGE</span> <span class="o">=</span> <span class="s2">&quot;Rising Edge&quot;</span>
-    <span class="n">GATE</span> <span class="o">=</span> <span class="s2">&quot;Exp. Gate&quot;</span></div>
-
-
-
-<div class="viewcode-block" id="KinetixReadoutMode">
-<a class="viewcode-back" href="../../../../_api/ophyd_async/ophyd_async.epics.adkinetix.html#ophyd_async.epics.adkinetix.KinetixReadoutMode">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">KinetixReadoutMode</span><span class="p">(</span><span class="n">StrictEnum</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Readout mode for ADKinetix detector.&quot;&quot;&quot;</span>
-
-    <span class="n">SENSITIVITY</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span>
-    <span class="n">SPEED</span> <span class="o">=</span> <span class="s2">&quot;2&quot;</span>
-    <span class="n">DYNAMIC_RANGE</span> <span class="o">=</span> <span class="s2">&quot;3&quot;</span>
-    <span class="n">SUB_ELECTRON</span> <span class="o">=</span> <span class="s2">&quot;4&quot;</span></div>
-
-
-
-<div class="viewcode-block" id="KinetixDriverIO">
-<a class="viewcode-back" href="../../../../_api/ophyd_async/ophyd_async.epics.adkinetix.html#ophyd_async.epics.adkinetix.KinetixDriverIO">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">KinetixDriverIO</span><span class="p">(</span><span class="n">adcore</span><span class="o">.</span><span class="n">ADBaseIO</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Mirrors the interface provided by ADKinetix/db/ADKinetix.template.&quot;&quot;&quot;</span>
-
-    <span class="n">trigger_mode</span><span class="p">:</span> <span class="n">A</span><span class="p">[</span><span class="n">SignalRW</span><span class="p">[</span><span class="n">KinetixTriggerMode</span><span class="p">],</span> <span class="n">PvSuffix</span><span class="p">(</span><span class="s2">&quot;TriggerMode&quot;</span><span class="p">)]</span>
-    <span class="n">readout_port_idx</span><span class="p">:</span> <span class="n">A</span><span class="p">[</span><span class="n">SignalRW</span><span class="p">[</span><span class="n">KinetixReadoutMode</span><span class="p">],</span> <span class="n">PvSuffix</span><span class="p">(</span><span class="s2">&quot;ReadoutPortIdx&quot;</span><span class="p">)]</span></div>
+    <span class="n">data_type</span><span class="p">:</span> <span class="n">CmdArgType</span>
+    <span class="n">data_format</span><span class="p">:</span> <span class="n">AttrDataFormat</span>
+    <span class="n">enum_labels</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></div>
 
 </pre></div>
 
