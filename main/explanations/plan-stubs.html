@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>What plan stubs will do to Devices &#8212; ophyd-async 0.1.dev897+g6ebd5ae5e documentation</title>
+    <title>What plan stubs will do to Devices &#8212; ophyd-async 0.1.dev901+gbeba1c88d documentation</title>
   
   
   
@@ -42,20 +42,447 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=07b6b389"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/documentation_options.js?v=2f210048"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=30646c52"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
-    <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
-    <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
-    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
     <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
-    <script type="module">
-import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
-window.addEventListener("load", () => mermaid.run());
-</script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.12.1/dist/mermaid.esm.min.mjs";
+
+
+
+
+
+const initStyles = () => {
+    const defaultStyle = document.createElement('style');
+    defaultStyle.textContent = `pre.mermaid {
+    /* Same as .mermaid-container > pre */
+    display: block;
+    width: 100%;
+}
+
+pre.mermaid > svg {
+    /* Same as .mermaid-container > pre > svg */
+    height: 500px;
+    width: 100%;
+    max-width: 100% !important;
+}`;
+    document.head.appendChild(defaultStyle);
+
+    const fullscreenStyle = document.createElement('style');
+    fullscreenStyle.textContent = `.mermaid-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.mermaid-container > pre {
+    display: block;
+    width: 100%;
+}
+
+.mermaid-container > pre > svg {
+    height: 500px;
+    width: 100%;
+    max-width: 100% !important;
+}
+
+.mermaid-fullscreen-btn {
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    line-height: 1;
+    padding: 0;
+    color: #333;
+}
+
+.mermaid-fullscreen-btn:hover {
+    opacity: 100% !important;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+}
+
+.mermaid-fullscreen-btn.dark-theme {
+    background: rgba(50, 50, 50, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #e0e0e0;
+}
+
+.mermaid-fullscreen-btn.dark-theme:hover {
+    background: rgba(60, 60, 60, 1);
+    box-shadow: 0 3px 10px rgba(255, 255, 255, 0.2);
+}
+
+.mermaid-fullscreen-modal {
+    display: none;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 95vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    z-index: 9999;
+    padding: 20px;
+    overflow: auto;
+}
+
+.mermaid-fullscreen-modal.dark-theme {
+    background: rgba(0, 0, 0, 0.98);
+}
+
+.mermaid-fullscreen-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen {
+    position: relative;
+    width: 95vw;
+    height: 90vh;
+    max-width: 95vw;
+    max-height: 90vh;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen.dark-theme {
+    background: #1a1a1a;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+}
+
+.mermaid-container-fullscreen pre.mermaid {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen .mermaid svg {
+    height: 100% !important;
+    width: 100% !important;
+    cursor: grab;
+}
+
+.mermaid-fullscreen-close {
+    position: fixed !important;
+    top: 20px !important;
+    right: 20px !important;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s;
+    font-size: 24px;
+    line-height: 1;
+    color: #333;
+}
+
+.mermaid-fullscreen-close:hover {
+    background: white;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    transform: scale(1.1);
+}
+
+.mermaid-fullscreen-close.dark-theme {
+    background: rgba(50, 50, 50, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #e0e0e0;
+}
+
+.mermaid-fullscreen-close.dark-theme:hover {
+    background: rgba(60, 60, 60, 1);
+    box-shadow: 0 6px 16px rgba(255, 255, 255, 0.2);
+}
+
+.mermaid-fullscreen-modal .mermaid-fullscreen-btn {
+    display: none !important;
+}`;
+    document.head.appendChild(fullscreenStyle);
+}
+
+// Detect if page has dark background
+const isDarkTheme = () => {
+    // We use a set of heuristics:
+    // 1. Check for common dark mode classes or attributes
+    // 2. Check computed background color brightness
+    if (document.documentElement.classList.contains('dark') ||
+        document.documentElement.getAttribute('data-theme') === 'dark' ||
+        document.body.classList.contains('dark') ||
+        document.body.getAttribute('data-theme') === 'dark') {
+        // console.log("Dark theme detected via class/attribute");
+        return true;
+    }
+    if (document.documentElement.classList.contains('light') ||
+        document.documentElement.getAttribute('data-theme') === 'light' ||
+        document.body.classList.contains('light') ||
+        document.body.getAttribute('data-theme') === 'light') {
+        // console.log("Light theme detected via class/attribute");
+        return false;
+    }
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // console.log("Dark theme detected via prefers-color-scheme");
+        return true;
+    }
+    const bgColor = window.getComputedStyle(document.body).backgroundColor;
+    const match = bgColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)/);
+    if (match) {
+        const r = parseInt(match[1]);
+        const g = parseInt(match[2]);
+        const b = parseInt(match[3]);
+        const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+        // console.log("Background color brightness:", brightness);
+        return brightness < 128;
+    }
+    // console.log("No dark or light theme detected, defaulting to light theme");
+    return false;
+};
+
+let darkTheme = isDarkTheme();
+let modal = null;
+let modalContent = null;
+let previousScrollOffset = [window.scrollX, window.scrollY];
+
+const runMermaid = async (rerun) => {
+    console.log("Running mermaid diagrams, rerun =", rerun);
+    // clear all existing mermaid charts
+    let all_mermaids = document.querySelectorAll(".mermaid");
+
+    if (rerun) {
+        all_mermaids.forEach((el) => {
+            if(!el.hasAttribute("data-original-code")) {
+                // store original code
+                // console.log(`Storing original code for first run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+            if(el.getAttribute("data-processed") === "true") {
+                // remove and restore original
+                el.removeAttribute("data-processed");
+                // console.log(`Restoring original code for re-run: `, el.getAttribute('data-original-code'));
+                el.innerHTML = el.getAttribute('data-original-code');
+            } else {
+                // store original code
+                // console.log(`Storing original code for re-run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+        });
+        await mermaid.run();
+    }
+
+    all_mermaids = document.querySelectorAll(".mermaid");
+    const mermaids_processed = document.querySelectorAll(".mermaid[data-processed='true']");
+
+    if ("False" === "True") {
+        const mermaids_to_add_zoom = -1 === -1 ? all_mermaids.length : -1;
+        if(mermaids_to_add_zoom > 0) {
+            var svgs = d3.selectAll("");
+            if(all_mermaids.length !== mermaids_processed.length) {
+                setTimeout(() => runMermaid(false), 200);
+                return;
+            } else if(svgs.size() !== mermaids_to_add_zoom) {
+                setTimeout(() => runMermaid(false), 200);
+                return;
+            } else {
+                svgs.each(function() {
+                    var svg = d3.select(this);
+                    svg.html("<g class='wrapper'>" + svg.html() + "</g>");
+                    var inner = svg.select("g");
+                    var zoom = d3.zoom().on("zoom", function(event) {
+                        inner.attr("transform", event.transform);
+                    });
+                    svg.call(zoom);
+                });
+            }
+        }
+    } else if(all_mermaids.length !== mermaids_processed.length) {
+        // Wait for mermaid to process all diagrams
+        setTimeout(() => runMermaid(false), 200);
+        return;
+    }
+
+    // Stop here if not adding fullscreen capability
+    if ("True" !== "True") return;
+
+    if (modal !== null ) {
+        // Destroy existing modal
+        modal.remove();
+        modal = null;
+        modalContent = null;
+    }
+
+    modal = document.createElement('div');
+    modal.className = 'mermaid-fullscreen-modal' + (darkTheme ? ' dark-theme' : '');
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', 'Fullscreen diagram viewer');
+    modal.innerHTML = `
+        <button class="mermaid-fullscreen-close${darkTheme ? ' dark-theme' : ''}" aria-label="Close fullscreen">✕</button>
+        <div class="mermaid-container-fullscreen${darkTheme ? ' dark-theme' : ''}"></div>
+    `;
+    document.body.appendChild(modal);
+
+    modalContent = modal.querySelector('.mermaid-container-fullscreen');
+    const closeBtn = modal.querySelector('.mermaid-fullscreen-close');
+
+    const closeModal = () => {
+        modal.classList.remove('active');
+        modalContent.innerHTML = '';
+        document.body.style.overflow = ''
+        window.scrollTo({left: previousScrollOffset[0], top: previousScrollOffset[1], behavior: 'instant'});
+    };
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+
+    document.querySelectorAll('.mermaid').forEach((mermaidDiv) => {
+        if (mermaidDiv.parentNode.classList.contains('mermaid-container') ||
+            mermaidDiv.closest('.mermaid-fullscreen-modal')) {
+            // Already processed, adjust button class if needed
+            const existingBtn = mermaidDiv.parentNode.querySelector('.mermaid-fullscreen-btn');
+            if (existingBtn) {
+                existingBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+            }
+            return;
+        }
+
+        const container = document.createElement('div');
+        container.className = 'mermaid-container';
+        mermaidDiv.parentNode.insertBefore(container, mermaidDiv);
+        container.appendChild(mermaidDiv);
+
+        const fullscreenBtn = document.createElement('button');
+        fullscreenBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+        fullscreenBtn.setAttribute('aria-label', 'View diagram in fullscreen');
+        fullscreenBtn.textContent = '⛶';
+        fullscreenBtn.style.opacity = '50%';
+
+        // Calculate dynamic position based on diagram's margin and padding
+        const diagramStyle = window.getComputedStyle(mermaidDiv);
+        const marginTop = parseFloat(diagramStyle.marginTop) || 0;
+        const marginRight = parseFloat(diagramStyle.marginRight) || 0;
+        const paddingTop = parseFloat(diagramStyle.paddingTop) || 0;
+        const paddingRight = parseFloat(diagramStyle.paddingRight) || 0;
+        fullscreenBtn.style.top = `${marginTop + paddingTop + 4}px`;
+        fullscreenBtn.style.right = `${marginRight + paddingRight + 4}px`;
+
+        fullscreenBtn.addEventListener('click', () => {
+            previousScrollOffset = [window.scroll, window.scrollY];
+            const clone = mermaidDiv.cloneNode(true);
+            modalContent.innerHTML = '';
+            modalContent.appendChild(clone);
+
+            const svg = clone.querySelector('svg');
+            if (svg) {
+                svg.removeAttribute('width');
+                svg.removeAttribute('height');
+                svg.style.width = '100%';
+                svg.style.height = 'auto';
+                svg.style.maxWidth = '100%';
+                svg.style.sdisplay = 'block';
+
+                if ("False" === "True") {
+                    setTimeout(() => {
+                        const g = svg.querySelector('g');
+                        if (g) {
+                            var svgD3 = d3.select(svg);
+                            svgD3.html("<g class='wrapper'>" + svgD3.html() + "</g>");
+                            var inner = svgD3.select("g");
+                            var zoom = d3.zoom().on("zoom", function(event) {
+                                inner.attr("transform", event.transform);
+                            });
+                            svgD3.call(zoom);
+                        }
+                    }, 100);
+                }
+            }
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        container.appendChild(fullscreenBtn);
+    });
+};
+
+const load = async () => {
+    initStyles();
+
+    await runMermaid(true);
+
+    const reRunIfThemeChanges = async () => {
+        const newDarkTheme = isDarkTheme();
+        if (newDarkTheme !== darkTheme) {
+            darkTheme = newDarkTheme;
+            console.log("Theme change detected, re-running mermaid with", darkTheme ? "dark" : "default", "theme");
+            await mermaid.initialize(
+                {...JSON.parse(
+                    `{"startOnLoad": false}`
+                ),
+                ...{ darkMode: darkTheme, theme: darkTheme ? 'dark' : 'default' },
+                }
+            );
+            await runMermaid(true);
+        }
+    };
+
+    // Update theme classes when theme changes
+    const themeObserver = new MutationObserver(reRunIfThemeChanges);
+    themeObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+    themeObserver.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+};
+
+
+
+
+
+console.log("Initializing mermaid with", darkTheme ? "dark" : "default", "theme");
+mermaid.initialize(
+    {...JSON.parse(
+        `{"startOnLoad": false}`
+    ),
+    ...{ darkMode: darkTheme, theme: darkTheme ? 'dark' : 'default' },
+    }
+);
+
+window.addEventListener("load", load);</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'explanations/plan-stubs';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
@@ -137,8 +564,8 @@ window.addEventListener("load", () => mermaid.run());
       
     
     
-    <img src="../_static/ophyd-async-logo.svg" class="logo__image only-light" alt="ophyd-async 0.1.dev897+g6ebd5ae5e documentation - Home"/>
-    <img src="../_static/ophyd-async-logo.svg" class="logo__image only-dark pst-js-only" alt="ophyd-async 0.1.dev897+g6ebd5ae5e documentation - Home"/>
+    <img src="../_static/ophyd-async-logo.svg" class="logo__image only-light" alt="ophyd-async 0.1.dev901+gbeba1c88d documentation - Home"/>
+    <img src="../_static/ophyd-async-logo.svg" class="logo__image only-dark pst-js-only" alt="ophyd-async 0.1.dev901+gbeba1c88d documentation - Home"/>
   
   
 </a></div>
@@ -502,7 +929,7 @@ window.addEventListener("load", () => mermaid.run());
                   
   <section id="what-plan-stubs-will-do-to-devices">
 <h1>What plan stubs will do to Devices<a class="headerlink" href="#what-plan-stubs-will-do-to-devices" title="Link to this heading">#</a></h1>
-<p>Plan authors will typically compose <a class="reference external" href="https://blueskyproject.io/bluesky/main/plans.html#stub-plans" title="bluesky 1.14.7.dev22+g5f35e6be8">plan stubs</a> together to define the behaviour they expect from their Devices. When the plan is executed, the RunEngine will consume the <a class="reference external" href="https://blueskyproject.io/bluesky/main/msg.html" title="bluesky 1.14.7.dev22+g5f35e6be8"><code class="docutils literal notranslate"><span class="pre">Msg</span></code> objects</a> <code class="docutils literal notranslate"><span class="pre">yield</span> <span class="pre">from</span></code> each plan stub as a series of instructions, many of which call methods on the Device. This document lists some commonly used plan stubs, what Devices will do when they are called, and what order they should be called inside the plan.</p>
+<p>Plan authors will typically compose <a class="reference external" href="https://blueskyproject.io/bluesky/main/plans.html#stub-plans" title="bluesky 1.14.7.dev29+gfb2c32466">plan stubs</a> together to define the behaviour they expect from their Devices. When the plan is executed, the RunEngine will consume the <a class="reference external" href="https://blueskyproject.io/bluesky/main/msg.html" title="bluesky 1.14.7.dev29+gfb2c32466"><code class="docutils literal notranslate"><span class="pre">Msg</span></code> objects</a> <code class="docutils literal notranslate"><span class="pre">yield</span> <span class="pre">from</span></code> each plan stub as a series of instructions, many of which call methods on the Device. This document lists some commonly used plan stubs, what Devices will do when they are called, and what order they should be called inside the plan.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><a class="reference internal" href="fly-scanning.html"><span class="std std-doc">What is the difference between step and fly scanning</span></a> for more information on the difference between step scans (typically software driven) and flyscans (typically hardware driven)</p>
@@ -510,7 +937,7 @@ window.addEventListener("load", () => mermaid.run());
 <section id="plan-stubs">
 <h2>Plan stubs<a class="headerlink" href="#plan-stubs" title="Link to this heading">#</a></h2>
 <section id="bps-stage-and-bps-unstage">
-<h3><a class="reference external" href="https://blueskyproject.io/bluesky/main/generated/bluesky.plan_stubs.stage.html#bluesky.plan_stubs.stage" title="bluesky 1.14.7.dev22+g5f35e6be8"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">bps.stage</span></code></span></a> and <a class="reference external" href="https://blueskyproject.io/bluesky/main/generated/bluesky.plan_stubs.unstage.html#bluesky.plan_stubs.unstage" title="bluesky 1.14.7.dev22+g5f35e6be8"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">bps.unstage</span></code></span></a><a class="headerlink" href="#bps-stage-and-bps-unstage" title="Link to this heading">#</a></h3>
+<h3><a class="reference external" href="https://blueskyproject.io/bluesky/main/generated/bluesky.plan_stubs.stage.html#bluesky.plan_stubs.stage" title="bluesky 1.14.7.dev29+gfb2c32466"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">bps.stage</span></code></span></a> and <a class="reference external" href="https://blueskyproject.io/bluesky/main/generated/bluesky.plan_stubs.unstage.html#bluesky.plan_stubs.unstage" title="bluesky 1.14.7.dev29+gfb2c32466"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">bps.unstage</span></code></span></a><a class="headerlink" href="#bps-stage-and-bps-unstage" title="Link to this heading">#</a></h3>
 <p>These are typically the first and last Messages in the plan:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">stage</span></code> gets the Device into an idle state then makes it ready for data collection:</p>
@@ -526,10 +953,10 @@ window.addEventListener("load", () => mermaid.run());
 </ul>
 </li>
 </ul>
-<p>It is recommended that the <a class="reference external" href="https://blueskyproject.io/bluesky/main/generated/bluesky.preprocessors.stage_decorator.html#bluesky.preprocessors.stage_decorator" title="bluesky 1.14.7.dev22+g5f35e6be8"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">bpp.stage_decorator</span></code></span></a> is applied to the plan to yield these Messages as they do the appropriate error handling.</p>
+<p>It is recommended that the <a class="reference external" href="https://blueskyproject.io/bluesky/main/generated/bluesky.preprocessors.stage_decorator.html#bluesky.preprocessors.stage_decorator" title="bluesky 1.14.7.dev29+gfb2c32466"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">bpp.stage_decorator</span></code></span></a> is applied to the plan to yield these Messages as they do the appropriate error handling.</p>
 </section>
 <section id="bps-open-run-and-bps-close-run">
-<h3><a class="reference external" href="https://blueskyproject.io/bluesky/main/generated/bluesky.plan_stubs.open_run.html#bluesky.plan_stubs.open_run" title="bluesky 1.14.7.dev22+g5f35e6be8"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">bps.open_run</span></code></span></a> and <a class="reference external" href="https://blueskyproject.io/bluesky/main/generated/bluesky.plan_stubs.close_run.html#bluesky.plan_stubs.close_run" title="bluesky 1.14.7.dev22+g5f35e6be8"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">bps.close_run</span></code></span></a><a class="headerlink" href="#bps-open-run-and-bps-close-run" title="Link to this heading">#</a></h3>
+<h3><a class="reference external" href="https://blueskyproject.io/bluesky/main/generated/bluesky.plan_stubs.open_run.html#bluesky.plan_stubs.open_run" title="bluesky 1.14.7.dev29+gfb2c32466"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">bps.open_run</span></code></span></a> and <a class="reference external" href="https://blueskyproject.io/bluesky/main/generated/bluesky.plan_stubs.close_run.html#bluesky.plan_stubs.close_run" title="bluesky 1.14.7.dev29+gfb2c32466"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">bps.close_run</span></code></span></a><a class="headerlink" href="#bps-open-run-and-bps-close-run" title="Link to this heading">#</a></h3>
 <p>These are typically the second and second last Messages in the plan:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">open_run</span></code> indicates to downstream consumers the start of a data collection</p>
@@ -539,10 +966,10 @@ window.addEventListener("load", () => mermaid.run());
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">close_run</span></code> indicates the end of a data collection</p></li>
 </ul>
-<p>It is recommended that the <a class="reference external" href="https://blueskyproject.io/bluesky/main/generated/bluesky.preprocessors.run_decorator.html#bluesky.preprocessors.run_decorator" title="bluesky 1.14.7.dev22+g5f35e6be8"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">bpp.run_decorator</span></code></span></a> is applied to the plan to yield these Messages as they do the appropriate error handling. It should be placed after the <code class="docutils literal notranslate"><span class="pre">stage_decorator</span></code>.</p>
+<p>It is recommended that the <a class="reference external" href="https://blueskyproject.io/bluesky/main/generated/bluesky.preprocessors.run_decorator.html#bluesky.preprocessors.run_decorator" title="bluesky 1.14.7.dev29+gfb2c32466"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">bpp.run_decorator</span></code></span></a> is applied to the plan to yield these Messages as they do the appropriate error handling. It should be placed after the <code class="docutils literal notranslate"><span class="pre">stage_decorator</span></code>.</p>
 </section>
 <section id="bps-prepare">
-<h3><a class="reference external" href="https://blueskyproject.io/bluesky/main/generated/bluesky.plan_stubs.prepare.html#bluesky.plan_stubs.prepare" title="bluesky 1.14.7.dev22+g5f35e6be8"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">bps.prepare</span></code></span></a><a class="headerlink" href="#bps-prepare" title="Link to this heading">#</a></h3>
+<h3><a class="reference external" href="https://blueskyproject.io/bluesky/main/generated/bluesky.plan_stubs.prepare.html#bluesky.plan_stubs.prepare" title="bluesky 1.14.7.dev29+gfb2c32466"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">bps.prepare</span></code></span></a><a class="headerlink" href="#bps-prepare" title="Link to this heading">#</a></h3>
 <p>Prepares the device for a <code class="docutils literal notranslate"><span class="pre">trigger</span></code> or <code class="docutils literal notranslate"><span class="pre">kickoff</span></code>, after <code class="docutils literal notranslate"><span class="pre">stage</span></code> and <code class="docutils literal notranslate"><span class="pre">open_run</span></code>:</p>
 <ul class="simple">
 <li><p>For detectors this will set parameters on the hardware such as exposure time and number of frames. If hardware triggering is requested it will also arm the detector so it is ready to receive those triggers.</p></li>
@@ -550,14 +977,14 @@ window.addEventListener("load", () => mermaid.run());
 </ul>
 </section>
 <section id="bps-abs-set-or-bps-mv">
-<h3><a class="reference external" href="https://blueskyproject.io/bluesky/main/generated/bluesky.plan_stubs.abs_set.html#bluesky.plan_stubs.abs_set" title="bluesky 1.14.7.dev22+g5f35e6be8"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">bps.abs_set</span></code></span></a> or <a class="reference external" href="https://blueskyproject.io/bluesky/main/generated/bluesky.plan_stubs.mv.html#bluesky.plan_stubs.mv" title="bluesky 1.14.7.dev22+g5f35e6be8"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">bps.mv</span></code></span></a><a class="headerlink" href="#bps-abs-set-or-bps-mv" title="Link to this heading">#</a></h3>
+<h3><a class="reference external" href="https://blueskyproject.io/bluesky/main/generated/bluesky.plan_stubs.abs_set.html#bluesky.plan_stubs.abs_set" title="bluesky 1.14.7.dev29+gfb2c32466"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">bps.abs_set</span></code></span></a> or <a class="reference external" href="https://blueskyproject.io/bluesky/main/generated/bluesky.plan_stubs.mv.html#bluesky.plan_stubs.mv" title="bluesky 1.14.7.dev29+gfb2c32466"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">bps.mv</span></code></span></a><a class="headerlink" href="#bps-abs-set-or-bps-mv" title="Link to this heading">#</a></h3>
 <p>Set the device to a target setpoint:</p>
 <ul class="simple">
 <li><p>For motors, <code class="docutils literal notranslate"><span class="pre">bps.mv</span></code> will move the motor to the desired position, returning when it is complete and erroring if it fails to move. <strong><code class="docutils literal notranslate"><span class="pre">bps.abs_set</span></code>, however, does not wait for completion by default unless the <code class="docutils literal notranslate"><span class="pre">wait</span></code> option is explicitly set to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</strong></p></li>
 </ul>
 </section>
 <section id="bps-trigger">
-<h3><a class="reference external" href="https://blueskyproject.io/bluesky/main/generated/bluesky.plan_stubs.trigger.html#bluesky.plan_stubs.trigger" title="bluesky 1.14.7.dev22+g5f35e6be8"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">bps.trigger</span></code></span></a><a class="headerlink" href="#bps-trigger" title="Link to this heading">#</a></h3>
+<h3><a class="reference external" href="https://blueskyproject.io/bluesky/main/generated/bluesky.plan_stubs.trigger.html#bluesky.plan_stubs.trigger" title="bluesky 1.14.7.dev29+gfb2c32466"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">bps.trigger</span></code></span></a><a class="headerlink" href="#bps-trigger" title="Link to this heading">#</a></h3>
 <p>Ask the device to trigger a data collection:</p>
 <ul class="simple">
 <li><p>For detectors this will take a single exposure.</p></li>
@@ -565,7 +992,7 @@ window.addEventListener("load", () => mermaid.run());
 </ul>
 </section>
 <section id="bps-read">
-<h3><a class="reference external" href="https://blueskyproject.io/bluesky/main/generated/bluesky.plan_stubs.read.html#bluesky.plan_stubs.read" title="bluesky 1.14.7.dev22+g5f35e6be8"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">bps.read</span></code></span></a><a class="headerlink" href="#bps-read" title="Link to this heading">#</a></h3>
+<h3><a class="reference external" href="https://blueskyproject.io/bluesky/main/generated/bluesky.plan_stubs.read.html#bluesky.plan_stubs.read" title="bluesky 1.14.7.dev29+gfb2c32466"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">bps.read</span></code></span></a><a class="headerlink" href="#bps-read" title="Link to this heading">#</a></h3>
 <p>Collect the data from a device after <code class="docutils literal notranslate"><span class="pre">trigger</span></code>:</p>
 <ul class="simple">
 <li><p>For detectors that write to a resource this will be a reference to the data written, for other detectors this will be the actual data</p></li>
@@ -573,7 +1000,7 @@ window.addEventListener("load", () => mermaid.run());
 </ul>
 </section>
 <section id="bps-kickoff">
-<h3><a class="reference external" href="https://blueskyproject.io/bluesky/main/generated/bluesky.plan_stubs.kickoff.html#bluesky.plan_stubs.kickoff" title="bluesky 1.14.7.dev22+g5f35e6be8"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">bps.kickoff</span></code></span></a><a class="headerlink" href="#bps-kickoff" title="Link to this heading">#</a></h3>
+<h3><a class="reference external" href="https://blueskyproject.io/bluesky/main/generated/bluesky.plan_stubs.kickoff.html#bluesky.plan_stubs.kickoff" title="bluesky 1.14.7.dev29+gfb2c32466"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">bps.kickoff</span></code></span></a><a class="headerlink" href="#bps-kickoff" title="Link to this heading">#</a></h3>
 <p>Begin a flyscan:</p>
 <ul class="simple">
 <li><p>For motors this will start motion and return once the motor has completed its run up and is moving at the desired velocity</p></li>
@@ -585,7 +1012,7 @@ window.addEventListener("load", () => mermaid.run());
 </div>
 </section>
 <section id="bps-complete-and-bps-collect">
-<h3><a class="reference external" href="https://blueskyproject.io/bluesky/main/generated/bluesky.plan_stubs.collect.html#bluesky.plan_stubs.collect" title="bluesky 1.14.7.dev22+g5f35e6be8"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">bps.complete</span></code></span></a> and <a class="reference external" href="https://blueskyproject.io/bluesky/main/generated/bluesky.plan_stubs.collect.html#bluesky.plan_stubs.collect" title="bluesky 1.14.7.dev22+g5f35e6be8"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">bps.collect</span></code></span></a><a class="headerlink" href="#bps-complete-and-bps-collect" title="Link to this heading">#</a></h3>
+<h3><a class="reference external" href="https://blueskyproject.io/bluesky/main/generated/bluesky.plan_stubs.collect.html#bluesky.plan_stubs.collect" title="bluesky 1.14.7.dev29+gfb2c32466"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">bps.complete</span></code></span></a> and <a class="reference external" href="https://blueskyproject.io/bluesky/main/generated/bluesky.plan_stubs.collect.html#bluesky.plan_stubs.collect" title="bluesky 1.14.7.dev29+gfb2c32466"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">bps.collect</span></code></span></a><a class="headerlink" href="#bps-complete-and-bps-collect" title="Link to this heading">#</a></h3>
 <p>Wait for flyscanning to be done, collecting data from detectors periodically while that happens:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">complete</span></code> waits for a flyscan to be done:</p>
@@ -596,7 +1023,7 @@ window.addEventListener("load", () => mermaid.run());
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">collect</span></code> collects the data that has been written so far by a detector during a flyscan.</p></li>
 </ul>
-<p>Typically called via <a class="reference external" href="https://blueskyproject.io/bluesky/main/generated/bluesky.plan_stubs.collect_while_completing.html#bluesky.plan_stubs.collect_while_completing" title="bluesky 1.14.7.dev22+g5f35e6be8"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">bps.collect_while_completing</span></code></span></a>, after <code class="docutils literal notranslate"><span class="pre">kickoff</span></code>.</p>
+<p>Typically called via <a class="reference external" href="https://blueskyproject.io/bluesky/main/generated/bluesky.plan_stubs.collect_while_completing.html#bluesky.plan_stubs.collect_while_completing" title="bluesky 1.14.7.dev29+gfb2c32466"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">bps.collect_while_completing</span></code></span></a>, after <code class="docutils literal notranslate"><span class="pre">kickoff</span></code>.</p>
 </section>
 </section>
 <section id="ordering">
@@ -640,7 +1067,7 @@ Code</label><div class="sd-tab-content docutils">
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p>This code is just to aid understanding, normally you would call <a class="reference external" href="https://blueskyproject.io/bluesky/main/generated/bluesky.plans.scan.html#bluesky.plans.scan" title="bluesky 1.14.7.dev22+g5f35e6be8"><code class="iref myst docutils literal notranslate"><span class="pre">bluesky.plans.scan</span></code></a> in production</p>
+<p>This code is just to aid understanding, normally you would call <a class="reference external" href="https://blueskyproject.io/bluesky/main/generated/bluesky.plans.scan.html#bluesky.plans.scan" title="bluesky 1.14.7.dev29+gfb2c32466"><code class="iref myst docutils literal notranslate"><span class="pre">bluesky.plans.scan</span></code></a> in production</p>
 </div>
 </div>
 </div>
