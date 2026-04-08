@@ -660,7 +660,7 @@ Bases: {py:obj}`typing.Generic`\[{py:obj}`ophyd_async.core._device_filler.Signal
 
 ````
 
-````{py:method} fill_child_device(name: str, device_type: type[~ophyd_async.core._device.Device] = Device, vector_index: int | None = None) -> ~ophyd_async.core._device_filler.DeviceConnectorT
+````{py:method} fill_child_device(name: str, device_type: type[~ophyd_async.core._device.Device | ~ophyd_async.core._device.DeviceVector] = Device, vector_index: int | None = None) -> ~ophyd_async.core._device_filler.DeviceConnectorT
 :canonical: ophyd_async.core._device_filler.DeviceFiller.fill_child_device
 
 ```{autodoc2-docstring} ophyd_async.core._device_filler.DeviceFiller.fill_child_device
@@ -680,7 +680,7 @@ Bases: {py:obj}`typing.Protocol`
 
 ````
 
-`````{py:class} DeviceVector(children: ~collections.abc.Mapping[int, ~ophyd_async.core._device.DeviceT], name: str = '')
+`````{py:class} DeviceVector(children: ~collections.abc.Mapping[int, ~ophyd_async.core._device.DeviceT] | None = None, name: str = '', connector: ~ophyd_async.core._device.DeviceConnector | None = None)
 :canonical: ophyd_async.core._device.DeviceVector
 
 Bases: {py:obj}`collections.abc.MutableMapping`\[{py:obj}`int`\, {py:obj}`ophyd_async.core._device.DeviceT`\], {py:obj}`ophyd_async.core._device.Device`
@@ -1837,7 +1837,7 @@ Bases: {py:obj}`ophyd_async.core._signal_backend.SignalBackend`\[{py:obj}`ophyd_
 ```
 ````
 
-````{py:function} set_and_wait_for_other_value(set_signal: ~ophyd_async.core._signal.SignalW[~ophyd_async.core._signal_backend.SignalDatatypeT], set_value: ~ophyd_async.core._signal_backend.SignalDatatypeT, match_signal: ~ophyd_async.core._signal.SignalR[~ophyd_async.core._signal_backend.SignalDatatypeV], match_value: ~ophyd_async.core._signal_backend.SignalDatatypeV | ~collections.abc.Callable[[~ophyd_async.core._signal_backend.SignalDatatypeV], bool], timeout: float = DEFAULT_TIMEOUT, set_timeout: float | None = None, wait_for_set_completion: bool = True) -> ~ophyd_async.core._status.AsyncStatus
+````{py:function} set_and_wait_for_other_value(set_signal: ~ophyd_async.core._signal.SignalW[~ophyd_async.core._signal_backend.SignalDatatypeT], set_value: ~ophyd_async.core._signal_backend.SignalDatatypeT, match_signal: ~ophyd_async.core._signal.SignalR[~ophyd_async.core._signal_backend.SignalDatatypeV], match_value: ~ophyd_async.core._signal_backend.SignalDatatypeV | ~collections.abc.Callable[[~ophyd_async.core._signal_backend.SignalDatatypeV], bool], timeout: float | None = DEFAULT_TIMEOUT, set_timeout: float | None = None, wait_for_set_completion: bool = True) -> ~ophyd_async.core._status.AsyncStatus
 :canonical: ophyd_async.core._signal.set_and_wait_for_other_value
 :async:
 
@@ -2235,6 +2235,16 @@ Bases: {py:obj}`ophyd_async.core._utils.ConfinedModel`
 :async:
 
 ```{autodoc2-docstring} ophyd_async.core._detector.DetectorTriggerLogic.prepare_exposures_per_collection
+```
+
+````
+
+````{py:method} default_trigger_info() -> ~ophyd_async.core._detector.TriggerInfo
+:canonical: ophyd_async.core._detector.DetectorTriggerLogic.default_trigger_info
+:abstractmethod:
+:async:
+
+```{autodoc2-docstring} ophyd_async.core._detector.DetectorTriggerLogic.default_trigger_info
 ```
 
 ````

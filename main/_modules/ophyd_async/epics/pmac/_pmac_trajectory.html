@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ophyd_async.epics.pmac._pmac_trajectory &#8212; ophyd-async 0.1.dev910+g2989687d7 documentation</title>
+    <title>ophyd_async.epics.pmac._pmac_trajectory &#8212; ophyd-async 0.1.dev924+g61d487e24 documentation</title>
   
   
   
@@ -26,8 +26,8 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../../../../_static/styles/theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
@@ -36,12 +36,12 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css?v=3fefa004" />
   
   <!-- So that users can add custom icons -->
-  <script src="../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../../../../_static/scripts/fontawesome.js?digest=7f76b32a3354e82990f2"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2" />
 
-    <script src="../../../../_static/documentation_options.js?v=ad36e91c"></script>
+    <script src="../../../../_static/documentation_options.js?v=85ba1fdc"></script>
     <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -481,29 +481,35 @@ mermaid.initialize(
     }
 );
 
-window.addEventListener("load", load);</script>
+window.addEventListener("load", load);
+window.runMermaid = runMermaid;</script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/ophyd_async/epics/pmac/_pmac_trajectory';</script>
     <script>
-        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_version = '0.17.0';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://blueskyproject.io/ophyd-async/switcher.json';
         DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'main';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="icon" href="../../../../_static/ophyd-favicon.svg"/>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="main" />
+  
+    
+    <script src="../../../../_static/searchtools.js"></script>
+    <script src="../../../../_static/language_data.js"></script>
+    <script src="../../../../searchindex.js"></script>
+  
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
+  <body data-default-mode="">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
@@ -535,7 +541,7 @@ window.addEventListener("load", load);</script>
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
   <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
@@ -561,8 +567,8 @@ window.addEventListener("load", load);</script>
       
     
     
-    <img src="../../../../_static/ophyd-async-logo.svg" class="logo__image only-light" alt="ophyd-async 0.1.dev910+g2989687d7 documentation - Home"/>
-    <img src="../../../../_static/ophyd-async-logo.svg" class="logo__image only-dark pst-js-only" alt="ophyd-async 0.1.dev910+g2989687d7 documentation - Home"/>
+    <img src="../../../../_static/ophyd-async-logo.svg" class="logo__image only-light" alt="ophyd-async 0.1.dev924+g61d487e24 documentation - Home"/>
+    <img src="../../../../_static/ophyd-async-logo.svg" class="logo__image only-dark pst-js-only" alt="ophyd-async 0.1.dev924+g61d487e24 documentation - Home"/>
   
   
 </a></div>
@@ -906,6 +912,7 @@ window.addEventListener("load", load);</script>
     <span class="n">DEFAULT_TIMEOUT</span><span class="p">,</span>
     <span class="n">AsyncStatus</span><span class="p">,</span>
     <span class="n">Device</span><span class="p">,</span>
+    <span class="n">Reference</span><span class="p">,</span>
     <span class="n">error_if_none</span><span class="p">,</span>
     <span class="n">gather_dict</span><span class="p">,</span>
     <span class="n">observe_value</span><span class="p">,</span>
@@ -946,7 +953,7 @@ window.addEventListener("load", load);</script>
     <span class="n">Flyable</span><span class="p">,</span>
 <span class="p">):</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pmac</span><span class="p">:</span> <span class="n">PmacIO</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pmac</span> <span class="o">=</span> <span class="n">pmac</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pmac_ref</span> <span class="o">=</span> <span class="n">Reference</span><span class="p">(</span><span class="n">pmac</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_next_pvt</span><span class="p">:</span> <span class="n">PVT</span> <span class="o">|</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_loaded</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_trajectory_status</span><span class="p">:</span> <span class="n">AsyncStatus</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
@@ -961,7 +968,7 @@ window.addEventListener("load", load);</script>
         <span class="nb">slice</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">consume</span><span class="p">(</span><span class="n">SLICE_SIZE</span><span class="p">)</span>
         <span class="n">path_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
         <span class="n">motors</span> <span class="o">=</span> <span class="nb">slice</span><span class="o">.</span><span class="n">axes</span><span class="p">()</span>
-        <span class="n">motor_info</span> <span class="o">=</span> <span class="k">await</span> <span class="n">_PmacMotorInfo</span><span class="o">.</span><span class="n">from_motors</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pmac</span><span class="p">,</span> <span class="n">motors</span><span class="p">)</span>
+        <span class="n">motor_info</span> <span class="o">=</span> <span class="k">await</span> <span class="n">_PmacMotorInfo</span><span class="o">.</span><span class="n">from_motors</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pmac_ref</span><span class="p">(),</span> <span class="n">motors</span><span class="p">)</span>
         <span class="n">ramp_up_pos</span><span class="p">,</span> <span class="n">ramp_up_time</span> <span class="o">=</span> <span class="n">calculate_ramp_position_and_duration</span><span class="p">(</span>
             <span class="nb">slice</span><span class="p">,</span> <span class="n">motor_info</span><span class="p">,</span> <span class="kc">True</span>
         <span class="p">)</span>
@@ -987,7 +994,7 @@ window.addEventListener("load", load);</script>
         <span class="p">)</span>
         <span class="c1"># Wait for the ramp up to happen</span>
         <span class="k">await</span> <span class="n">wait_for_value</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">pmac</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">total_points</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pmac_ref</span><span class="p">()</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">total_points</span><span class="p">,</span>
             <span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">,</span>
             <span class="n">prepare_context</span><span class="o">.</span><span class="n">ramp_up_time</span> <span class="o">+</span> <span class="n">DEFAULT_TIMEOUT</span><span class="p">,</span>
         <span class="p">)</span></div>
@@ -1013,16 +1020,16 @@ window.addEventListener("load", load);</script>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stop_if_running</span><span class="p">()</span>
 
         <span class="c1"># Run an empty fly scan to reset EQU on Panda Brick</span>
-        <span class="k">for</span> <span class="n">use_axis</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pmac</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">use_axis</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">use_axis</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pmac_ref</span><span class="p">()</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">use_axis</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
             <span class="k">await</span> <span class="n">use_axis</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
         <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">pmac</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">time_array</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mi">0</span><span class="p">)),</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">pmac</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">user_array</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">UserProgram</span><span class="o">.</span><span class="n">END</span><span class="p">)),</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">pmac</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">points_to_build</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pmac_ref</span><span class="p">()</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">time_array</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mi">0</span><span class="p">)),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pmac_ref</span><span class="p">()</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">user_array</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">UserProgram</span><span class="o">.</span><span class="n">END</span><span class="p">)),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pmac_ref</span><span class="p">()</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">points_to_build</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
         <span class="p">)</span>
-        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">pmac</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">build_profile</span><span class="o">.</span><span class="n">trigger</span><span class="p">()</span>
-        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">pmac</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">execute_profile</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span></div>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">pmac_ref</span><span class="p">()</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">build_profile</span><span class="o">.</span><span class="n">trigger</span><span class="p">()</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">pmac_ref</span><span class="p">()</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">execute_profile</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="PmacTrajectoryTriggerLogic.unstage">
@@ -1035,21 +1042,23 @@ window.addEventListener("load", load);</script>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_stop_if_running</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Abort current trajectory, if one is running</span>
         <span class="k">if</span> <span class="p">(</span>
-            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">pmac</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">execute_state</span><span class="o">.</span><span class="n">get_value</span><span class="p">()</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">pmac_ref</span><span class="p">()</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">execute_state</span><span class="o">.</span><span class="n">get_value</span><span class="p">()</span>
             <span class="o">==</span> <span class="n">PmacExecuteState</span><span class="o">.</span><span class="n">EXECUTING</span>
         <span class="p">):</span>
-            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">pmac</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">abort_profile</span><span class="o">.</span><span class="n">trigger</span><span class="p">()</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">pmac_ref</span><span class="p">()</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">abort_profile</span><span class="o">.</span><span class="n">trigger</span><span class="p">()</span>
 
     <span class="nd">@AsyncStatus</span><span class="o">.</span><span class="n">wrap</span>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_execute_trajectory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">motor_info</span><span class="p">:</span> <span class="n">_PmacMotorInfo</span><span class="p">):</span>
-        <span class="n">execute_status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pmac</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">execute_profile</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+        <span class="n">execute_status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pmac_ref</span><span class="p">()</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">execute_profile</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+            <span class="kc">True</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span>
+        <span class="p">)</span>
         <span class="c1"># We consume SLICE_SIZE from self.path and parse a trajectory</span>
         <span class="c1"># containing at least 2 * SLICE_SIZE, as a gapless trajectory</span>
         <span class="c1"># will contain 2 points per slice frame. If gaps are present,</span>
         <span class="c1"># additional points are inserted, overfilling the buffer.</span>
         <span class="n">min_buffer_size</span> <span class="o">=</span> <span class="n">SLICE_SIZE</span> <span class="o">*</span> <span class="mi">2</span>
         <span class="k">async</span> <span class="k">for</span> <span class="n">current_point</span> <span class="ow">in</span> <span class="n">observe_value</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">pmac</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">total_points</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pmac_ref</span><span class="p">()</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">total_points</span><span class="p">,</span>
             <span class="n">done_status</span><span class="o">=</span><span class="n">execute_status</span><span class="p">,</span>
             <span class="n">timeout</span><span class="o">=</span><span class="n">DEFAULT_TIMEOUT</span><span class="p">,</span>
         <span class="p">):</span>
@@ -1065,7 +1074,7 @@ window.addEventListener("load", load);</script>
     <span class="p">):</span>
         <span class="n">trajectory</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_trajectory</span><span class="p">(</span><span class="nb">slice</span><span class="p">,</span> <span class="n">path_length</span><span class="p">,</span> <span class="n">motor_info</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_trajectory_arrays</span><span class="p">(</span><span class="n">trajectory</span><span class="p">,</span> <span class="n">motor_info</span><span class="p">)</span>
-        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">pmac</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">append_profile</span><span class="o">.</span><span class="n">trigger</span><span class="p">()</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">pmac_ref</span><span class="p">()</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">append_profile</span><span class="o">.</span><span class="n">trigger</span><span class="p">()</span>
 
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_build_trajectory</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -1082,16 +1091,16 @@ window.addEventListener("load", load);</script>
         <span class="p">}</span>
 
         <span class="n">coros</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">pmac</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">profile_cs_name</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">motor_info</span><span class="o">.</span><span class="n">cs_port</span><span class="p">),</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">pmac</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">calculate_velocities</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="kc">False</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pmac_ref</span><span class="p">()</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">profile_cs_name</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">motor_info</span><span class="o">.</span><span class="n">cs_port</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pmac_ref</span><span class="p">()</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">calculate_velocities</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="kc">False</span><span class="p">),</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_set_trajectory_arrays</span><span class="p">(</span><span class="n">trajectory</span><span class="p">,</span> <span class="n">motor_info</span><span class="p">),</span>
         <span class="p">]</span> <span class="o">+</span> <span class="p">[</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">pmac</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">use_axis</span><span class="p">[</span><span class="n">number</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">use</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pmac_ref</span><span class="p">()</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">use_axis</span><span class="p">[</span><span class="n">number</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">use</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">number</span><span class="p">,</span> <span class="n">use</span> <span class="ow">in</span> <span class="n">use_axis</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
         <span class="p">]</span>
 
         <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="o">*</span><span class="n">coros</span><span class="p">)</span>
-        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">pmac</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">build_profile</span><span class="o">.</span><span class="n">trigger</span><span class="p">()</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">pmac_ref</span><span class="p">()</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">build_profile</span><span class="o">.</span><span class="n">trigger</span><span class="p">()</span>
 
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_parse_trajectory</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -1125,20 +1134,24 @@ window.addEventListener("load", load);</script>
         <span class="n">coros</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">motor</span><span class="p">,</span> <span class="n">cs_index</span> <span class="ow">in</span> <span class="n">motor_info</span><span class="o">.</span><span class="n">motor_cs_index</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">coros</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">pmac</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">positions</span><span class="p">[</span><span class="n">cs_index</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
-                    <span class="n">trajectory</span><span class="o">.</span><span class="n">positions</span><span class="p">[</span><span class="n">motor</span><span class="p">]</span>
-                <span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">pmac_ref</span><span class="p">()</span>
+                <span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">positions</span><span class="p">[</span><span class="n">cs_index</span><span class="p">]</span>
+                <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">trajectory</span><span class="o">.</span><span class="n">positions</span><span class="p">[</span><span class="n">motor</span><span class="p">])</span>
             <span class="p">)</span>
             <span class="n">coros</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">pmac</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">velocities</span><span class="p">[</span><span class="n">cs_index</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
-                    <span class="n">trajectory</span><span class="o">.</span><span class="n">velocities</span><span class="p">[</span><span class="n">motor</span><span class="p">]</span>
-                <span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">pmac_ref</span><span class="p">()</span>
+                <span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">velocities</span><span class="p">[</span><span class="n">cs_index</span><span class="p">]</span>
+                <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">trajectory</span><span class="o">.</span><span class="n">velocities</span><span class="p">[</span><span class="n">motor</span><span class="p">])</span>
             <span class="p">)</span>
         <span class="n">coros</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
             <span class="p">[</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">pmac</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">time_array</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">trajectory</span><span class="o">.</span><span class="n">durations</span> <span class="o">/</span> <span class="n">TICK_S</span><span class="p">),</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">pmac</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">user_array</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">trajectory</span><span class="o">.</span><span class="n">user_programs</span><span class="p">),</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">pmac</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">points_to_build</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">trajectory</span><span class="o">.</span><span class="n">durations</span><span class="p">)),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">pmac_ref</span><span class="p">()</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">time_array</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+                    <span class="n">trajectory</span><span class="o">.</span><span class="n">durations</span> <span class="o">/</span> <span class="n">TICK_S</span>
+                <span class="p">),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">pmac_ref</span><span class="p">()</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">user_array</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">trajectory</span><span class="o">.</span><span class="n">user_programs</span><span class="p">),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">pmac_ref</span><span class="p">()</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">points_to_build</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+                    <span class="nb">len</span><span class="p">(</span><span class="n">trajectory</span><span class="o">.</span><span class="n">durations</span><span class="p">)</span>
+                <span class="p">),</span>
             <span class="p">]</span>
         <span class="p">)</span>
         <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="o">*</span><span class="n">coros</span><span class="p">)</span>
@@ -1146,7 +1159,7 @@ window.addEventListener("load", load);</script>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_move_to_start</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">motor_info</span><span class="p">:</span> <span class="n">_PmacMotorInfo</span><span class="p">,</span> <span class="n">ramp_up_position</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Motor</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]</span>
     <span class="p">):</span>
-        <span class="n">coord</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pmac</span><span class="o">.</span><span class="n">coord</span><span class="p">[</span><span class="n">motor_info</span><span class="o">.</span><span class="n">cs_number</span><span class="p">]</span>
+        <span class="n">coord</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pmac_ref</span><span class="p">()</span><span class="o">.</span><span class="n">coord</span><span class="p">[</span><span class="n">motor_info</span><span class="o">.</span><span class="n">cs_number</span><span class="p">]</span>
         <span class="n">coros</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">await</span> <span class="n">coord</span><span class="o">.</span><span class="n">defer_moves</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 
@@ -1204,8 +1217,8 @@ window.addEventListener("load", load);</script>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1217,7 +1230,7 @@ window.addEventListener("load", load);</script>
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.0.
 </p></div>
       
     </div>

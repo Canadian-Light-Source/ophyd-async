@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ophyd_async.core._device_filler &#8212; ophyd-async 0.1.dev910+g2989687d7 documentation</title>
+    <title>ophyd_async.core._device_filler &#8212; ophyd-async 0.1.dev924+g61d487e24 documentation</title>
   
   
   
@@ -26,8 +26,8 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -36,12 +36,12 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=3fefa004" />
   
   <!-- So that users can add custom icons -->
-  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=7f76b32a3354e82990f2"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2" />
 
-    <script src="../../../_static/documentation_options.js?v=ad36e91c"></script>
+    <script src="../../../_static/documentation_options.js?v=85ba1fdc"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -481,29 +481,35 @@ mermaid.initialize(
     }
 );
 
-window.addEventListener("load", load);</script>
+window.addEventListener("load", load);
+window.runMermaid = runMermaid;</script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/ophyd_async/core/_device_filler';</script>
     <script>
-        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_version = '0.17.0';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://blueskyproject.io/ophyd-async/switcher.json';
         DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'main';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="icon" href="../../../_static/ophyd-favicon.svg"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="main" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
+  <body data-default-mode="">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
@@ -535,7 +541,7 @@ window.addEventListener("load", load);</script>
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
   <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
@@ -561,8 +567,8 @@ window.addEventListener("load", load);</script>
       
     
     
-    <img src="../../../_static/ophyd-async-logo.svg" class="logo__image only-light" alt="ophyd-async 0.1.dev910+g2989687d7 documentation - Home"/>
-    <img src="../../../_static/ophyd-async-logo.svg" class="logo__image only-dark pst-js-only" alt="ophyd-async 0.1.dev910+g2989687d7 documentation - Home"/>
+    <img src="../../../_static/ophyd-async-logo.svg" class="logo__image only-light" alt="ophyd-async 0.1.dev924+g61d487e24 documentation - Home"/>
+    <img src="../../../_static/ophyd-async-logo.svg" class="logo__image only-dark pst-js-only" alt="ophyd-async 0.1.dev924+g61d487e24 documentation - Home"/>
   
   
 </a></div>
@@ -921,11 +927,35 @@ window.addEventListener("load", load);</script>
 <span class="n">LogicalName</span> <span class="o">=</span> <span class="n">NewType</span><span class="p">(</span><span class="s2">&quot;LogicalName&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
 
 
+<span class="k">class</span><span class="w"> </span><span class="nc">DeviceFactory</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connector</span><span class="p">:</span> <span class="n">DeviceConnector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Device</span><span class="p">:</span> <span class="o">...</span>
+
+
 <span class="k">def</span><span class="w"> </span><span class="nf">_get_datatype</span><span class="p">(</span><span class="n">annotation</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">type</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return int from SignalRW[int].&quot;&quot;&quot;</span>
     <span class="n">args</span> <span class="o">=</span> <span class="n">get_args</span><span class="p">(</span><span class="n">annotation</span><span class="p">)</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">get_origin_class</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
         <span class="k">return</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="kc">None</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_get_device_vector_child_datatype</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Device</span> <span class="o">|</span> <span class="nb">type</span><span class="p">[</span><span class="n">Device</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">type</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="c1"># If passed a Device, try to get the original class</span>
+    <span class="c1"># extracting DeviceVector[SomeDevice] from a &lt;DeviceVector&gt;</span>
+    <span class="k">if</span> <span class="n">generic_class</span> <span class="o">:=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="s2">&quot;__orig_class__&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="c1"># Type hinted DeviceVector</span>
+        <span class="c1"># e.g., DeviceVector[SomeDevice]</span>
+        <span class="k">return</span> <span class="n">_get_datatype</span><span class="p">(</span><span class="n">generic_class</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Sub class of type hinted DeviceVector</span>
+        <span class="c1"># We must extract the original base, which we can do from a type or cls</span>
+        <span class="c1"># e.g., instance of `class CustomVector(DeviceVector[SomeDevice])`</span>
+        <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="s2">&quot;__orig_bases__&quot;</span><span class="p">,</span> <span class="p">()):</span>
+            <span class="n">origin</span> <span class="o">=</span> <span class="n">get_origin_class</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">origin</span> <span class="ow">is</span> <span class="n">DeviceVector</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">_get_datatype</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
+
     <span class="k">return</span> <span class="kc">None</span>
 
 
@@ -970,7 +1000,7 @@ window.addEventListener("load", load);</script>
         <span class="bp">self</span><span class="o">.</span><span class="n">_device_connector_factory</span> <span class="o">=</span> <span class="n">device_connector_factory</span>
         <span class="c1"># Annotations stored ready for the creation phase</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_uncreated_signals</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">UniqueName</span><span class="p">,</span> <span class="nb">type</span><span class="p">[</span><span class="n">Signal</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_uncreated_devices</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">UniqueName</span><span class="p">,</span> <span class="nb">type</span><span class="p">[</span><span class="n">Device</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_uncreated_devices</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">UniqueName</span><span class="p">,</span> <span class="nb">type</span><span class="p">[</span><span class="n">Device</span><span class="p">]</span> <span class="o">|</span> <span class="n">DeviceFactory</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_extras</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">UniqueName</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_signal_datatype</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">LogicalName</span><span class="p">,</span> <span class="nb">type</span> <span class="o">|</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_vector_device_type</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">LogicalName</span><span class="p">,</span> <span class="nb">type</span><span class="p">[</span><span class="n">Device</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
@@ -991,21 +1021,22 @@ window.addEventListener("load", load);</script>
     <span class="k">def</span><span class="w"> </span><span class="nf">_raise</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">error</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_device</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_store_signal_datatype</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">UniqueName</span><span class="p">,</span> <span class="n">annotation</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_validate_signal_datatype</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">UniqueName</span><span class="p">,</span> <span class="n">annotation</span><span class="p">:</span> <span class="n">Any</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">type</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">origin</span> <span class="o">=</span> <span class="n">get_origin_class</span><span class="p">(</span><span class="n">annotation</span><span class="p">)</span>
         <span class="n">datatype</span> <span class="o">=</span> <span class="n">_get_datatype</span><span class="p">(</span><span class="n">annotation</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">origin</span> <span class="o">==</span> <span class="n">SignalX</span><span class="p">:</span>
-            <span class="c1"># SignalX doesn&#39;t need datatype</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_signal_datatype</span><span class="p">[</span><span class="n">_logical</span><span class="p">(</span><span class="n">name</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">elif</span> <span class="n">origin</span> <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">origin</span><span class="p">,</span> <span class="n">Signal</span><span class="p">)</span> <span class="ow">and</span> <span class="n">datatype</span><span class="p">:</span>
-            <span class="c1"># All other Signals need one</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_signal_datatype</span><span class="p">[</span><span class="n">_logical</span><span class="p">(</span><span class="n">name</span><span class="p">)]</span> <span class="o">=</span> <span class="n">datatype</span>
-        <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">datatype</span> <span class="ow">and</span> <span class="n">origin</span> <span class="o">!=</span> <span class="n">SignalX</span><span class="p">:</span>
             <span class="c1"># Not recognized</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_raise</span><span class="p">(</span>
                 <span class="n">name</span><span class="p">,</span>
                 <span class="sa">f</span><span class="s2">&quot;Expected SignalX or SignalR/W/RW[type], got </span><span class="si">{</span><span class="n">annotation</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="p">)</span>
+        <span class="k">return</span> <span class="n">datatype</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_store_signal_datatype</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">UniqueName</span><span class="p">,</span> <span class="n">annotation</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+        <span class="n">datatype</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_signal_datatype</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">annotation</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_signal_datatype</span><span class="p">[</span><span class="n">_logical</span><span class="p">(</span><span class="n">name</span><span class="p">)]</span> <span class="o">=</span> <span class="n">datatype</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_scan_for_annotations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Get type hints on the class, not the instance</span>
@@ -1046,20 +1077,34 @@ window.addEventListener("load", load);</script>
             <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">origin</span><span class="p">,</span> <span class="n">Signal</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_store_signal_datatype</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">annotation</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_uncreated_signals</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">origin</span>
-            <span class="k">elif</span> <span class="n">origin</span> <span class="o">==</span> <span class="n">DeviceVector</span><span class="p">:</span>
-                <span class="n">child_type</span> <span class="o">=</span> <span class="n">_get_datatype</span><span class="p">(</span><span class="n">annotation</span><span class="p">)</span>
-                <span class="n">child_origin</span> <span class="o">=</span> <span class="n">get_origin_class</span><span class="p">(</span><span class="n">child_type</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">child_origin</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">child_origin</span><span class="p">,</span> <span class="n">Device</span><span class="p">):</span>
+            <span class="c1"># We either have an annotation of a Device, or we have a generic alias of</span>
+            <span class="c1"># a DeviceVector (i.e., DeviceVector[SomeDevice]), which must be callable</span>
+            <span class="c1"># and returns a DeviceVector.</span>
+            <span class="k">elif</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">annotation</span><span class="p">,</span> <span class="nb">type</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">annotation</span><span class="p">,</span> <span class="n">Device</span><span class="p">))</span> <span class="ow">or</span> <span class="p">(</span>
+                <span class="nb">isinstance</span><span class="p">(</span><span class="n">annotation</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">GenericAlias</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">callable</span><span class="p">(</span><span class="n">annotation</span><span class="p">)</span>
+            <span class="p">):</span>
+                <span class="c1"># Check for DeviceVector generic alias type hint</span>
+                <span class="c1"># If this is a plain `type`, then _get_datatype will return None</span>
+                <span class="k">if</span> <span class="n">vector_child_class</span> <span class="o">:=</span> <span class="n">_get_datatype</span><span class="p">(</span><span class="n">annotation</span><span class="p">):</span>
+                    <span class="c1"># Get the origin class of the type hint</span>
+                    <span class="n">child_origin</span> <span class="o">=</span> <span class="n">get_origin_class</span><span class="p">(</span><span class="n">vector_child_class</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">child_origin</span> <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">child_origin</span><span class="p">,</span> <span class="n">Signal</span><span class="p">):</span>
+                        <span class="c1"># This is a DeviceVector of Signals, so validate hint</span>
+                        <span class="c1"># i.e., Check that Signal hint contains datatype</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_validate_signal_datatype</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">vector_child_class</span><span class="p">)</span>
+                <span class="c1"># We may have a sub-class of DeviceVector</span>
+                <span class="c1"># If it is not a sub-class, then its a Device, so continue</span>
+                <span class="c1"># if it is a sub-class, check for datatype, and raise if None</span>
+                <span class="k">elif</span> <span class="p">(</span>
+                    <span class="nb">isinstance</span><span class="p">(</span><span class="n">annotation</span><span class="p">,</span> <span class="nb">type</span><span class="p">)</span>
+                    <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">annotation</span><span class="p">,</span> <span class="n">DeviceVector</span><span class="p">)</span>
+                    <span class="ow">and</span> <span class="ow">not</span> <span class="n">_get_device_vector_child_datatype</span><span class="p">(</span><span class="n">annotation</span><span class="p">)</span>
+                <span class="p">):</span>
+                    <span class="c1"># DeviceVector has no type parameter</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_raise</span><span class="p">(</span>
-                        <span class="n">name</span><span class="p">,</span>
-                        <span class="sa">f</span><span class="s2">&quot;Expected DeviceVector[SomeDevice], got </span><span class="si">{</span><span class="n">annotation</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                        <span class="n">name</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Expected DeviceVector[SomeDevice], got </span><span class="si">{</span><span class="n">annotation</span><span class="si">}</span><span class="s2">.&quot;</span>
                     <span class="p">)</span>
-                <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">child_origin</span><span class="p">,</span> <span class="n">Signal</span><span class="p">):</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_store_signal_datatype</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">child_type</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_vector_device_type</span><span class="p">[</span><span class="n">_logical</span><span class="p">(</span><span class="n">name</span><span class="p">)]</span> <span class="o">=</span> <span class="n">child_origin</span>
-                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_device</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">DeviceVector</span><span class="p">({}))</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_uncreated_devices</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">origin</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_uncreated_devices</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">annotation</span>
 
 <div class="viewcode-block" id="DeviceFiller.check_created">
 <a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.DeviceFiller.check_created">[docs]</a>
@@ -1147,17 +1192,24 @@ window.addEventListener("load", load);</script>
 
 <span class="sd">        This is used when the Device is being connected in mock mode.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="bp">cls</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_vector_device_type</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="bp">cls</span><span class="p">:</span>
-                <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Malformed device vector&quot;</span>
-                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-                <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">Signal</span><span class="p">):</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">fill_child_signal</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="bp">cls</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
-                <span class="k">elif</span> <span class="nb">issubclass</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">Device</span><span class="p">):</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">fill_child_device</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="bp">cls</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_raise</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Can&#39;t make </span><span class="si">{</span><span class="bp">cls</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+        <span class="n">hinted_child_cls</span> <span class="o">=</span> <span class="n">_get_device_vector_child_datatype</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_device</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">hinted_child_cls</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Malformed device vector&quot;</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="c1"># Get base class for subclass checks, as</span>
+        <span class="c1"># generic classes are not direct subclasses</span>
+        <span class="n">base_cls</span> <span class="o">=</span> <span class="n">get_origin_class</span><span class="p">(</span><span class="n">hinted_child_cls</span><span class="p">)</span> <span class="ow">or</span> <span class="n">Device</span>
+
+        <span class="c1"># Fill DeviceVector</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fill_child_device</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_device</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="c1"># Then handle children</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">base_cls</span><span class="p">,</span> <span class="n">Signal</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">fill_child_signal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_device</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">hinted_child_cls</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">base_cls</span><span class="p">,</span> <span class="n">Device</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">fill_child_device</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_device</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">hinted_child_cls</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_raise</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_device</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Can&#39;t make </span><span class="si">{</span><span class="n">hinted_child_cls</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="DeviceFiller.check_filled">
@@ -1182,15 +1234,10 @@ window.addEventListener("load", load);</script>
             <span class="p">)</span></div>
 
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_ensure_device_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">LogicalName</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DeviceVector</span><span class="p">:</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_device</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-            <span class="c1"># We have no type hints, so use whatever we are told</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_vector_device_type</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_device</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">DeviceVector</span><span class="p">({}))</span>
-        <span class="n">vector</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_device</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">DeviceVector</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_raise</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Expected DeviceVector, got </span><span class="si">{</span><span class="n">vector</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">vector</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_ensure_device_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DeviceVector</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_device</span><span class="p">,</span> <span class="n">DeviceVector</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_raise</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_device</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Expected DeviceVector, got </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_device</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_device</span>
 
 <div class="viewcode-block" id="DeviceFiller.fill_child_signal">
 <a class="viewcode-back" href="../../../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.DeviceFiller.fill_child_signal">[docs]</a>
@@ -1219,9 +1266,11 @@ window.addEventListener("load", load);</script>
             <span class="n">backend</span><span class="p">,</span> <span class="n">expected_signal_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filled_backends</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
         <span class="k">elif</span> <span class="n">vector_index</span><span class="p">:</span>
             <span class="c1"># We need to add a new entry to a DeviceVector</span>
-            <span class="n">vector</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_device_vector</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-            <span class="n">backend</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_signal_backend_factory</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_signal_datatype</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
-            <span class="n">expected_signal_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_vector_device_type</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="ow">or</span> <span class="n">signal_type</span>
+            <span class="n">backend</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_signal_backend_factory</span><span class="p">(</span><span class="n">_get_datatype</span><span class="p">(</span><span class="n">signal_type</span><span class="p">))</span>
+            <span class="n">vector</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_device_vector</span><span class="p">()</span>
+            <span class="n">expected_signal_type</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">_get_device_vector_child_datatype</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span> <span class="ow">or</span> <span class="n">signal_type</span>
+            <span class="p">)</span>
             <span class="n">vector</span><span class="p">[</span><span class="n">vector_index</span><span class="p">]</span> <span class="o">=</span> <span class="n">signal_type</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">child</span> <span class="o">:=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_device</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
             <span class="c1"># There is an existing child, so raise</span>
@@ -1244,7 +1293,7 @@ window.addEventListener("load", load);</script>
     <span class="k">def</span><span class="w"> </span><span class="nf">fill_child_device</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">device_type</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">Device</span><span class="p">]</span> <span class="o">=</span> <span class="n">Device</span><span class="p">,</span>
+        <span class="n">device_type</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">Device</span> <span class="o">|</span> <span class="n">DeviceVector</span><span class="p">]</span> <span class="o">=</span> <span class="n">Device</span><span class="p">,</span>
         <span class="n">vector_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DeviceConnectorT</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Mark a Device as filled, and return its connector for filling.</span>
@@ -1263,20 +1312,27 @@ window.addEventListener("load", load);</script>
         <span class="k">elif</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filled_backends</span><span class="p">:</span>
             <span class="c1"># We made it and filled it so return for validation</span>
             <span class="n">connector</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filled_connectors</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
-        <span class="k">elif</span> <span class="n">vector_index</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">vector_index</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="c1"># We need to add a new entry to a DeviceVector</span>
-            <span class="n">vector</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_device_vector</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-            <span class="n">vector_device_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_vector_device_type</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="ow">or</span> <span class="n">device_type</span>
+            <span class="n">vector</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_device_vector</span><span class="p">()</span>
+            <span class="n">vector_device_type</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">_get_device_vector_child_datatype</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span> <span class="ow">or</span> <span class="n">device_type</span>
+            <span class="p">)</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">vector_device_type</span><span class="p">,</span> <span class="n">Device</span><span class="p">):</span>
-                <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">vector_device_type</span><span class="si">}</span><span class="s2"> is not a Device&quot;</span>
-                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="c1"># Raise if adding Non-Device to DeviceVector</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_raise</span><span class="p">(</span>
+                    <span class="n">name</span><span class="p">,</span>
+                    <span class="sa">f</span><span class="s2">&quot;Expected </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_device</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="n">vector_device_type</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">], &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;but </span><span class="si">{</span><span class="n">vector_device_type</span><span class="si">}</span><span class="s2"> is not a subclass of `Device`&quot;</span><span class="p">,</span>
+                <span class="p">)</span>
             <span class="n">connector</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_device_connector_factory</span><span class="p">()</span>
             <span class="n">vector</span><span class="p">[</span><span class="n">vector_index</span><span class="p">]</span> <span class="o">=</span> <span class="n">vector_device_type</span><span class="p">(</span><span class="n">connector</span><span class="o">=</span><span class="n">connector</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">child</span> <span class="o">:=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_device</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
             <span class="c1"># There is an existing child, so raise</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_raise</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Cannot make child as it would shadow </span><span class="si">{</span><span class="n">child</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="c1"># We need to add a new child to the top level Device</span>
+            <span class="c1"># We need to add a new child Device to the top level Device</span>
             <span class="n">connector</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_device_connector_factory</span><span class="p">()</span>
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_device</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">device_type</span><span class="p">(</span><span class="n">connector</span><span class="o">=</span><span class="n">connector</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">connector</span></div>
@@ -1311,8 +1367,8 @@ window.addEventListener("load", load);</script>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1324,7 +1380,7 @@ window.addEventListener("load", load);</script>
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.0.
 </p></div>
       
     </div>
