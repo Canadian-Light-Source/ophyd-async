@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>How to implement a Device for an EPICS areaDetector &#8212; ophyd-async 0.1.dev924+g61d487e24 documentation</title>
+    <title>How to implement a Device for an EPICS areaDetector &#8212; ophyd-async 0.1.dev938+gb1ae1843a documentation</title>
   
   
   
@@ -27,8 +27,8 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -37,12 +37,12 @@
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3fefa004" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../_static/scripts/fontawesome.js?digest=7f76b32a3354e82990f2"></script>
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
 
-    <script src="../_static/documentation_options.js?v=85ba1fdc"></script>
+    <script src="../_static/documentation_options.js?v=c7ee25b4"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -50,7 +50,7 @@
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'how-to/implement-ad-detector';</script>
     <script>
-        DOCUMENTATION_OPTIONS.theme_version = '0.17.0';
+        DOCUMENTATION_OPTIONS.theme_version = '0.17.1';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://blueskyproject.io/ophyd-async/switcher.json';
         DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'main';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
@@ -82,7 +82,9 @@
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
+  
+  
+  
   
   <dialog id="pst-search-dialog">
     
@@ -134,8 +136,8 @@
       
     
     
-    <img src="../_static/ophyd-async-logo.svg" class="logo__image only-light" alt="ophyd-async 0.1.dev924+g61d487e24 documentation - Home"/>
-    <img src="../_static/ophyd-async-logo.svg" class="logo__image only-dark pst-js-only" alt="ophyd-async 0.1.dev924+g61d487e24 documentation - Home"/>
+    <img src="../_static/ophyd-async-logo.svg" class="logo__image only-light" alt="ophyd-async 0.1.dev938+gb1ae1843a documentation - Home"/>
+    <img src="../_static/ophyd-async-logo.svg" class="logo__image only-dark pst-js-only" alt="ophyd-async 0.1.dev938+gb1ae1843a documentation - Home"/>
   
   
 </a></div>
@@ -527,8 +529,8 @@ Only implement the prepare methods for trigger modes your detector actually supp
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">get_deadtime(config_values)</span></code> - Calculate the minimum time between exposures based on configuration values</p></li>
 </ul>
-<p>To preserve hardware state in plans like <a class="reference external" href="https://blueskyproject.io/bluesky/main/generated/bluesky.plans.count.html#bluesky.plans.count" title="bluesky 1.14.7.dev63+ge787ee18f"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">bp.count</span></code></span></a> and
-<a class="reference external" href="https://blueskyproject.io/bluesky/main/generated/bluesky.plan_stubs.trigger_and_read.html#bluesky.plan_stubs.trigger_and_read" title="bluesky 1.14.7.dev63+ge787ee18f"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">bps.trigger_and_read</span></code></span></a> that call <code class="docutils literal notranslate"><span class="pre">trigger()</span></code>
+<p>To preserve hardware state in plans like <a class="reference external" href="https://blueskyproject.io/bluesky/main/generated/bluesky.plans.count.html#bluesky.plans.count" title="bluesky 1.15.2.dev3+g4418a6b16"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">bp.count</span></code></span></a> and
+<a class="reference external" href="https://blueskyproject.io/bluesky/main/generated/bluesky.plan_stubs.trigger_and_read.html#bluesky.plan_stubs.trigger_and_read" title="bluesky 1.15.2.dev3+g4418a6b16"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">bps.trigger_and_read</span></code></span></a> that call <code class="docutils literal notranslate"><span class="pre">trigger()</span></code>
 without a preceding <code class="docutils literal notranslate"><span class="pre">prepare()</span></code>, implement:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">default_trigger_info()</span></code> - Return the <a class="reference internal" href="../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.TriggerInfo" title="ophyd_async.core.TriggerInfo"><code class="xref myst py py-class docutils literal notranslate"><span class="pre">TriggerInfo</span></code></a> to use for the implicit
@@ -579,13 +581,14 @@ for rationale.</p>
 </pre></div>
 </div>
 </section>
-<section id="use-adarmlogic-or-create-custom-arm-logic">
-<h2>Use ADArmLogic or create custom Arm Logic<a class="headerlink" href="#use-adarmlogic-or-create-custom-arm-logic" title="Link to this heading">#</a></h2>
-<p>Most areaDetectors can use the standard <a class="reference internal" href="../_api/ophyd_async/ophyd_async.epics.adcore.html#ophyd_async.epics.adcore.ADArmLogic" title="ophyd_async.epics.adcore.ADArmLogic"><code class="xref myst py py-class docutils literal notranslate"><span class="pre">adcore.ADArmLogic</span></code></a> which handles arming and disarming via the driver’s <code class="docutils literal notranslate"><span class="pre">acquire</span></code> signal. If your detector requires custom arming behavior (e.g., waiting for a specific ready signal), create a <a class="reference internal" href="../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.DetectorArmLogic" title="ophyd_async.core.DetectorArmLogic"><code class="xref myst py py-class docutils literal notranslate"><span class="pre">DetectorArmLogic</span></code></a> subclass with:</p>
+<section id="use-adacquirelogic-or-create-custom-acquire-logic">
+<h2>Use ADAcquireLogic or create custom Acquire Logic<a class="headerlink" href="#use-adacquirelogic-or-create-custom-acquire-logic" title="Link to this heading">#</a></h2>
+<p>Most areaDetectors can use the standard <a class="reference internal" href="../_api/ophyd_async/ophyd_async.epics.adcore.html#ophyd_async.epics.adcore.ADAcquireLogic" title="ophyd_async.epics.adcore.ADAcquireLogic"><code class="xref myst py py-class docutils literal notranslate"><span class="pre">adcore.ADAcquireLogic</span></code></a> which handles starting and stopping acquisition via the driver’s <code class="docutils literal notranslate"><span class="pre">acquire</span></code> signal. If your detector requires custom acquisition behaviour (e.g., waiting for a specific ready signal), create a <a class="reference internal" href="../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.DetectorAcquireLogic" title="ophyd_async.core.DetectorAcquireLogic"><code class="xref myst py py-class docutils literal notranslate"><span class="pre">DetectorAcquireLogic</span></code></a> subclass with:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">arm()</span></code> - Start acquisition</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">start_acquiring()</span></code> - Start acquisition</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">wait_for_idle()</span></code> - Wait until acquisition is complete</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">disarm()</span></code> - Stop acquisition</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ensure_stopped()</span></code> - Stop acquisition</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ensure_ready()</span></code> - (optional) Override if stage-time reset differs from <code class="docutils literal notranslate"><span class="pre">ensure_stopped</span></code></p></li>
 </ul>
 </section>
 <section id="add-a-detector-that-puts-it-all-together">
@@ -641,7 +644,7 @@ for rationale.</p>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">prefix</span><span class="o">=</span><span class="n">prefix</span><span class="p">,</span>
             <span class="n">driver</span><span class="o">=</span><span class="n">driver</span><span class="p">,</span>
-            <span class="n">arm_logic</span><span class="o">=</span><span class="n">ADArmLogic</span><span class="p">(</span><span class="n">driver</span><span class="p">),</span>
+            <span class="n">acquire_logic</span><span class="o">=</span><span class="n">ADAcquireLogic</span><span class="p">(</span><span class="n">driver</span><span class="p">),</span>
             <span class="n">trigger_logic</span><span class="o">=</span><span class="n">AravisTriggerLogic</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">override_deadtime</span><span class="p">),</span>
             <span class="n">path_provider</span><span class="o">=</span><span class="n">path_provider</span><span class="p">,</span>
             <span class="n">writer_type</span><span class="o">=</span><span class="n">writer_type</span><span class="p">,</span>
@@ -720,7 +723,7 @@ for rationale.</p>
 <span class="n">cb_plugin</span> <span class="o">=</span> <span class="n">adcore</span><span class="o">.</span><span class="n">NDCircularBuffIO</span><span class="p">(</span><span class="s2">&quot;PREFIX:CB1:&quot;</span><span class="p">)</span>
 <span class="n">det</span> <span class="o">=</span> <span class="n">adcore</span><span class="o">.</span><span class="n">AreaDetector</span><span class="p">(</span>
     <span class="n">driver</span><span class="o">=</span><span class="n">driver</span><span class="p">,</span>
-    <span class="n">arm_logic</span><span class="o">=</span><span class="n">adcore</span><span class="o">.</span><span class="n">ADContAcqArmLogic</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">cb_plugin</span><span class="p">),</span>
+    <span class="n">acquire_logic</span><span class="o">=</span><span class="n">adcore</span><span class="o">.</span><span class="n">ADContAcqAcquireLogic</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">cb_plugin</span><span class="p">),</span>
     <span class="n">trigger_logic</span><span class="o">=</span><span class="n">adcore</span><span class="o">.</span><span class="n">ADContAcqTriggerLogic</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">cb_plugin</span><span class="p">),</span>
     <span class="n">path_provider</span><span class="o">=</span><span class="n">path_provider</span><span class="p">,</span>
     <span class="n">plugins</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;cb1&quot;</span><span class="p">:</span> <span class="n">cb_plugin</span><span class="p">},</span>
@@ -901,7 +904,7 @@ for rationale.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-module-to-put-the-code-in">Create a module to put the code in</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-an-io-class-for-the-pv-interface">Add an IO class for the PV interface</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-trigger-logic-for-detector-specific-triggering">Add Trigger Logic for detector-specific triggering</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-adarmlogic-or-create-custom-arm-logic">Use ADArmLogic or create custom Arm Logic</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-adacquirelogic-or-create-custom-acquire-logic">Use ADAcquireLogic or create custom Acquire Logic</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-a-detector-that-puts-it-all-together">Add a Detector that puts it all together</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declare-the-public-interface">Declare the public interface</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-multiple-data-streams-optional">Add multiple data streams (optional)</a><ul class="pst-show_toc_level nav section-nav flex-column">
@@ -959,8 +962,8 @@ for rationale.</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -972,7 +975,7 @@ for rationale.</p>
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.0.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.1.
 </p></div>
       
     </div>

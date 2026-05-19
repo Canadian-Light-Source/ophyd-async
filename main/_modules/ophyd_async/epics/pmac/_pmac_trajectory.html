@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ophyd_async.epics.pmac._pmac_trajectory &#8212; ophyd-async 0.1.dev924+g61d487e24 documentation</title>
+    <title>ophyd_async.epics.pmac._pmac_trajectory &#8212; ophyd-async 0.1.dev938+gb1ae1843a documentation</title>
   
   
   
@@ -26,8 +26,8 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../../_static/styles/theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
-<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
+  <link href="../../../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
@@ -36,12 +36,12 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css?v=3fefa004" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../../../../_static/scripts/fontawesome.js?digest=7f76b32a3354e82990f2"></script>
+  <script defer src="../../../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2" />
-<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2" />
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
 
-    <script src="../../../../_static/documentation_options.js?v=85ba1fdc"></script>
+    <script src="../../../../_static/documentation_options.js?v=c7ee25b4"></script>
     <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -485,7 +485,7 @@ window.addEventListener("load", load);
 window.runMermaid = runMermaid;</script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/ophyd_async/epics/pmac/_pmac_trajectory';</script>
     <script>
-        DOCUMENTATION_OPTIONS.theme_version = '0.17.0';
+        DOCUMENTATION_OPTIONS.theme_version = '0.17.1';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://blueskyproject.io/ophyd-async/switcher.json';
         DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'main';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
@@ -515,7 +515,9 @@ window.runMermaid = runMermaid;</script>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
+  
+  
+  
   
   <dialog id="pst-search-dialog">
     
@@ -567,8 +569,8 @@ window.runMermaid = runMermaid;</script>
       
     
     
-    <img src="../../../../_static/ophyd-async-logo.svg" class="logo__image only-light" alt="ophyd-async 0.1.dev924+g61d487e24 documentation - Home"/>
-    <img src="../../../../_static/ophyd-async-logo.svg" class="logo__image only-dark pst-js-only" alt="ophyd-async 0.1.dev924+g61d487e24 documentation - Home"/>
+    <img src="../../../../_static/ophyd-async-logo.svg" class="logo__image only-light" alt="ophyd-async 0.1.dev938+gb1ae1843a documentation - Home"/>
+    <img src="../../../../_static/ophyd-async-logo.svg" class="logo__image only-dark pst-js-only" alt="ophyd-async 0.1.dev938+gb1ae1843a documentation - Home"/>
   
   
 </a></div>
@@ -922,7 +924,12 @@ window.runMermaid = runMermaid;</script>
 <span class="kn">from</span><span class="w"> </span><span class="nn">ophyd_async.epics.motor</span><span class="w"> </span><span class="kn">import</span> <span class="n">Motor</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">._pmac_io</span><span class="w"> </span><span class="kn">import</span> <span class="n">CS_INDEX</span><span class="p">,</span> <span class="n">PmacExecuteState</span><span class="p">,</span> <span class="n">PmacIO</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">._pmac_trajectory_generation</span><span class="w"> </span><span class="kn">import</span> <span class="n">PVT</span><span class="p">,</span> <span class="n">Trajectory</span><span class="p">,</span> <span class="n">UserProgram</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">._pmac_trajectory_generation</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">PVT</span><span class="p">,</span>
+    <span class="n">Trajectory</span><span class="p">,</span>
+    <span class="n">UserProgram</span><span class="p">,</span>
+    <span class="n">_get_velocity_profile</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">._utils</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">_PmacMotorInfo</span><span class="p">,</span>
     <span class="n">calculate_ramp_position_and_duration</span><span class="p">,</span>
@@ -1163,24 +1170,35 @@ window.runMermaid = runMermaid;</script>
         <span class="n">coros</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">await</span> <span class="n">coord</span><span class="o">.</span><span class="n">defer_moves</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 
+        <span class="n">motors</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ramp_up_position</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
         <span class="n">motor_readbacks</span> <span class="o">=</span> <span class="k">await</span> <span class="n">gather_dict</span><span class="p">(</span>
-            <span class="p">{</span><span class="n">motor</span><span class="p">:</span> <span class="n">motor</span><span class="o">.</span><span class="n">user_readback</span><span class="o">.</span><span class="n">get_value</span><span class="p">()</span> <span class="k">for</span> <span class="n">motor</span> <span class="ow">in</span> <span class="n">ramp_up_position</span><span class="p">}</span>
+            <span class="p">{</span><span class="n">motor</span><span class="p">:</span> <span class="n">motor</span><span class="o">.</span><span class="n">user_readback</span><span class="o">.</span><span class="n">get_value</span><span class="p">()</span> <span class="k">for</span> <span class="n">motor</span> <span class="ow">in</span> <span class="n">motors</span><span class="p">}</span>
         <span class="p">)</span>
 
-        <span class="n">move_times</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="nb">abs</span><span class="p">(</span><span class="n">position</span> <span class="o">-</span> <span class="n">motor_readbacks</span><span class="p">[</span><span class="n">motor</span><span class="p">])</span>
-            <span class="o">/</span> <span class="n">motor_info</span><span class="o">.</span><span class="n">motor_max_velocity</span><span class="p">[</span><span class="n">motor</span><span class="p">]</span>
-            <span class="k">for</span> <span class="n">motor</span><span class="p">,</span> <span class="n">position</span> <span class="ow">in</span> <span class="n">ramp_up_position</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-        <span class="p">]</span>
+        <span class="n">start_and_end_velocities</span> <span class="o">=</span> <span class="p">{</span><span class="n">motor</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">motor</span> <span class="ow">in</span> <span class="n">motors</span><span class="p">}</span>
+        <span class="n">distances</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">motor</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">final_position</span> <span class="o">-</span> <span class="n">motor_readbacks</span><span class="p">[</span><span class="n">motor</span><span class="p">]))</span>
+            <span class="k">for</span> <span class="n">motor</span><span class="p">,</span> <span class="n">final_position</span> <span class="ow">in</span> <span class="n">ramp_up_position</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">}</span>
+        <span class="n">time_arrays</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_get_velocity_profile</span><span class="p">(</span>
+            <span class="n">motors</span><span class="o">=</span><span class="n">motors</span><span class="p">,</span>
+            <span class="n">motor_info</span><span class="o">=</span><span class="n">motor_info</span><span class="p">,</span>
+            <span class="n">start_velocities</span><span class="o">=</span><span class="n">start_and_end_velocities</span><span class="p">,</span>
+            <span class="n">end_velocities</span><span class="o">=</span><span class="n">start_and_end_velocities</span><span class="p">,</span>
+            <span class="n">distances</span><span class="o">=</span><span class="n">distances</span><span class="p">,</span>
+        <span class="p">)</span>
 
-        <span class="n">longest_time</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">move_times</span><span class="p">)</span>
+        <span class="c1"># Get final timestamp for arbitrary motor</span>
+        <span class="c1"># as this is the total time required for all motors</span>
+        <span class="n">longest_move_time</span> <span class="o">=</span> <span class="n">time_arrays</span><span class="p">[</span><span class="n">motors</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
         <span class="k">for</span> <span class="n">motor</span><span class="p">,</span> <span class="n">position</span> <span class="ow">in</span> <span class="n">ramp_up_position</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">coros</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                 <span class="n">set_and_wait_for_value</span><span class="p">(</span>
                     <span class="n">coord</span><span class="o">.</span><span class="n">cs_axis_setpoint</span><span class="p">[</span><span class="n">motor_info</span><span class="o">.</span><span class="n">motor_cs_index</span><span class="p">[</span><span class="n">motor</span><span class="p">]],</span>
                     <span class="n">position</span><span class="p">,</span>
-                    <span class="n">set_timeout</span><span class="o">=</span><span class="n">longest_time</span> <span class="o">+</span> <span class="n">DEFAULT_TIMEOUT</span><span class="p">,</span>
+                    <span class="n">set_timeout</span><span class="o">=</span><span class="n">longest_move_time</span> <span class="o">+</span> <span class="n">DEFAULT_TIMEOUT</span><span class="p">,</span>
                     <span class="n">wait_for_set_completion</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                 <span class="p">)</span>
             <span class="p">)</span>
@@ -1217,8 +1235,8 @@ window.runMermaid = runMermaid;</script>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../../../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2"></script>
-<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2"></script>
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1230,7 +1248,7 @@ window.runMermaid = runMermaid;</script>
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.0.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.1.
 </p></div>
       
     </div>

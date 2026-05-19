@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Implementing Devices &#8212; ophyd-async 0.1.dev924+g61d487e24 documentation</title>
+    <title>Implementing Devices &#8212; ophyd-async 0.1.dev938+gb1ae1843a documentation</title>
   
   
   
@@ -27,8 +27,8 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -37,12 +37,12 @@
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3fefa004" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../_static/scripts/fontawesome.js?digest=7f76b32a3354e82990f2"></script>
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
 
-    <script src="../_static/documentation_options.js?v=85ba1fdc"></script>
+    <script src="../_static/documentation_options.js?v=c7ee25b4"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -486,7 +486,7 @@ window.addEventListener("load", load);
 window.runMermaid = runMermaid;</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/implementing-devices';</script>
     <script>
-        DOCUMENTATION_OPTIONS.theme_version = '0.17.0';
+        DOCUMENTATION_OPTIONS.theme_version = '0.17.1';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://blueskyproject.io/ophyd-async/switcher.json';
         DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'main';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
@@ -518,7 +518,9 @@ window.runMermaid = runMermaid;</script>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
+  
+  
+  
   
   <dialog id="pst-search-dialog">
     
@@ -570,8 +572,8 @@ window.runMermaid = runMermaid;</script>
       
     
     
-    <img src="../_static/ophyd-async-logo.svg" class="logo__image only-light" alt="ophyd-async 0.1.dev924+g61d487e24 documentation - Home"/>
-    <img src="../_static/ophyd-async-logo.svg" class="logo__image only-dark pst-js-only" alt="ophyd-async 0.1.dev924+g61d487e24 documentation - Home"/>
+    <img src="../_static/ophyd-async-logo.svg" class="logo__image only-light" alt="ophyd-async 0.1.dev938+gb1ae1843a documentation - Home"/>
+    <img src="../_static/ophyd-async-logo.svg" class="logo__image only-dark pst-js-only" alt="ophyd-async 0.1.dev938+gb1ae1843a documentation - Home"/>
   
   
 </a></div>
@@ -1146,7 +1148,7 @@ FastCS</label><div class="sd-tab-content docutils">
 <li><p><code class="docutils literal notranslate"><span class="pre">reset</span></code>: an executable to reset the counts on all channels</p></li>
 </ul>
 <p>We also have a <a class="reference internal" href="../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.DeviceVector" title="ophyd_async.core.DeviceVector"><code class="xref myst py py-class docutils literal notranslate"><span class="pre">DeviceVector</span></code></a> called <code class="docutils literal notranslate"><span class="pre">channel</span></code> with <code class="docutils literal notranslate"><span class="pre">DemoPointDetectorChannel</span></code> instances within it. These will all contribute their configuration values at the start of scan, and their values at every point in the scan.</p>
-<p>Finally, we need to communicate to bluesky that it has to <code class="docutils literal notranslate"><span class="pre">trigger()</span></code> and acquisition before it can <code class="docutils literal notranslate"><span class="pre">read()</span></code> from the underlying channels. We do this by implementing the <a class="reference external" href="https://blueskyproject.io/bluesky/main/hardware.html#bluesky.protocols.Triggerable" title="bluesky 1.14.7.dev63+ge787ee18f"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">Triggerable</span></code></span></a> protocol. This involves writing a <code class="docutils literal notranslate"><span class="pre">trigger()</span></code> method with the logic that must be run, calling <a class="reference internal" href="../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.SignalX.trigger" title="ophyd_async.core.SignalX.trigger"><code class="xref myst py py-meth docutils literal notranslate"><span class="pre">SignalX.trigger</span></code></a>, <a class="reference internal" href="../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.SignalW.set" title="ophyd_async.core.SignalW.set"><code class="xref myst py py-meth docutils literal notranslate"><span class="pre">SignalW.set</span></code></a> and <a class="reference internal" href="../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.SignalR.get_value" title="ophyd_async.core.SignalR.get_value"><code class="xref myst py py-meth docutils literal notranslate"><span class="pre">SignalR.get_value</span></code></a> to manipulate the values of the underlying Signals, returning when complete. This is wrapped in an <a class="reference internal" href="../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.AsyncStatus" title="ophyd_async.core.AsyncStatus"><code class="xref myst py py-class docutils literal notranslate"><span class="pre">AsyncStatus</span></code></a>, which is used by bluesky to run this operation in the background and know when it is complete.</p>
+<p>Finally, we need to communicate to bluesky that it has to <code class="docutils literal notranslate"><span class="pre">trigger()</span></code> an acquisition before it can <code class="docutils literal notranslate"><span class="pre">read()</span></code> from the underlying channels. We do this by implementing the <a class="reference external" href="https://blueskyproject.io/bluesky/main/hardware.html#bluesky.protocols.Triggerable" title="bluesky 1.15.2.dev3+g4418a6b16"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">Triggerable</span></code></span></a> protocol. This involves writing a <code class="docutils literal notranslate"><span class="pre">trigger()</span></code> method with the logic that must be run, calling <a class="reference internal" href="../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.SignalX.trigger" title="ophyd_async.core.SignalX.trigger"><code class="xref myst py py-meth docutils literal notranslate"><span class="pre">SignalX.trigger</span></code></a>, <a class="reference internal" href="../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.SignalW.set" title="ophyd_async.core.SignalW.set"><code class="xref myst py py-meth docutils literal notranslate"><span class="pre">SignalW.set</span></code></a> and <a class="reference internal" href="../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.SignalR.get_value" title="ophyd_async.core.SignalR.get_value"><code class="xref myst py py-meth docutils literal notranslate"><span class="pre">SignalR.get_value</span></code></a> to manipulate the values of the underlying Signals, returning when complete. This is wrapped in an <a class="reference internal" href="../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.AsyncStatus" title="ophyd_async.core.AsyncStatus"><code class="xref myst py py-class docutils literal notranslate"><span class="pre">AsyncStatus</span></code></a>, which is used by bluesky to run this operation in the background and know when it is complete.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><a class="reference internal" href="../how-to/interact-with-signals.html"><span class="doc std std-doc">How to interact with signals while implementing bluesky verbs</span></a></p>
@@ -1230,14 +1232,14 @@ FastCS</label><div class="sd-tab-content docutils">
 <li><p><code class="docutils literal notranslate"><span class="pre">stop_</span></code>: an executable to stop the move immediately</p></li>
 </ul>
 <p>At each point in the scan it will report the <code class="docutils literal notranslate"><span class="pre">readback</span></code>, but we override the <code class="docutils literal notranslate"><span class="pre">set_name()</span></code> method so that it reports its position as <code class="docutils literal notranslate"><span class="pre">stage.x</span></code> rather than <code class="docutils literal notranslate"><span class="pre">stage.x.readback</span></code>.</p>
-<p>If we consider how we would use this in a scan, we could <code class="docutils literal notranslate"><span class="pre">bp.scan(stage.x.setpoint,</span> <span class="pre">...)</span></code> directly, but that would only start the motor moving, not wait for it to complete the move. To do this, we need to implement another protocol: <a class="reference external" href="https://blueskyproject.io/bluesky/main/hardware.html#bluesky.protocols.Movable" title="bluesky 1.14.7.dev63+ge787ee18f"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">Movable</span></code></span></a>. This requires implementing a <code class="docutils literal notranslate"><span class="pre">set()</span></code> method (again wrapped in an <a class="reference internal" href="../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.AsyncStatus" title="ophyd_async.core.AsyncStatus"><code class="xref myst py py-class docutils literal notranslate"><span class="pre">AsyncStatus</span></code></a>) that does the following:</p>
+<p>If we consider how we would use this in a scan, we could <code class="docutils literal notranslate"><span class="pre">bp.scan(stage.x.setpoint,</span> <span class="pre">...)</span></code> directly, but that would only start the motor moving, not wait for it to complete the move. To do this, we need to implement another protocol: <a class="reference external" href="https://blueskyproject.io/bluesky/main/hardware.html#bluesky.protocols.Movable" title="bluesky 1.15.2.dev3+g4418a6b16"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">Movable</span></code></span></a>. This requires implementing a <code class="docutils literal notranslate"><span class="pre">set()</span></code> method (again wrapped in an <a class="reference internal" href="../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.AsyncStatus" title="ophyd_async.core.AsyncStatus"><code class="xref myst py py-class docutils literal notranslate"><span class="pre">AsyncStatus</span></code></a>) that does the following:</p>
 <ul class="simple">
 <li><p>Work out where to move to</p></li>
 <li><p>Start the motor moving</p></li>
 <li><p>Optionally report back updates on how far the motor has moved so bluesky can provide a progress bar</p></li>
 <li><p>Wait until the motor is at the target position</p></li>
 </ul>
-<p>Finally, we implement <a class="reference external" href="https://blueskyproject.io/bluesky/main/hardware.html#bluesky.protocols.Stoppable" title="bluesky 1.14.7.dev63+ge787ee18f"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">Stoppable</span></code></span></a> which tells bluesky what to do if the user aborts a plan. This requires implementing <code class="docutils literal notranslate"><span class="pre">stop()</span></code> to execute the <code class="docutils literal notranslate"><span class="pre">stop_</span></code> signal and tell <code class="docutils literal notranslate"><span class="pre">set()</span></code> whether the move should be reported as successful completion, or if it should raise an error.</p>
+<p>Finally, we implement <a class="reference external" href="https://blueskyproject.io/bluesky/main/hardware.html#bluesky.protocols.Stoppable" title="bluesky 1.15.2.dev3+g4418a6b16"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">Stoppable</span></code></span></a> which tells bluesky what to do if the user aborts a plan. This requires implementing <code class="docutils literal notranslate"><span class="pre">stop()</span></code> to execute the <code class="docutils literal notranslate"><span class="pre">stop_</span></code> signal and tell <code class="docutils literal notranslate"><span class="pre">set()</span></code> whether the move should be reported as successful completion, or if it should raise an error.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-15" name="sd-tab-set-5" type="radio">
 <label class="sd-tab-label" data-sync-group="cs" data-sync-id="epics" for="sd-tab-item-15">
@@ -1483,8 +1485,8 @@ FastCS</label><div class="sd-tab-content docutils">
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1496,7 +1498,7 @@ FastCS</label><div class="sd-tab-content docutils">
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.0.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.1.
 </p></div>
       
     </div>
