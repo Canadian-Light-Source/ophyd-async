@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ophyd_async.tango.testing &#8212; ophyd-async 0.1.dev942+gfab63a8a8 documentation</title>
+    <title>ophyd_async.tango.testing &#8212; ophyd-async 0.1.dev955+g0513030af documentation</title>
   
   
   
@@ -42,7 +42,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
 
-    <script src="../../_static/documentation_options.js?v=11bc6860"></script>
+    <script src="../../_static/documentation_options.js?v=ed8b427b"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -60,7 +60,7 @@
     <link rel="icon" href="../../_static/ophyd-favicon.svg"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="ophyd_async.sim" href="ophyd_async.sim.html" />
+    <link rel="next" title="ophyd_async.epics" href="ophyd_async.epics.html" />
     <link rel="prev" title="ophyd_async.tango.demo" href="ophyd_async.tango.demo.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -136,8 +136,8 @@
       
     
     
-    <img src="../../_static/ophyd-async-logo.svg" class="logo__image only-light" alt="ophyd-async 0.1.dev942+gfab63a8a8 documentation - Home"/>
-    <img src="../../_static/ophyd-async-logo.svg" class="logo__image only-dark pst-js-only" alt="ophyd-async 0.1.dev942+gfab63a8a8 documentation - Home"/>
+    <img src="../../_static/ophyd-async-logo.svg" class="logo__image only-light" alt="ophyd-async 0.1.dev955+g0513030af documentation - Home"/>
+    <img src="../../_static/ophyd-async-logo.svg" class="logo__image only-dark pst-js-only" alt="ophyd-async 0.1.dev955+g0513030af documentation - Home"/>
   
   
 </a></div>
@@ -426,42 +426,42 @@
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">API</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="ophyd_async.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async</span></code></a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ophyd_async.core.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.core</span></code></a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="ophyd_async.fastcs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.fastcs</span></code></a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="ophyd_async.fastcs.eiger.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.fastcs.eiger</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ophyd_async.fastcs.panda.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.fastcs.panda</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ophyd_async.fastcs.odin.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.fastcs.odin</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ophyd_async.fastcs.jungfrau.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.fastcs.jungfrau</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ophyd_async.fastcs.core.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.fastcs.core</span></code></a></li>
+</ul>
+</details></li>
 <li class="toctree-l3 current active has-children"><a class="reference internal" href="ophyd_async.tango.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.tango</span></code></a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="ophyd_async.tango.core.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.tango.core</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="ophyd_async.tango.demo.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.tango.demo</span></code></a></li>
 <li class="toctree-l4 current active"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.tango.testing</span></code></a></li>
 </ul>
 </details></li>
-<li class="toctree-l3"><a class="reference internal" href="ophyd_async.sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.sim</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="ophyd_async.core.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.core</span></code></a></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="ophyd_async.fastcs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.fastcs</span></code></a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="ophyd_async.fastcs.jungfrau.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.fastcs.jungfrau</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="ophyd_async.fastcs.eiger.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.fastcs.eiger</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="ophyd_async.fastcs.odin.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.fastcs.odin</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="ophyd_async.fastcs.panda.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.fastcs.panda</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="ophyd_async.fastcs.core.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.fastcs.core</span></code></a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="ophyd_async.epics.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.epics</span></code></a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="ophyd_async.epics.core.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.epics.core</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ophyd_async.epics.adcore.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.epics.adcore</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ophyd_async.epics.demo.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.epics.demo</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ophyd_async.epics.testing.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.epics.testing</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ophyd_async.epics.pmac.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.epics.pmac</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ophyd_async.epics.adandor.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.epics.adandor</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ophyd_async.epics.admerlin.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.epics.admerlin</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ophyd_async.epics.adgenicam.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.epics.adgenicam</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ophyd_async.epics.adkinetix.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.epics.adkinetix</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ophyd_async.epics.adaravis.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.epics.adaravis</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ophyd_async.epics.adpilatus.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.epics.adpilatus</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ophyd_async.epics.advimba.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.epics.advimba</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ophyd_async.epics.adsimdetector.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.epics.adsimdetector</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ophyd_async.epics.motor.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.epics.motor</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ophyd_async.epics.signal.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.epics.signal</span></code></a></li>
 </ul>
 </details></li>
 <li class="toctree-l3"><a class="reference internal" href="ophyd_async.plan_stubs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.plan_stubs</span></code></a></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="ophyd_async.epics.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.epics</span></code></a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="ophyd_async.epics.adcore.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.epics.adcore</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="ophyd_async.epics.core.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.epics.core</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="ophyd_async.epics.demo.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.epics.demo</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="ophyd_async.epics.pmac.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.epics.pmac</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="ophyd_async.epics.testing.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.epics.testing</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="ophyd_async.epics.signal.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.epics.signal</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="ophyd_async.epics.adkinetix.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.epics.adkinetix</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="ophyd_async.epics.advimba.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.epics.advimba</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="ophyd_async.epics.adsimdetector.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.epics.adsimdetector</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="ophyd_async.epics.adaravis.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.epics.adaravis</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="ophyd_async.epics.motor.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.epics.motor</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="ophyd_async.epics.admerlin.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.epics.admerlin</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="ophyd_async.epics.adgenicam.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.epics.adgenicam</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="ophyd_async.epics.adandor.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.epics.adandor</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="ophyd_async.epics.adpilatus.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.epics.adpilatus</span></code></a></li>
-</ul>
-</details></li>
 <li class="toctree-l3"><a class="reference internal" href="ophyd_async.testing.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.testing</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ophyd_async.sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.sim</span></code></a></li>
 </ul>
 </details></li>
 </ul>
@@ -552,8 +552,33 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#ophyd_async.tango.testing.OneOfEverythingTangoDevice" title="ophyd_async.tango.testing._one_of_everything.OneOfEverythingTangoDevice"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OneOfEverythingTangoDevice</span></code></a></p></td>
 <td><p>Device class for the high-level API.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ophyd_async.tango.testing.TestConfig" title="ophyd_async.tango.testing._test_config.TestConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TestConfig</span></code></a></p></td>
-<td><p>Configuration for a test.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ophyd_async.tango.testing.TangoDeviceInfo" title="ophyd_async.tango.testing._device_server.TangoDeviceInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TangoDeviceInfo</span></code></a></p></td>
+<td><p>Configuration for a single Tango device instance for MultiDeviceTestContext.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ophyd_async.tango.testing.TangoSubprocessDeviceServer" title="ophyd_async.tango.testing._device_server.TangoSubprocessDeviceServer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TangoSubprocessDeviceServer</span></code></a></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table table-left">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ophyd_async.tango.testing.generate_random_trl_prefix" title="ophyd_async.tango.testing._device_server.generate_random_trl_prefix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_random_trl_prefix</span></code></a></p></td>
+<td><p>Generate a random Tango domain/family/member prefix for use in test devices.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="data">
+<h3>Data<a class="headerlink" href="#data" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table table-left">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ophyd_async.tango.testing.TangoClassConfig" title="ophyd_async.tango.testing._device_server.TangoClassConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TangoClassConfig</span></code></a></p></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -610,6 +635,24 @@
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="ophyd_async.tango.testing.OneOfEverythingTangoDevice.long_string_cmd">
+<span class="sig-name descname"><span class="pre">long_string_cmd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ophyd_async/tango/testing/_one_of_everything.html#OneOfEverythingTangoDevice.long_string_cmd"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ophyd_async.tango.testing.OneOfEverythingTangoDevice.long_string_cmd" title="Link to this definition">#</a></dt>
+<dd><p>Echo command for DevVarLongStringArray.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ophyd_async.tango.testing.OneOfEverythingTangoDevice.double_string_cmd">
+<span class="sig-name descname"><span class="pre">double_string_cmd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ophyd_async/tango/testing/_one_of_everything.html#OneOfEverythingTangoDevice.double_string_cmd"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ophyd_async.tango.testing.OneOfEverythingTangoDevice.double_string_cmd" title="Link to this definition">#</a></dt>
+<dd><p>Echo command for DevVarDoubleStringArray.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ophyd_async.tango.testing.OneOfEverythingTangoDevice.void_cmd">
+<span class="sig-name descname"><span class="pre">void_cmd</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ophyd_async/tango/testing/_one_of_everything.html#OneOfEverythingTangoDevice.void_cmd"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ophyd_async.tango.testing.OneOfEverythingTangoDevice.void_cmd" title="Link to this definition">#</a></dt>
+<dd><p>Command for DevVoid.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="ophyd_async.tango.testing.OneOfEverythingTangoDevice.add_array_attrs">
 <span class="sig-name descname"><span class="pre">add_array_attrs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.6.dev0)"><span class="pre">ndarray</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ophyd_async/tango/testing/_one_of_everything.html#OneOfEverythingTangoDevice.add_array_attrs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ophyd_async.tango.testing.OneOfEverythingTangoDevice.add_array_attrs" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
@@ -638,6 +681,12 @@ initialize_dynamic_attributes() method will not be called again.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="ophyd_async.tango.testing.OneOfEverythingTangoDevice.float_to_bool_cmd">
+<span class="sig-name descname"><span class="pre">float_to_bool_cmd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/ophyd_async/tango/testing/_one_of_everything.html#OneOfEverythingTangoDevice.float_to_bool_cmd"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ophyd_async.tango.testing.OneOfEverythingTangoDevice.float_to_bool_cmd" title="Link to this definition">#</a></dt>
+<dd><p>Command with float input and bool output (different in/out types).</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="ophyd_async.tango.testing.OneOfEverythingTangoDevice.reset_values">
 <span class="sig-name descname"><span class="pre">reset_values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ophyd_async/tango/testing/_one_of_everything.html#OneOfEverythingTangoDevice.reset_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ophyd_async.tango.testing.OneOfEverythingTangoDevice.reset_values" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
@@ -660,28 +709,50 @@ initialize_dynamic_attributes() method will not be called again.</p>
 
 </dd></dl>
 
+<dl class="py data">
+<dt class="sig sig-object py" id="ophyd_async.tango.testing.TangoClassConfig">
+<span class="sig-prename descclassname"><span class="pre">ophyd_async.tango.testing.</span></span><span class="sig-name descname"><span class="pre">TangoClassConfig</span></span><a class="headerlink" href="#ophyd_async.tango.testing.TangoClassConfig" title="Link to this definition">#</a></dt>
+<dd><p>‘TypedDict(…)’</p>
+</dd></dl>
+
 <dl class="py class">
-<dt class="sig sig-object py" id="ophyd_async.tango.testing.TestConfig">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">ophyd_async.tango.testing.</span></span><span class="sig-name descname"><span class="pre">TestConfig</span></span><a class="reference internal" href="../../_modules/ophyd_async/tango/testing/_test_config.html#TestConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ophyd_async.tango.testing.TestConfig" title="Link to this definition">#</a></dt>
-<dd><p>Configuration for a test.</p>
+<dt class="sig sig-object py" id="ophyd_async.tango.testing.TangoDeviceInfo">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">ophyd_async.tango.testing.</span></span><span class="sig-name descname"><span class="pre">TangoDeviceInfo</span></span><a class="reference internal" href="../../_modules/ophyd_async/tango/testing/_device_server.html#TangoDeviceInfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ophyd_async.tango.testing.TangoDeviceInfo" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.TypedDict" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">typing.TypedDict</span></code></a></p>
+<p>Configuration for a single Tango device instance for MultiDeviceTestContext.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="ophyd_async.tango.testing.TestConfig.data_type">
-<span class="sig-name descname"><span class="pre">data_type</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">CmdArgType</span></span><a class="headerlink" href="#ophyd_async.tango.testing.TestConfig.data_type" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="ophyd_async.tango.testing.TangoDeviceInfo.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><a class="headerlink" href="#ophyd_async.tango.testing.TangoDeviceInfo.name" title="Link to this definition">#</a></dt>
 <dd><p>None</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="ophyd_async.tango.testing.TestConfig.data_format">
-<span class="sig-name descname"><span class="pre">data_format</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">AttrDataFormat</span></span><a class="headerlink" href="#ophyd_async.tango.testing.TestConfig.data_format" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="ophyd_async.tango.testing.TangoDeviceInfo.properties">
+<span class="sig-name descname"><span class="pre">properties</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.NotRequired" title="(in Python v3.14)"><span class="pre">NotRequired</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#ophyd_async.tango.testing.TangoDeviceInfo.properties" title="Link to this definition">#</a></dt>
 <dd><p>None</p>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ophyd_async.tango.testing.TestConfig.enum_labels">
-<span class="sig-name descname"><span class="pre">enum_labels</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#ophyd_async.tango.testing.TestConfig.enum_labels" title="Link to this definition">#</a></dt>
-<dd><p>None</p>
 </dd></dl>
 
+<dl class="py class">
+<dt class="sig sig-object py" id="ophyd_async.tango.testing.TangoSubprocessDeviceServer">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">ophyd_async.tango.testing.</span></span><span class="sig-name descname"><span class="pre">TangoSubprocessDeviceServer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.14)"><span class="pre">Sequence</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#ophyd_async.tango.testing.TangoClassConfig" title="ophyd_async.tango.testing._device_server.TangoClassConfig"><span class="pre">TangoClassConfig</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ophyd_async/tango/testing/_device_server.html#TangoSubprocessDeviceServer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ophyd_async.tango.testing.TangoSubprocessDeviceServer" title="Link to this definition">#</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="ophyd_async.tango.testing.TangoSubprocessDeviceServer.connect">
+<span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ophyd_async/tango/testing/_device_server.html#TangoSubprocessDeviceServer.connect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ophyd_async.tango.testing.TangoSubprocessDeviceServer.connect" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ophyd_async.tango.testing.TangoSubprocessDeviceServer.disconnect">
+<span class="sig-name descname"><span class="pre">disconnect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ophyd_async/tango/testing/_device_server.html#TangoSubprocessDeviceServer.disconnect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ophyd_async.tango.testing.TangoSubprocessDeviceServer.disconnect" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ophyd_async.tango.testing.generate_random_trl_prefix">
+<span class="sig-prename descclassname"><span class="pre">ophyd_async.tango.testing.</span></span><span class="sig-name descname"><span class="pre">generate_random_trl_prefix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../../_modules/ophyd_async/tango/testing/_device_server.html#generate_random_trl_prefix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ophyd_async.tango.testing.generate_random_trl_prefix" title="Link to this definition">#</a></dt>
+<dd><p>Generate a random Tango domain/family/member prefix for use in test devices.</p>
 </dd></dl>
 
 </section>
@@ -708,11 +779,11 @@ initialize_dynamic_attributes() method will not be called again.</p>
       </div>
     </a>
     <a class="right-next"
-       href="ophyd_async.sim.html"
+       href="ophyd_async.epics.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.sim</span></code></p>
+        <p class="prev-next-title"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ophyd_async.epics</span></code></p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -737,6 +808,8 @@ initialize_dynamic_attributes() method will not be called again.</p>
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#package-contents">Package Contents</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classes">Classes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api">API</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ophyd_async.tango.testing.ExampleStrEnum"><code class="docutils literal notranslate"><span class="pre">ExampleStrEnum</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ophyd_async.tango.testing.ExampleStrEnum.A"><code class="docutils literal notranslate"><span class="pre">ExampleStrEnum.A</span></code></a></li>
@@ -748,22 +821,32 @@ initialize_dynamic_attributes() method will not be called again.</p>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ophyd_async.tango.testing.OneOfEverythingTangoDevice.attr_values"><code class="docutils literal notranslate"><span class="pre">OneOfEverythingTangoDevice.attr_values</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ophyd_async.tango.testing.OneOfEverythingTangoDevice.initial_values"><code class="docutils literal notranslate"><span class="pre">OneOfEverythingTangoDevice.initial_values</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ophyd_async.tango.testing.OneOfEverythingTangoDevice.add_scalar_attr"><code class="docutils literal notranslate"><span class="pre">OneOfEverythingTangoDevice.add_scalar_attr()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ophyd_async.tango.testing.OneOfEverythingTangoDevice.long_string_cmd"><code class="docutils literal notranslate"><span class="pre">OneOfEverythingTangoDevice.long_string_cmd()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ophyd_async.tango.testing.OneOfEverythingTangoDevice.double_string_cmd"><code class="docutils literal notranslate"><span class="pre">OneOfEverythingTangoDevice.double_string_cmd()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ophyd_async.tango.testing.OneOfEverythingTangoDevice.void_cmd"><code class="docutils literal notranslate"><span class="pre">OneOfEverythingTangoDevice.void_cmd()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ophyd_async.tango.testing.OneOfEverythingTangoDevice.add_array_attrs"><code class="docutils literal notranslate"><span class="pre">OneOfEverythingTangoDevice.add_array_attrs()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ophyd_async.tango.testing.OneOfEverythingTangoDevice.add_scalar_command"><code class="docutils literal notranslate"><span class="pre">OneOfEverythingTangoDevice.add_scalar_command()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ophyd_async.tango.testing.OneOfEverythingTangoDevice.add_spectrum_command"><code class="docutils literal notranslate"><span class="pre">OneOfEverythingTangoDevice.add_spectrum_command()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ophyd_async.tango.testing.OneOfEverythingTangoDevice.initialize_dynamic_attributes"><code class="docutils literal notranslate"><span class="pre">OneOfEverythingTangoDevice.initialize_dynamic_attributes()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ophyd_async.tango.testing.OneOfEverythingTangoDevice.float_to_bool_cmd"><code class="docutils literal notranslate"><span class="pre">OneOfEverythingTangoDevice.float_to_bool_cmd()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ophyd_async.tango.testing.OneOfEverythingTangoDevice.reset_values"><code class="docutils literal notranslate"><span class="pre">OneOfEverythingTangoDevice.reset_values()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ophyd_async.tango.testing.OneOfEverythingTangoDevice.read"><code class="docutils literal notranslate"><span class="pre">OneOfEverythingTangoDevice.read()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ophyd_async.tango.testing.OneOfEverythingTangoDevice.write"><code class="docutils literal notranslate"><span class="pre">OneOfEverythingTangoDevice.write()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ophyd_async.tango.testing.OneOfEverythingTangoDevice.echo_command_code"><code class="docutils literal notranslate"><span class="pre">OneOfEverythingTangoDevice.echo_command_code</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ophyd_async.tango.testing.TestConfig"><code class="docutils literal notranslate"><span class="pre">TestConfig</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ophyd_async.tango.testing.TestConfig.data_type"><code class="docutils literal notranslate"><span class="pre">TestConfig.data_type</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ophyd_async.tango.testing.TestConfig.data_format"><code class="docutils literal notranslate"><span class="pre">TestConfig.data_format</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ophyd_async.tango.testing.TestConfig.enum_labels"><code class="docutils literal notranslate"><span class="pre">TestConfig.enum_labels</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ophyd_async.tango.testing.TangoClassConfig"><code class="docutils literal notranslate"><span class="pre">TangoClassConfig</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ophyd_async.tango.testing.TangoDeviceInfo"><code class="docutils literal notranslate"><span class="pre">TangoDeviceInfo</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ophyd_async.tango.testing.TangoDeviceInfo.name"><code class="docutils literal notranslate"><span class="pre">TangoDeviceInfo.name</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ophyd_async.tango.testing.TangoDeviceInfo.properties"><code class="docutils literal notranslate"><span class="pre">TangoDeviceInfo.properties</span></code></a></li>
 </ul>
 </li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ophyd_async.tango.testing.TangoSubprocessDeviceServer"><code class="docutils literal notranslate"><span class="pre">TangoSubprocessDeviceServer</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ophyd_async.tango.testing.TangoSubprocessDeviceServer.connect"><code class="docutils literal notranslate"><span class="pre">TangoSubprocessDeviceServer.connect()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ophyd_async.tango.testing.TangoSubprocessDeviceServer.disconnect"><code class="docutils literal notranslate"><span class="pre">TangoSubprocessDeviceServer.disconnect()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ophyd_async.tango.testing.generate_random_trl_prefix"><code class="docutils literal notranslate"><span class="pre">generate_random_trl_prefix()</span></code></a></li>
 </ul>
 </li>
 </ul>
