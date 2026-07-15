@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Implementing Devices &#8212; ophyd-async 0.1.dev965+gb39ae739f documentation</title>
+    <title>Implementing Devices &#8212; ophyd-async 0.1.dev990+g4eafbe7b5 documentation</title>
   
   
   
@@ -42,7 +42,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
 
-    <script src="../_static/documentation_options.js?v=7ded99b4"></script>
+    <script src="../_static/documentation_options.js?v=7aad76ab"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -572,8 +572,8 @@ window.runMermaid = runMermaid;</script>
       
     
     
-    <img src="../_static/ophyd-async-logo.svg" class="logo__image only-light" alt="ophyd-async 0.1.dev965+gb39ae739f documentation - Home"/>
-    <img src="../_static/ophyd-async-logo.svg" class="logo__image only-dark pst-js-only" alt="ophyd-async 0.1.dev965+gb39ae739f documentation - Home"/>
+    <img src="../_static/ophyd-async-logo.svg" class="logo__image only-light" alt="ophyd-async 0.1.dev990+g4eafbe7b5 documentation - Home"/>
+    <img src="../_static/ophyd-async-logo.svg" class="logo__image only-dark pst-js-only" alt="ophyd-async 0.1.dev990+g4eafbe7b5 documentation - Home"/>
   
   
 </a></div>
@@ -1022,6 +1022,8 @@ FastCS</label><div class="sd-tab-content docutils">
 EPICS</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Used for tutorial `Implementing Devices`.&quot;&quot;&quot;</span>
 
+<span class="kn">import</span><span class="w"> </span><span class="nn">atexit</span>
+
 <span class="c1"># Import bluesky and ophyd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">bluesky.plan_stubs</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">bps</span>  <span class="c1"># noqa: F401</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">bluesky.plans</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">bp</span>  <span class="c1"># noqa: F401</span>
@@ -1035,13 +1037,15 @@ EPICS</label><div class="sd-tab-content docutils">
 <span class="n">RE</span> <span class="o">=</span> <span class="n">RunEngine</span><span class="p">(</span><span class="n">call_returns_result</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">autoawait_in_bluesky_event_loop</span><span class="p">()</span>
 
-<span class="c1"># Add a callback for plotting</span>
-<span class="n">bec</span> <span class="o">=</span> <span class="n">BestEffortCallback</span><span class="p">()</span>
-<span class="hll"><span class="n">RE</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">bec</span><span class="p">)</span>
+<span class="hll"><span class="c1"># Add a callback for plotting</span>
+</span><span class="hll"><span class="n">bec</span> <span class="o">=</span> <span class="n">BestEffortCallback</span><span class="p">()</span>
+</span><span class="hll"><span class="n">RE</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">bec</span><span class="p">)</span>
 </span><span class="hll">
 </span><span class="hll"><span class="c1"># Start IOC with demo pvs in subprocess</span>
+</span><span class="hll"><span class="n">NUM_CHANNELS</span> <span class="o">=</span> <span class="mi">3</span>
 </span><span class="hll"><span class="n">prefix</span> <span class="o">=</span> <span class="n">testing</span><span class="o">.</span><span class="n">generate_random_pv_prefix</span><span class="p">()</span>
-</span><span class="hll"><span class="n">ioc</span> <span class="o">=</span> <span class="n">demo</span><span class="o">.</span><span class="n">start_ioc_subprocess</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">num_channels</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</span><span class="hll"><span class="n">ioc</span> <span class="o">=</span> <span class="n">testing</span><span class="o">.</span><span class="n">start_ioc</span><span class="p">(</span><span class="n">demo</span><span class="o">.</span><span class="n">IOC</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">NUM_CHANNELS</span><span class="p">))</span>
+</span><span class="hll"><span class="n">atexit</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">ioc</span><span class="o">.</span><span class="n">stop</span><span class="p">)</span>
 </span><span class="hll">
 </span><span class="hll"><span class="c1"># All Devices created within this block will be</span>
 </span><span class="hll"><span class="c1"># connected and named at the end of the with block</span>
@@ -1050,7 +1054,7 @@ EPICS</label><div class="sd-tab-content docutils">
 </span><span class="hll">    <span class="n">stage</span> <span class="o">=</span> <span class="n">demo</span><span class="o">.</span><span class="n">DemoStage</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s2">STAGE:&quot;</span><span class="p">)</span>
 </span><span class="hll">    <span class="c1"># Create a multi channel counter with the same number</span>
 </span><span class="hll">    <span class="c1"># of counters as the IOC</span>
-</span><span class="hll">    <span class="n">pdet</span> <span class="o">=</span> <span class="n">demo</span><span class="o">.</span><span class="n">DemoPointDetector</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s2">DET:&quot;</span><span class="p">,</span> <span class="n">num_channels</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</span><span class="hll">    <span class="n">pdet</span> <span class="o">=</span> <span class="n">demo</span><span class="o">.</span><span class="n">DemoPointDetector</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s2">DET:&quot;</span><span class="p">,</span> <span class="n">num_channels</span><span class="o">=</span><span class="n">NUM_CHANNELS</span><span class="p">)</span>
 </span></pre></div>
 </div>
 <p>EPICS PVs are normally broadcast to your entire network subnet. To avoid PV name clashes, we pick a random prefix, then start the demo IOC using this PV  prefix. Starting an IOC here is done just for the demo, in production the IOC would already be running before you started bluesky.</p>
@@ -1065,6 +1069,8 @@ EPICS</label><div class="sd-tab-content docutils">
 Tango</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Used for tutorial `Implementing Devices`.&quot;&quot;&quot;</span>
 
+<span class="kn">import</span><span class="w"> </span><span class="nn">atexit</span>
+
 <span class="c1"># Import bluesky and ophyd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">bluesky.plan_stubs</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">bps</span>  <span class="c1"># noqa: F401</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">bluesky.plans</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">bp</span>  <span class="c1"># noqa: F401</span>
@@ -1072,35 +1078,42 @@ Tango</label><div class="sd-tab-content docutils">
 <span class="kn">from</span><span class="w"> </span><span class="nn">bluesky.run_engine</span><span class="w"> </span><span class="kn">import</span> <span class="n">RunEngine</span><span class="p">,</span> <span class="n">autoawait_in_bluesky_event_loop</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">ophyd_async.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">init_devices</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">ophyd_async.tango</span><span class="w"> </span><span class="kn">import</span> <span class="n">demo</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">ophyd_async.tango.testing</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_random_trl_prefix</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ophyd_async.tango</span><span class="w"> </span><span class="kn">import</span> <span class="n">demo</span><span class="p">,</span> <span class="n">testing</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ophyd_async.testing</span><span class="w"> </span><span class="kn">import</span> <span class="n">find_free_port</span>
 
 <span class="c1"># Create a run engine and make ipython use it for `await` commands</span>
 <span class="n">RE</span> <span class="o">=</span> <span class="n">RunEngine</span><span class="p">(</span><span class="n">call_returns_result</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">autoawait_in_bluesky_event_loop</span><span class="p">()</span>
 
 <span class="c1"># Add a callback for plotting</span>
-<span class="n">bec</span> <span class="o">=</span> <span class="n">BestEffortCallback</span><span class="p">()</span>
-<span class="n">RE</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">bec</span><span class="p">)</span>
-<span class="hll">
-</span><span class="hll"><span class="c1"># Start demo DeviceServer in subprocess</span>
-</span><span class="hll"><span class="n">prefix</span> <span class="o">=</span> <span class="n">generate_random_trl_prefix</span><span class="p">()</span>
-</span><span class="hll"><span class="n">ds</span> <span class="o">=</span> <span class="n">demo</span><span class="o">.</span><span class="n">start_device_server_subprocess</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">num_channels</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="hll"><span class="n">bec</span> <span class="o">=</span> <span class="n">BestEffortCallback</span><span class="p">()</span>
+</span><span class="hll"><span class="n">RE</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">bec</span><span class="p">)</span>
+</span><span class="hll">
+</span><span class="hll"><span class="c1"># Start demo device servers in subprocess</span>
+</span><span class="hll"><span class="n">NUM_CHANNELS</span> <span class="o">=</span> <span class="mi">3</span>
+</span><span class="hll"><span class="n">prefix</span> <span class="o">=</span> <span class="n">testing</span><span class="o">.</span><span class="n">generate_random_trl_prefix</span><span class="p">()</span>
+</span><span class="hll"><span class="n">port</span> <span class="o">=</span> <span class="n">find_free_port</span><span class="p">()</span>
+</span><span class="hll"><span class="n">servers</span> <span class="o">=</span> <span class="n">testing</span><span class="o">.</span><span class="n">start_tango_device_servers</span><span class="p">(</span>
+</span><span class="hll">    <span class="n">demo</span><span class="o">.</span><span class="n">DEVICE_SERVERS</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">port</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">NUM_CHANNELS</span><span class="p">)</span>
+</span><span class="hll"><span class="p">)</span>
+</span><span class="hll"><span class="n">atexit</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">servers</span><span class="o">.</span><span class="n">stop</span><span class="p">)</span>
+</span><span class="hll">
+</span><span class="hll">
+</span><span class="hll"><span class="k">def</span><span class="w"> </span><span class="nf">trl</span><span class="p">(</span><span class="n">device_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span class="hll"><span class="w">    </span><span class="sd">&quot;&quot;&quot;TRL of `device_name`, served by `servers` under `prefix`.&quot;&quot;&quot;</span>
+</span><span class="hll">    <span class="k">return</span> <span class="n">testing</span><span class="o">.</span><span class="n">trl</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">device_name</span><span class="p">)</span>
+</span><span class="hll">
 </span><span class="hll">
 </span><span class="hll"><span class="c1"># All Devices created within this block will be</span>
 </span><span class="hll"><span class="c1"># connected and named at the end of the with block</span>
 </span><span class="hll"><span class="k">with</span> <span class="n">init_devices</span><span class="p">():</span>
 </span><span class="hll">    <span class="c1"># Create a sample stage with X and Y motors</span>
-</span><span class="hll">    <span class="n">stage</span> <span class="o">=</span> <span class="n">demo</span><span class="o">.</span><span class="n">DemoStage</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">trls</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s2">/X&quot;</span><span class="p">],</span> <span class="n">ds</span><span class="o">.</span><span class="n">trls</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s2">/Y&quot;</span><span class="p">])</span>
+</span><span class="hll">    <span class="n">stage</span> <span class="o">=</span> <span class="n">demo</span><span class="o">.</span><span class="n">DemoStage</span><span class="p">(</span><span class="n">trl</span><span class="p">(</span><span class="s2">&quot;motor-x&quot;</span><span class="p">),</span> <span class="n">trl</span><span class="p">(</span><span class="s2">&quot;motor-y&quot;</span><span class="p">))</span>
 </span><span class="hll">    <span class="c1"># Create a multi channel counter with the same number</span>
-</span><span class="hll">    <span class="c1"># of counters as the IOC</span>
+</span><span class="hll">    <span class="c1"># of counters as the device servers</span>
 </span><span class="hll">    <span class="n">pdet</span> <span class="o">=</span> <span class="n">demo</span><span class="o">.</span><span class="n">DemoPointDetector</span><span class="p">(</span>
-</span><span class="hll">        <span class="n">ds</span><span class="o">.</span><span class="n">trls</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s2">/DET&quot;</span><span class="p">],</span>
-</span><span class="hll">        <span class="p">[</span>
-</span><span class="hll">            <span class="n">ds</span><span class="o">.</span><span class="n">trls</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s2">/C1&quot;</span><span class="p">],</span>
-</span><span class="hll">            <span class="n">ds</span><span class="o">.</span><span class="n">trls</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s2">/C2&quot;</span><span class="p">],</span>
-</span><span class="hll">            <span class="n">ds</span><span class="o">.</span><span class="n">trls</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s2">/C3&quot;</span><span class="p">],</span>
-</span><span class="hll">        <span class="p">],</span>
+</span><span class="hll">        <span class="n">trl</span><span class="p">(</span><span class="s2">&quot;detector&quot;</span><span class="p">),</span>
+</span><span class="hll">        <span class="p">[</span><span class="n">trl</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;channel-</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">NUM_CHANNELS</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)],</span>
 </span><span class="hll">    <span class="p">)</span>
 </span></pre></div>
 </div>
@@ -1225,7 +1238,7 @@ FastCS</label><div class="sd-tab-content docutils">
 <li><p><code class="docutils literal notranslate"><span class="pre">reset</span></code>: a <a class="reference internal" href="../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.TriggerableCommand" title="ophyd_async.core.TriggerableCommand"><code class="xref myst py py-class docutils literal notranslate"><span class="pre">TriggerableCommand</span></code></a> to reset the counts on all channels</p></li>
 </ul>
 <p>We also have a <a class="reference internal" href="../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.DeviceVector" title="ophyd_async.core.DeviceVector"><code class="xref myst py py-class docutils literal notranslate"><span class="pre">DeviceVector</span></code></a> called <code class="docutils literal notranslate"><span class="pre">channel</span></code> with <code class="docutils literal notranslate"><span class="pre">DemoPointDetectorChannel</span></code> instances within it. These will all contribute their configuration values at the start of scan, and their values at every point in the scan.</p>
-<p>Finally, we need to communicate to bluesky that it has to <code class="docutils literal notranslate"><span class="pre">trigger()</span></code> an acquisition before it can <code class="docutils literal notranslate"><span class="pre">read()</span></code> from the underlying channels. We do this by implementing the <a class="reference external" href="https://blueskyproject.io/bluesky/main/hardware.html#bluesky.protocols.Triggerable" title="bluesky 1.15.2.dev24+g8b8b6dc8f"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">Triggerable</span></code></span></a> protocol. This involves writing a <code class="docutils literal notranslate"><span class="pre">trigger()</span></code> method with the logic that must be run, calling <a class="reference internal" href="../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.TriggerableCommand.trigger" title="ophyd_async.core.TriggerableCommand.trigger"><code class="xref myst py py-meth docutils literal notranslate"><span class="pre">TriggerableCommand.trigger</span></code></a>, <a class="reference internal" href="../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.SignalW.set" title="ophyd_async.core.SignalW.set"><code class="xref myst py py-meth docutils literal notranslate"><span class="pre">SignalW.set</span></code></a> and <a class="reference internal" href="../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.SignalR.get_value" title="ophyd_async.core.SignalR.get_value"><code class="xref myst py py-meth docutils literal notranslate"><span class="pre">SignalR.get_value</span></code></a> to manipulate the values of the underlying Signals and Commands, returning when complete. This is wrapped in an <a class="reference internal" href="../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.AsyncStatus" title="ophyd_async.core.AsyncStatus"><code class="xref myst py py-class docutils literal notranslate"><span class="pre">AsyncStatus</span></code></a>, which is used by bluesky to run this operation in the background and know when it is complete.</p>
+<p>Finally, we need to communicate to bluesky that it has to <code class="docutils literal notranslate"><span class="pre">trigger()</span></code> an acquisition before it can <code class="docutils literal notranslate"><span class="pre">read()</span></code> from the underlying channels. We do this by implementing the <a class="reference external" href="https://blueskyproject.io/bluesky/main/hardware.html#bluesky.protocols.Triggerable" title="bluesky 1.15.2.dev58+gedb01a9bc"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">Triggerable</span></code></span></a> protocol. This involves writing a <code class="docutils literal notranslate"><span class="pre">trigger()</span></code> method with the logic that must be run, calling <a class="reference internal" href="../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.TriggerableCommand.trigger" title="ophyd_async.core.TriggerableCommand.trigger"><code class="xref myst py py-meth docutils literal notranslate"><span class="pre">TriggerableCommand.trigger</span></code></a>, <a class="reference internal" href="../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.SignalW.set" title="ophyd_async.core.SignalW.set"><code class="xref myst py py-meth docutils literal notranslate"><span class="pre">SignalW.set</span></code></a> and <a class="reference internal" href="../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.SignalR.get_value" title="ophyd_async.core.SignalR.get_value"><code class="xref myst py py-meth docutils literal notranslate"><span class="pre">SignalR.get_value</span></code></a> to manipulate the values of the underlying Signals and Commands, returning when complete. This is wrapped in an <a class="reference internal" href="../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.AsyncStatus" title="ophyd_async.core.AsyncStatus"><code class="xref myst py py-class docutils literal notranslate"><span class="pre">AsyncStatus</span></code></a>, which is used by bluesky to run this operation in the background and know when it is complete.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><a class="reference internal" href="../how-to/interact-with-signals.html"><span class="doc std std-doc">How to interact with signals and commands while implementing bluesky verbs</span></a></p>
@@ -1353,9 +1366,9 @@ FastCS</label><div class="sd-tab-content docutils">
 <li><p><code class="docutils literal notranslate"><span class="pre">stop_</span></code>: a <a class="reference internal" href="../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.TriggerableCommand" title="ophyd_async.core.TriggerableCommand"><code class="xref myst py py-class docutils literal notranslate"><span class="pre">TriggerableCommand</span></code></a> to stop the move immediately</p></li>
 </ul>
 <p><code class="docutils literal notranslate"><span class="pre">DemoMotor</span></code> inherits from <a class="reference internal" href="../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.StandardMovable" title="ophyd_async.core.StandardMovable"><code class="xref myst py py-class docutils literal notranslate"><span class="pre">StandardMovable</span></code></a>, which provides the full
-<a class="reference external" href="https://blueskyproject.io/bluesky/main/hardware.html#bluesky.protocols.Movable" title="bluesky 1.15.2.dev24+g8b8b6dc8f"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">Movable</span></code></span></a>, <a class="reference external" href="https://blueskyproject.io/bluesky/main/hardware.html#bluesky.protocols.Locatable" title="bluesky 1.15.2.dev24+g8b8b6dc8f"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">Locatable</span></code></span></a>,
-<a class="reference external" href="https://blueskyproject.io/bluesky/main/hardware.html#bluesky.protocols.Stoppable" title="bluesky 1.15.2.dev24+g8b8b6dc8f"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">Stoppable</span></code></span></a>, and
-<a class="reference external" href="https://blueskyproject.io/bluesky/main/hardware.html#bluesky.protocols.Subscribable" title="bluesky 1.15.2.dev24+g8b8b6dc8f"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">Subscribable</span></code></span></a> protocol surface, as well as
+<a class="reference external" href="https://blueskyproject.io/bluesky/main/hardware.html#bluesky.protocols.Movable" title="bluesky 1.15.2.dev58+gedb01a9bc"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">Movable</span></code></span></a>, <a class="reference external" href="https://blueskyproject.io/bluesky/main/hardware.html#bluesky.protocols.Locatable" title="bluesky 1.15.2.dev58+gedb01a9bc"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">Locatable</span></code></span></a>,
+<a class="reference external" href="https://blueskyproject.io/bluesky/main/hardware.html#bluesky.protocols.Stoppable" title="bluesky 1.15.2.dev58+gedb01a9bc"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">Stoppable</span></code></span></a>, and
+<a class="reference external" href="https://blueskyproject.io/bluesky/main/hardware.html#bluesky.protocols.Subscribable" title="bluesky 1.15.2.dev58+gedb01a9bc"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">Subscribable</span></code></span></a> protocol surface, as well as
 <code class="docutils literal notranslate"><span class="pre">WatcherUpdate</span></code> progress-bar machinery. The device-specific parts — how to compute a
 timeout from velocity, how to execute a stop, and how to detect move completion — live
 in a separate <code class="docutils literal notranslate"><span class="pre">DemoMotorMoveLogic</span></code> dataclass that subclasses <a class="reference internal" href="../_api/ophyd_async/ophyd_async.core.html#ophyd_async.core.MovableLogic" title="ophyd_async.core.MovableLogic"><code class="xref myst py py-class docutils literal notranslate"><span class="pre">MovableLogic</span></code></a>.</p>
